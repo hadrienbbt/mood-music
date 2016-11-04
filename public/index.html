@@ -1,0 +1,386 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Mood music</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <style type="text/css">
+      #login, #loggedin {
+        display: none;
+      }
+      .text-overflow {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 500px;
+      }
+    </style>
+  </head>
+
+  <body>
+                     <!-- login facebook -->
+  <script>
+      // This is called with the results from from FB.getLoginStatus().
+      function statusChangeCallback(response) {
+          console.log('statusChangeCallback');
+          console.log(response);
+          // The response object is returned with a status field that lets the
+          // app know the current login status of the person.
+          // Full docs on the response object can be found in the documentation
+          // for FB.getLoginStatus().
+          if (response.status === 'connected') {
+              // Logged into your app and Facebook.
+              document.getElementById('button_login').innerHTML = '';
+              testAPI();
+          } else if (response.status === 'not_authorized') {
+              // The person is logged into Facebook, but not your app.
+              document.getElementById('status').innerHTML = 'Please log ' +
+              'into this app.';
+          } else {
+              // The person is not logged into Facebook, so we're not sure if
+              // they are logged into this app or not.
+              document.getElementById('status').innerHTML = 'Please log ' +
+              'into Facebook.';
+          }
+      }
+
+      // This function is called when someone finishes with the Login
+      // Button.  See the onlogin handler attached to it in the sample
+      // code below.
+      function checkLoginState() {
+          FB.getLoginStatus(function(response) {
+              statusChangeCallback(response);
+          });
+      }
+
+      window.fbAsyncInit = function() {
+          FB.init({
+              appId      : '1754395221490484',
+              cookie     : true,  // enable cookies to allow the server to access
+                                  // the session
+              xfbml      : true,  // parse social plugins on this page
+              version    : 'v2.5' // use graph api version 2.5
+          });
+
+          // Now that we've initialized the JavaScript SDK, we call
+          // FB.getLoginStatus().  This function gets the state of the
+          // person visiting this page and can return one of three states to
+          // the callback you provide.  They can be:
+          //
+          // 1. Logged into your app ('connected')
+          // 2. Logged into Facebook, but not your app ('not_authorized')
+          // 3. Not logged into Facebook and can't tell if they are logged into
+          //    your app or not.
+          //
+          // These three cases are handled in the callback function.
+
+          FB.getLoginStatus(function(response) {
+              statusChangeCallback(response);
+          });
+
+      };
+
+      // Load the SDK asynchronously
+      (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+      // Here we run a very simple test of the Graph API after login is
+      // successful.  See statusChangeCallback() for when this call is made.
+      function testAPI() {
+          console.log('Welcome!  Fetching your information.... ');
+          FB.api('/me', function(response) {
+              console.log('Successful login for: ' + response.name);
+              document.getElementById('status').innerHTML =
+                      'Thanks for logging in, ' + response.name + '!';
+          });
+          FB.api(
+              '/me/music',
+              'GET',
+              {},
+              function(response) {
+                  console.log(response);
+                  $("#search").attr('value', response['data']['0']['name']);
+                  rechercherDansSpotify();
+              }
+          );
+      }
+  </script>
+
+  <!--
+    Below we include the Login Button social plugin. This button uses
+    the JavaScript SDK to present a graphical Login button that triggers
+    the FB.login() function when clicked.
+  -->
+<div id="button_login">
+  <fb:login-button scope="public_profile,email,user_likes,user_actions.music" onlogin="checkLoginState();">
+  </fb:login-button>
+</div>
+  <div id="status">
+  </div>
+                     <!-- FIN Facebook -->
+
+     <div class="container">
+      <div id="login">
+        <h1>Bienvenue sur mood-music !</h1>
+        <a href="/login" class="btn btn-primary">Log in with Spotify</a>
+      </div>
+      <div id="loggedin">
+        <div id="user-profile">
+        </div>
+        <div id="oauth">
+        </div>
+          <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
+      </div>
+    </div>
+
+    <script id="user-profile-template" type="text/x-handlebars-template">
+      <h1>Logged in as {{display_name}}</h1>
+      <div class="media">
+        <div class="pull-left">
+          <img class="media-object" width="150" src="{{images.0.url}}" />
+        </div>
+        <div class="media-body">
+          <dl class="dl-horizontal">
+            <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
+            <dt>Id</dt><dd>{{id}}</dd>
+            <dt>Email</dt><dd>{{email}}</dd>
+            <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
+            <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
+            <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
+            <dt>Country</dt><dd>{{country}}</dd>
+          </dl>
+        </div>
+      </div>
+    </script>
+
+    <script id="oauth-template" type="text/x-handlebars-template">
+      <h2>oAuth info</h2>
+      <dl class="dl-horizontal">
+        <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
+        <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}></dd>
+      </dl>
+
+      <h2>Entrez un mot clé pour la recherche : </h2>
+      <input id="search" type="text" />
+      <input id="valider" type="button" value="valider">
+      <br>
+      <div id="result"></div>
+      <div id="player"></div>
+      <div id="metadata"></div>
+    </script>
+
+    <script>
+        var limitTrack = 50;
+
+        $(document).ready(function() {
+            // Ajouter un écouteur sur le clic
+            $('#valider').click(function(){
+                rechercherDansSpotify()
+            });
+
+            /****************************
+             * EXEMPLES D'APPEL A L'API *
+             ****************************/
+
+            // Exemple de récupération des infos d'une musique
+            var url = 'https://api.spotify.com/v1/tracks/0MKqeOVdZcUFGJvWpGCKbG';
+            callSpotify(url).then(function(data){
+                console.log(data);
+            },erreur);
+
+            // Exemple d'appel des infos du user
+            url = 'https://api.spotify.com/v1/me';
+            callSpotify(url).then(function(data){
+                console.log(data);
+            },erreur);
+
+            // Exemple de récupération des métadonnées de 3 musiques
+            url = 'https://api.spotify.com/v1/audio-features?ids=4JpKVNYnVcJ8tuMKjAj50A,2NRANZE9UCmPAS5XVbXL40,24JygzOLM0EmRQeGtFcIcG'
+            callSpotify(url).then(function(data){
+                console.log(data);
+            },erreur);
+        });
+
+
+        // Afficher dans une liste les métadonnées de toutes les musiques passées à l'API Spotify
+        function afficherMetadonnees(data) {
+            console.log(data);
+            var items = [];
+            for (var i = 0; i< data['audio_features'].length; i++){
+                $.each(data['audio_features'][i], function (key, val) {
+                    items.push("<li id='" + key + "'>" + key + " : " + val + "</li>");
+                });
+
+                $("<ul/>", {
+                    "class": "my-new-list",
+                    html: items.join("")
+                }).appendTo("body");
+            }
+        }
+
+        // Afficher les métadonnées de toutes les musiques passée à l'API Spotify dans une alerte au clic sur l'artiste
+        function alertMetadonnees(data) {
+            console.log(data);
+            var items = [];
+            for (var i = 0; i< data['audio_features'].length; i++){
+                $.each(data['audio_features'][i], function (key, val) {
+                    items.push("\n"+key + " : " + val);
+                });
+            }
+            alert(items.toString());
+        }
+
+        // Rechercher des musiques dont le nom, l'artiste ou l'album match avec la valeur de l'input #search
+        function rechercherDansSpotify(){
+            var text = $('#search').val();
+
+            // Exemple de récupération de recherche
+            url = 'https://api.spotify.com/v1/search';
+            var params = {
+                q: text,
+                type:'track',
+                limit: limitTrack
+            };
+            callSpotify(url, params).then(successSearch, erreur);
+        }
+
+        // Afficher résultat de la recherche de titre
+        function successSearch(data){
+            console.log(data);
+            // Réinitialiser les champs pour les nouveaux résultats
+            document.getElementById('result').innerHTML = '';
+            document.getElementById('player').innerHTML = '';
+            var musique;
+
+            // Créer le lecteur pour y mettre les musiques trouvées
+            var player = '<iframe src="https://embed.spotify.com/?uri=spotify:trackset:Ecouter:';
+            for (var i = 0; i<limitTrack; i++){
+                musique = data['tracks']['items'][i];
+
+                // Afficher une div par musique contenant des informations
+                $('#result').append(
+                "<span class='titre' id='"+musique['id']+"'>"+
+                    musique['name']+" - "+musique['artists'][0]['name']+" : </span>" +
+                "<a href='"+musique['external_urls']['spotify']+"'>lien</a>" +
+                "</br>");
+                player += musique['id']+',';
+            }
+            player = player.substr(0,player.length-1);
+            player += '" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
+
+            // Ajouter le player complet à la suite
+            $('#player').append(player);
+
+            // Ajout d'un écouteur de clic sur les résultats de la recherche
+            // Lorsqu'on clique sur un titre on affiche ses metadonnées
+            $('.titre').click(function(){
+                var id = $(this).attr('id');
+                url = 'https://api.spotify.com/v1/audio-features?ids='+id
+                callSpotify(url).then(alertMetadonnees,erreur);
+            });
+        }
+
+        // Appeler l'API Spotify pour n'importe quel service avec le token d'accès
+        function callSpotify(url, data) {
+            var params = getHashParams();
+            return $.ajax(url, {
+                dataType: 'json',
+                data: data,
+                headers: {
+                    'Authorization': 'Bearer ' + params.access_token
+                }
+            });
+        }
+
+        // Récupérer le token
+        function getHashParams() {
+            var hashParams = {};
+            var e, r = /([^&;=]+)=?([^&;]*)/g,
+                    q = window.location.hash.substring(1);
+            while ( e = r.exec(q)) {
+                hashParams[e[1]] = decodeURIComponent(e[2]);
+            }
+            return hashParams;
+        }
+
+        function erreur(data){
+            console.log(data);
+        }
+    </script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script>
+      (function() {
+
+        /**
+         * Obtains parameters from the hash of the URL
+         * @return Object
+         */
+
+        var userProfileSource = document.getElementById('user-profile-template').innerHTML,
+            userProfileTemplate = Handlebars.compile(userProfileSource),
+            userProfilePlaceholder = document.getElementById('user-profile');
+
+        var oauthSource = document.getElementById('oauth-template').innerHTML,
+            oauthTemplate = Handlebars.compile(oauthSource),
+            oauthPlaceholder = document.getElementById('oauth');
+
+        var params = getHashParams();
+
+        var access_token = params.access_token,
+            refresh_token = params.refresh_token,
+            error = params.error;
+
+        if (error) {
+          alert('There was an error during the authentication');
+        } else {
+          if (access_token) {
+            // render oauth info
+            oauthPlaceholder.innerHTML = oauthTemplate({
+              access_token: access_token,
+              refresh_token: refresh_token
+            });
+
+            $.ajax({
+                url: 'https://api.spotify.com/v1/me',
+                headers: {
+                  'Authorization': 'Bearer ' + access_token
+                },
+                success: function(response) {
+                  userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+                  $('#login').hide();
+                  $('#loggedin').show();
+                }
+            });
+          } else {
+              // render initial screen
+              $('#login').show();
+              $('#loggedin').hide();
+          }
+
+          document.getElementById('obtain-new-token').addEventListener('click', function() {
+            $.ajax({
+              url: '/refresh_token',
+              data: {
+                'refresh_token': refresh_token
+              }
+            }).done(function(data) {
+              access_token = data.access_token;
+              oauthPlaceholder.innerHTML = oauthTemplate({
+                access_token: access_token,
+                refresh_token: refresh_token
+              });
+            });
+          }, false);
+        }
+      })();
+    </script>
+  </body>
+</html>
