@@ -10,4 +10,4 @@ npm install
 
 node app.js
 
-Open localhost:888 on browser
+Open localhost:8888 on browser
