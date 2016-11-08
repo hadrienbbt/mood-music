@@ -46,7 +46,9 @@ function rechercheValenceActivation(data) {
 
 // Afficher résultat de la recherche de titre
 function successSearch(data){
-    console.log(data);
+    // Décommetner pour vérifier l'information reçue
+    //console.log(data);
+
     // Réinitialiser les champs pour les nouveaux résultats
     document.getElementById('result').innerHTML = '';
     document.getElementById('player').innerHTML = '';
@@ -156,7 +158,8 @@ function afficherMetadonnees(data) {
 
 // Afficher les métadonnées de toutes les musiques passée à l'API Spotify dans une alerte au clic sur l'artiste
 function alertMetadonnees(data) {
-    console.log(data);
+    // Décommenter pour vérifier l'arbre JSON des audio feature
+    //console.log(data);
     var items = [];
     for (var i = 0; i< data['audio_features'].length; i++){
         $.each(data['audio_features'][i], function (key, val) {

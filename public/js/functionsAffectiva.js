@@ -71,7 +71,8 @@ detector.addEventListener("onStopSuccess", function() {
 //The faces object contains the list of the faces detected in an image.
 //Faces object contains probabilities for all the different expressions, emotions and appearance metrics
 detector.addEventListener("onImageResultsSuccess", function(faces, image, timestamp) {
-    console.log(faces);
+    // Décommenter pour connaitre les caractéristiques mesurées
+    //console.log(faces);
     $('#results').html("");
     log('#results', "Timestamp: " + timestamp.toFixed(2));
     log('#results', "Number of faces found: " + faces.length);

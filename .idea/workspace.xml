@@ -28,18 +28,18 @@
       <file leaf-file-name="functionsAffectiva.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/functionsAffectiva.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="106" max-vertical-offset="1800">
-              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1815">
+              <caret line="73" column="63" selection-start-line="73" selection-start-column="63" selection-end-line="73" selection-end-column="63" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.16648169" vertical-offset="1155" max-vertical-offset="2985">
-              <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+            <state vertical-scroll-proportion="-66.25" vertical-offset="75" max-vertical-offset="2985">
+              <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -48,8 +48,8 @@
       <file leaf-file-name="init_facebook.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/init_facebook.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1170">
-              <caret line="72" column="41" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="275" max-vertical-offset="1200">
+              <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -58,8 +58,8 @@
       <file leaf-file-name="functionsFacebook.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/functionsFacebook.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="690">
+              <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
               <folding>
                 <element signature="n#!!doc;n#testAPI#0" expanded="false" />
               </folding>
@@ -67,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="functionsSpotify.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="functionsSpotify.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/functionsSpotify.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2970">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state vertical-scroll-proportion="2.6863182" vertical-offset="0" max-vertical-offset="3015">
+              <caret line="161" column="13" selection-start-line="161" selection-start-column="6" selection-end-line="161" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -98,10 +98,12 @@
         <option value="$PROJECT_DIR$/js/functions_Spotify.js" />
         <option value="$PROJECT_DIR$/public/functionsAffectiva.js" />
         <option value="$PROJECT_DIR$/public/functionsSpotify.js" />
-        <option value="$PROJECT_DIR$/public/js/init_facebook.js" />
-        <option value="$PROJECT_DIR$/public/js/functionsFacebook.js" />
         <option value="$PROJECT_DIR$/public/js/init_spotify.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/public/js/functionsAffectiva.js" />
+        <option value="$PROJECT_DIR$/public/js/init_facebook.js" />
+        <option value="$PROJECT_DIR$/public/js/functionsFacebook.js" />
+        <option value="$PROJECT_DIR$/public/js/functionsSpotify.js" />
       </list>
     </option>
   </component>
@@ -266,7 +268,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="999" height="1045" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -274,7 +276,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23406479" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23406479" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -527,42 +529,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/functionsAffectiva.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="106" max-vertical-offset="1800">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/functionsSpotify.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2970">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1815">
+          <caret line="73" column="63" selection-start-line="73" selection-start-column="63" selection-end-line="73" selection-end-column="63" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/init_facebook.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1170">
-          <caret line="72" column="41" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="275" max-vertical-offset="1200">
+          <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-66.25" vertical-offset="75" max-vertical-offset="2985">
+          <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/functionsFacebook.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="690">
+          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
           <folding>
             <element signature="n#!!doc;n#testAPI#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
+    <entry file="file://$PROJECT_DIR$/public/js/functionsSpotify.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16648169" vertical-offset="1155" max-vertical-offset="2985">
-          <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+        <state vertical-scroll-proportion="2.6863182" vertical-offset="0" max-vertical-offset="3015">
+          <caret line="161" column="13" selection-start-line="161" selection-start-column="6" selection-end-line="161" selection-end-column="13" />
           <folding />
         </state>
       </provider>
