@@ -142,7 +142,7 @@ app.get('/refresh_token', function(req, res) {
 });
 
 app.get('/confidentialite', function(req, res) {
-    res.redirect('PC.html');
+    res.redirect('/public/PC.html');
 });
 
 console.log('Listening on 8888');

@@ -32,7 +32,7 @@ function getArtistesAimes(){
         function(response) {
             for (var i = 0; i<25; i++)
                 addArtistToList(response['data'][i]['name']);
-            rechercheTextuelleSpotify();
+            //rechercheTextuelleSpotify();
         }
     );
 }

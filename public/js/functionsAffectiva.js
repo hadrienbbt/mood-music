@@ -11,6 +11,7 @@ var height = 480;
 var faceMode = affdex.FaceDetectorMode.LARGE_FACES;
 //Construct a CameraDetector and specify the image width / height and face detector mode.
 var detector = new affdex.CameraDetector(divRoot, width, height, faceMode);
+var tabValence = new Array();
 
 //Enable detection of all Expressions, Emotions and Emojis classifiers.
 detector.detectAllEmotions();
@@ -62,7 +63,7 @@ detector.addEventListener("onWebcamConnectFailure", function() {
     console.log("Webcam access denied");
 });
 
-//Add a callback to notify when detector is stopped
+//Add a callback to notify when detector is stoppedé
 detector.addEventListener("onStopSuccess", function() {
     $("#results").html("");
 });
@@ -79,8 +80,11 @@ detector.addEventListener("onImageResultsSuccess", function(faces, image, timest
     if (faces.length > 0) {
 
         // Ajout Hadrien pour remplir le champ valence et activation
-        $('#valence').val((faces[0]['emotions']['valence']+100)/200);
-        $('#activation').val(faces[0]['emotions']['engagement']/100);
+        var valence = ((faces[0]['emotions']['valence']+100)/200).toFixed(4);
+        var activation = (faces[0]['emotions']['engagement']/100).toFixed(4);
+        $('#valence').val(valence);
+        $('#activation').val(activation);
+        tabValence.push(valence);
         //Fin ajout
 
         // V2 : plus besoin de ça

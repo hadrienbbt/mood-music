@@ -3,26 +3,28 @@
   <head>
     <title>Mood music</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-      <script src="https://download.affectiva.com/js/3.1/affdex.js"></script>
-      <script src="https://download.affectiva.com/js/3.1/adapter-1.4.0.js"></script>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" >
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-      <script src="js/init_facebook.js"></script>
-      <script src="js/functionsSpotify.js"></script>
-      <script src="js/functionsFacebook.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://download.affectiva.com/js/3.1/affdex.js"></script>
+    <script src="https://download.affectiva.com/js/3.1/adapter-1.4.0.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="js/init_facebook.js"></script>
+    <script src="js/functionsSpotify.js"></script>
+    <script src="js/functionsFacebook.js"></script>
+    <script src="js/functionMoodMusic.js"></script>
+    <script src="js/class/RecommendationRequest.js"></script>
 
     <style type="text/css">
-      #login, #loggedin {
+        #login, #loggedin {
         display: none;
-      }
-      .text-overflow {
+        }
+        .text-overflow {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         width: 500px;
-      }
+        }
     </style>
   </head>
 
@@ -34,25 +36,23 @@
     the FB.login() function when clicked.
   -->
 <div id="button_login">
-  <fb:login-button scope="public_profile,email,user_likes,user_actions.music" onlogin="checkLoginState();">
-  </fb:login-button>
+    <fb:login-button scope="public_profile,email,user_likes,user_actions.music" onlogin="checkLoginState();">
+    </fb:login-button>
 </div>
-  <div id="status">
-  </div>
+<div id="status">
+    </div>
                      <!-- FIN Facebook -->
 
-     <div class="container">
-      <div id="login">
-        <h1>Bienvenue sur mood-music !</h1>
-        <a href="/login" class="btn btn-primary">Log in with Spotify</a>
-      </div>
-      <div id="loggedin">
-        <div id="user-profile">
+    <div class="container">
+        <div id="login">
+            <h1>Bienvenue sur mood-music !</h1>
+            <a href="/login" class="btn btn-primary">Log in with Spotify</a>
         </div>
-        <div id="oauth">
+        <div id="loggedin">
+            <div id="user-profile"></div>
+            <div id="oauth"></div>
+            <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
         </div>
-          <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
-      </div>
     </div>
 
     <script id="user-profile-template" type="text/x-handlebars-template">
@@ -94,7 +94,7 @@
           <div>
               <h2>Cliquez sur Start pour utiliser la caméra</h2>
               <button id="start" onclick="onStart()">Start</button>
-              <button id="stop" onclick="onStop();getIdArtiste('valence+activation')">Stop</button>
+              <button id="stop" onclick="onStop();getIdArtiste('valence+activation');moyenne(tabValence);">Stop</button>
               <button id="reset" onclick="onReset()">Reset</button>
           </div>
       </div>
@@ -123,6 +123,9 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script>
+      var requete = new RecommendationRequest(['37J1PlAkhRK7yrZUtqaUpQ', '65EXuYHVoehCKqp0kOS6px'],['5Jlfld6JdyQSeDvNdv0XRE'],[], {valence : 0.5, energy : 0.7, danceability : 0.1}).sendRequest();
+  </script>
     <script>
       (function() {
 

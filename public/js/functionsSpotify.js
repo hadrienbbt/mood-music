@@ -88,7 +88,6 @@ function successSearch(data){
     });
 }
 
-
 // fonction qui renvoit un artiste
 // V 1.0 : renvoit ce qu'il y a dans l'input
 function getArtiste() {
@@ -116,6 +115,7 @@ function getActivation() {
 // Appeler l'API Spotify pour n'importe quel service avec le token d'accès
 function callSpotify(url, data) {
     var params = getHashParams();
+    console.log(data);
     return $.ajax(url, {
         dataType: 'json',
         data: data,
