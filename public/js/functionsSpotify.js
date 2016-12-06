@@ -5,6 +5,25 @@
 // Variables globales
 var limitTrack = 50;
 
+function chargerGenres(access_token) {
+    var tabGenreAvailable = [];
+    $.ajax({
+        url: 'https://api.spotify.com/v1/recommendations/available-genre-seeds',
+        headers: {
+            'Authorization': 'Bearer ' + access_token
+        },
+        success: function(response) {
+            console.log(response);
+            for (var i = 0; i<response['genres']['length']; i++) {
+                var unGenre = response['genres'][i];
+                tabGenreAvailable.push(unGenre)
+                $("#listGenres").append("<option>"+unGenre+"</option>");
+            }
+            return tabGenreAvailable;
+        }
+    });
+}
+
 // Rechercher des musiques dont le nom, l'artiste ou l'album match avec la valeur de l'input #search
 function rechercheTextuelleSpotify(){
     var artist = getArtiste();
@@ -47,7 +66,7 @@ function rechercheValenceActivation(data) {
 // Afficher résultat de la recherche de titre
 function successSearch(data){
     // Décommetner pour vérifier l'information reçue
-    //console.log(data);
+    console.log(data);
 
     // Réinitialiser les champs pour les nouveaux résultats
     document.getElementById('result').innerHTML = '';
@@ -56,7 +75,7 @@ function successSearch(data){
 
     // Créer le lecteur pour y mettre les musiques trouvées
     var player = '<iframe src="https://embed.spotify.com/?uri=spotify:trackset:Ecouter:';
-    for (var i = 0; i<limitTrack; i++){
+    for (var i = 0; i<data['tracks'].length; i++){
 
         // Pour savoir ce qu'on veut afficher
         if (typeof data['tracks']['items'] != "undefined") {
@@ -113,14 +132,15 @@ function getActivation() {
 }
 
 // Appeler l'API Spotify pour n'importe quel service avec le token d'accès
-function callSpotify(url, data) {
+function callSpotify(url, data, access_token) {
     var params = getHashParams();
+    var access_token = params.access_token
     console.log(data);
     return $.ajax(url, {
         dataType: 'json',
         data: data,
         headers: {
-            'Authorization': 'Bearer ' + params.access_token
+            'Authorization': 'Bearer ' + access_token
         }
     });
 }

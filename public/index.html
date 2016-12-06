@@ -4,7 +4,8 @@
     <title>Mood music</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://download.affectiva.com/js/3.1/affdex.js"></script>
     <script src="https://download.affectiva.com/js/3.1/adapter-1.4.0.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" >
@@ -13,9 +14,10 @@
     <script src="js/functionsSpotify.js"></script>
     <script src="js/functionsFacebook.js"></script>
     <script src="js/functionMoodMusic.js"></script>
-    <script src="js/class/RecommendationRequest.js"></script>
+    <script src="js/functionsAffectiva.js"></script>
+      <script src="js/render.js"></script>
 
-    <style type="text/css">
+      <style type="text/css">
         #login, #loggedin {
         display: none;
         }
@@ -30,30 +32,44 @@
 
   <body>
 
-  <!--
-    Below we include the Login Button social plugin. This button uses
-    the JavaScript SDK to present a graphical Login button that triggers
-    the FB.login() function when clicked.
-  -->
-<div id="button_login">
-    <fb:login-button scope="public_profile,email,user_likes,user_actions.music" onlogin="checkLoginState();">
-    </fb:login-button>
-</div>
-<div id="status">
-    </div>
-                     <!-- FIN Facebook -->
-
     <div class="container">
         <div id="login">
             <h1>Bienvenue sur mood-music !</h1>
-            <a href="/login" class="btn btn-primary">Log in with Spotify</a>
+            <a id="clickLogin" href="/login" class="btn btn-primary">Log in with Spotify</a>
         </div>
         <div id="loggedin">
-            <div id="user-profile"></div>
-            <div id="oauth"></div>
-            <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
+            <button onclick="view_accueil()" class="btn" id="goAccueil">Accueil</button>
+            <button onclick="view_moodEvaluation()" class="btn" id="goMoodEval">Evaluer mon humeur</button>
+            <button onclick="view_profile()" class="btn" id="goProfile">Voir mon profil</button>
+            <button onclick="view_artistsEvaluation();" class="btn" id="goTopArtists">Artistes favoris</button>
+            <div id="profile">
+                <div id="user-profile"></div>
+                <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
+                <div id="oauth"></div>
+            </div>
+            <div id="moodEvaluation">
+                <div id="camera"></div>
+                <div id="rechercheSpotify"></div>
+            </div>
+            <div id="topArtists">
+
+            </div>
         </div>
+        <div id="meteo"></div>
     </div>
+
+    <!--
+      Below we include the Login Button social plugin. This button uses
+      the JavaScript SDK to present a graphical Login button that triggers
+      the FB.login() function when clicked.
+    -->
+    <div id="button_login">
+        <fb:login-button scope="public_profile,email,user_likes,user_actions.music" onlogin="checkLoginState();">
+        </fb:login-button>
+    </div>
+    <div id="status">
+    </div>
+    <!-- FIN Facebook -->
 
     <script id="user-profile-template" type="text/x-handlebars-template">
       <h1>Logged in as {{display_name}}</h1>
@@ -72,6 +88,7 @@
             <dt>Country</dt><dd>{{country}}</dd>
           </dl>
         </div>
+
       </div>
     </script>
 
@@ -81,52 +98,85 @@
         <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
         <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}></dd>
       </dl>
-
-      <div class="container-fluid">
-          <div class="row">
-              <div class="col-md-8" id="affdex_elements" style="width:680px;height:480px;"></div>
-              <div class="col-md-4">
-                  <div style="height:25em;">
-                      <div id="results" style="word-wrap:break-word;"></div>
-                  </div>
-              </div>
-          </div>
-          <div>
-              <h2>Cliquez sur Start pour utiliser la caméra</h2>
-              <button id="start" onclick="onStart()">Start</button>
-              <button id="stop" onclick="onStop();getIdArtiste('valence+activation');moyenne(tabValence);">Stop</button>
-              <button id="reset" onclick="onReset()">Reset</button>
-          </div>
-      </div>
-
-      <h2>Entrez un artiste, une valence et une activation pour la recherche de recommandations: </h2>
-      <label>Artiste : </label>
-      <select id="search">
-
-      </select>
-      <input id="valider" onclick="getIdArtiste('texte')" type="button" value="valider"><br>
-
-      <label>Valence : </label>
-      <input id="valence" type="text" />
-      <input id="validerValence" onclick="getIdArtiste('valence')" type="button" value="valider"><br>
-
-      <label>Activation : </label>
-      <input id="activation" type="text" />
-      <input id="validerActivation" onclick="getIdArtiste('valence+activation')" type="button" value="valider"><br>
-
-
-      <br>
-      <div style="display: inline-block; float: right" id="player"></div>
-      <div style="display: inline-block;" id="result"></div>
-      <div id="metadata"></div>
     </script>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-  <script>
-      var requete = new RecommendationRequest(['37J1PlAkhRK7yrZUtqaUpQ', '65EXuYHVoehCKqp0kOS6px'],['5Jlfld6JdyQSeDvNdv0XRE'],[], {valence : 0.5, energy : 0.7, danceability : 0.1}).sendRequest();
-  </script>
+    <script id="camera-template" type="text/x-handlebars-template">
+        <div class="container-fluid">
+            <div hidden="hidden" class="row">
+                <div class="col-md-8" id="affdex_elements" style="width:680px;height:480px;"></div>
+                <div class="col-md-4">
+                    <div style="height:25em;">
+                        <div id="results" style="word-wrap:break-word;"></div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2>Cliquez sur Start pour utiliser la caméra, vos valence et activations vont se calculer ;)</h2>
+                <button id="start" onclick="onStart()">Start</button>
+                <button id="stop" onclick="onStop();getIdArtiste('valence+activation');moyenne(tabValence);">Stop</button>
+                <button id="reset" onclick="onReset()">Reset</button>
+            </div>
+        </div>
+    </script>
+
+    <script id="rechercheSpotify-template" type="text/x-handlebars-template">
+        <h2>Entrez un artiste, une valence et une activation pour la recherche de recommandations: </h2>
+        <label>Artiste : </label>
+        <select id="search">
+
+        </select>
+        <input id="valider" onclick="getIdArtiste('texte')" type="button" value="musiques relatives à cet artiste"><br>
+
+        <label>Valence : </label>
+        <input id="valence" type="text" />
+        <input id="validerValence" onclick="getIdArtiste('valence')" type="button" value="musiques relatives à cet artiste et cette valence"><br>
+
+        <label>Activation : </label>
+        <input id="activation" type="text" />
+        <input id="validerActivation" onclick="getIdArtiste('valence+activation')" type="button" value="musiques relatives à cet artiste, cette valence et cette activation"><br>
+
+        <label>Nombre de musiques : </label>
+        <input id="limitTrack" type="text" />
+        <input id="validerLimitTrack" type="button" value="Chercher n musiques basées sur 3 artistes écrits en dur dans l'exemple"><br>
+
+        <label>Encoder des artistes : </label>
+        <input id="get-id-artists" type="button" value="Test d'encodage de plusieurs artistes"><br>
+
+
+        <h4>Ecrivez des artistes, une valence, une activation et un nombre de musiques</h4><br>
+        <label>Artistes</label>
+        <input id="artistsRecommendation" type="text" /><br>
+        <label>Nombre de musiques</label>
+        <input id="nbRecommendation" type="text" /><br>
+        <label>Style</label>
+        <select id="listGenres">
+            <option></option>
+        </select>
+        <input id="validerRecommendation" type="button" value="recommendation sur ces artistes"><br><br>
+
+        <br>
+        <div style="display: inline-block; float: right" id="player"></div>
+        <div style="display: inline-block;" id="result"></div>
+        <div id="metadata"></div>
+    </script>
+
+    <script id="topArtists-template" type="text/x-handlebars-template">
+        <div id="artists">
+            {{#each artists}}
+            <div style="display: inline-block" id="{{id}}">
+                <h1>{{name}}</h1>
+                <img src="{{images.0.url}}" width="200"/>
+            </div>
+            {{/each}}
+        </div>
+    </script>
+
+    <script id="meteo-template" type="text/x-handlebars-template">
+        <br><a onclick="afficherMeteo()" class="btn btn-primary">Quel temps fait-il ?</a><br>
+    </script>
+
     <script>
+
       (function() {
 
         /**
@@ -142,21 +192,43 @@
             oauthTemplate = Handlebars.compile(oauthSource),
             oauthPlaceholder = document.getElementById('oauth');
 
+        var cameraSource = document.getElementById('camera-template').innerHTML,
+            cameraTemplate = Handlebars.compile(cameraSource),
+            cameraPlaceholder = document.getElementById('camera');
+
+        var rechercheSpotifySource = document.getElementById('rechercheSpotify-template').innerHTML,
+            rechercheSpotifyTemplate = Handlebars.compile(rechercheSpotifySource),
+            rechercheSpotifyPlaceholder = document.getElementById('rechercheSpotify');
+
+      var topArtistsSource = document.getElementById('topArtists-template').innerHTML,
+              topArtistsTemplate = Handlebars.compile(topArtistsSource),
+              topArtistsPlaceholder = document.getElementById('topArtists');
+
+        var meteoSource = document.getElementById('meteo-template').innerHTML,
+            meteoTemplate = Handlebars.compile(meteoSource),
+            meteoPlaceholder = document.getElementById('meteo');
+
         var params = getHashParams();
 
         var access_token = params.access_token,
             refresh_token = params.refresh_token,
             error = params.error;
 
-        if (error) {
+          // Chargement des composants
+          meteoPlaceholder.innerHTML = meteoTemplate();
+
+          if (error) {
           alert('There was an error during the authentication');
         } else {
           if (access_token) {
+              view_accueil();
             // render oauth info
             oauthPlaceholder.innerHTML = oauthTemplate({
               access_token: access_token,
               refresh_token: refresh_token
             });
+              rechercheSpotifyPlaceholder.innerHTML = rechercheSpotifyTemplate();
+              cameraPlaceholder.innerHTML = cameraTemplate();
 
             $.ajax({
                 url: 'https://api.spotify.com/v1/me',
@@ -169,11 +241,26 @@
                   $('#loggedin').show();
                 }
             });
+
+              $.ajax({
+                  url: 'https://api.spotify.com/v1/me/top/artists',
+                  headers: {
+                      'Authorization': 'Bearer ' + access_token
+                  },
+                  success: function(response) {
+                      var artists = response['items'];
+                      topArtistsPlaceholder.innerHTML = topArtistsTemplate({artists: artists});
+                  }
+              });
+
+              var tabGenreAvailable = chargerGenres(access_token);
+
           } else {
               // render initial screen
               $('#login').show();
               $('#loggedin').hide();
           }
+
 
           document.getElementById('obtain-new-token').addEventListener('click', function() {
             $.ajax({
@@ -189,9 +276,52 @@
               });
             });
           }, false);
+
+            document.getElementById('validerLimitTrack').addEventListener('click', function() {
+                var limitTrack = document.getElementById('limitTrack').value;
+                var tunetables ={valence: 0.5};
+                $.ajax({
+                    url: '/MoodMusicRecommendation',
+                    data: {
+                        'limitTrack': limitTrack,
+                        'tunetables' : tunetables
+                    }
+                }).done(function(data) {
+                    successSearch(JSON.parse(data.moodmusicRecommendation));
+                });
+            }, false);
+
+            document.getElementById('get-id-artists').addEventListener('click', function() {
+                $.ajax({
+                    url: '/IdArtist'
+                }).done(function(data) {
+                    console.log(data.idArtist);
+                });
+            }, false);
+
+            document.getElementById('validerRecommendation').addEventListener('click', function() {
+                var limitTrack = document.getElementById('nbRecommendation').value;
+                var tunetables = {valence: 0.7,danceability: 0.9};
+                var artists = document.getElementById('artistsRecommendation').value.split(",");
+                var genre = document.getElementById('listGenres').value;
+                $.ajax({
+                    url: '/MoodMusicRecommendation',
+                    data: {
+                        'limitTrack': limitTrack,
+                        'tunetables': tunetables,
+                        'artists': artists,
+                        'genre': genre
+                    }
+                }).done(function(data) {
+                    successSearch(JSON.parse(data.moodmusicRecommendation));
+                });
+            }, false);
         }
+          // Appeler ici les infos que l'on doit avoir dès le chargement
+          //afficherMeteo();
       })();
     </script>
   </body>
   <script src="js/functionsAffectiva.js"></script>
+
 </html>

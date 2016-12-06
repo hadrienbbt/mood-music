@@ -1,21 +1,20 @@
-/**
- * This is an example of a basic node.js script that performs
- * the Authorization Code oAuth2 flow to authenticate against
- * the Spotify Accounts.
- *
- * For more information, read
- * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
- */
+// app.js
+// Hadrien Barbat
 
 var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
+var lyrics = require("lyric-get");
+var RecommendationGenerator = require('./public/js/class/RecommendationRequest');
+var IdArtistsGenerator = require('./public/js/class/IdRequest');
+var user = require('./public/js/class/User.js');
 
 var client_id = 'a3b5315e6cdd4583acfc54f639aeb020'; // Your client id
 var client_secret = '2e9b13f3f48f4cc5b8d637c699cc2bc7'; // Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
-
+var global_access_token;
+var key_weather= 'e6953ed25cc6095a';
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
@@ -44,7 +43,7 @@ app.get('/login', function(req, res) {
   res.cookie(stateKey, state);
 
   // your application requests authorization
-  var scope = 'user-read-private user-read-email';
+  var scope = 'user-read-private user-read-email user-top-read';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
@@ -89,6 +88,7 @@ app.get('/callback', function(req, res) {
 
         var access_token = body.access_token,
             refresh_token = body.refresh_token;
+        global_access_token = body.access_token;
 
         var options = {
           url: 'https://api.spotify.com/v1/me',
@@ -133,6 +133,7 @@ app.get('/refresh_token', function(req, res) {
 
   request.post(authOptions, function(error, response, body) {
     if (!error && response.statusCode === 200) {
+        console.log(body);
       var access_token = body.access_token;
       res.send({
         'access_token': access_token
@@ -141,8 +142,116 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
+// Exemple de récupération des ids Spotify d'un tableau d'artistes (string)
+app.get('/IdArtist', function(req, res) {
+    var tabId = [];
+    var i = 0;
+    var length = 4;
+    IdArtistsGenerator.IdRequest(['M83','Jake Bugg','Caravan Palace','Woodkid'],function(data){
+        var json = JSON.parse(data);
+        var id = json['artists']['items']['0']['id'];
+        var name = json['artists']['items']['0']['name'];
+        var test = name+',' + id;
+        tabId[i] = test.substr(test.indexOf(",")+1);
+        i++;
+        console.log('Iteration '+i +test);
+        if (tabId.length == length) {
+            res.send({
+                'idArtist': tabId
+            });
+        }
+    }).sendRequest(global_access_token);
+});
+
+// Recommandation moodmusic
+// Fonctionnalité qui permet d'obtenir n chansons en fonction d'artistes, de styles, de musiques mais aussi d'émotions
+// Voir la classe RecommendationGenerator pour plus d'informations
+app.get('/moodmusicRecommendation', function(req, res){
+    var tabId = []; // Tableau des id à passer au constructeur de RecommendationRequest
+    var i = 0;
+    var artists = req.query.artists;
+    IdArtistsGenerator.IdRequest(artists,function(data){
+        var json = JSON.parse(data);
+        var id = json['artists']['items']['0']['id'];
+        var name = json['artists']['items']['0']['name'];
+        var test = name+',' + id;
+        tabId[i] = test.substr(test.indexOf(",")+1);
+        i++;
+        console.log('Iteration '+i +test);
+        if (tabId.length == artists.length) {
+            console.log("recherche de recommandation...");
+            var limitTrack = req.query.limitTrack;
+            var tunetables = req.query.tunetables;
+            var genre = [req.query.genre];
+            RecommendationGenerator.RecommendationRequest(tabId,[],genre, tunetables,limitTrack,function(data){
+                console.log(data);
+                res.send({
+                    'moodmusicRecommendation': data
+                });
+            }).sendRequest(global_access_token);
+        }
+    }).sendRequest(global_access_token);
+});
+
+app.get('/getLyrics', function(req, res) {
+    lyrics.get("Patrick Sébastien","Les Sardines", function(err, res) {
+        if (err) console.log(err);
+        else {
+            var j;
+            var hexes = res.match(/.{1,4}/g) || [];
+            var back = "";
+            for(j = 0; j<hexes.length; j++) {
+                back += String.fromCharCode(parseInt(hexes[j], 16));
+            }
+            console.log(res);
+        }
+    })
+});
+
+// Meteo
+app.get('/user', function (req, res) {
+    var latitude = req.query.latitude;
+    var longitude = req.query.longitude;
+    var speed = req.query.speed;
+    console.log('Latitude : '+ latitude +' - Longitude : '+ longitude +' Vitesse : '+speed);
+
+    request('http://api.wunderground.com/api/'+key_weather+'/geolookup/conditions/q/'+latitude+','+longitude+'.json', function(error, response, body){
+        // On écrit dans la console
+        if (!error) {
+            console.log(body);
+            var json = JSON.parse(body);
+            var stringWeather = json['current_observation']['weather'];
+            console.log(stringWeather);
+
+            res.send({
+                'latitude': latitude,
+                'longitude': longitude,
+                'speed': speed,
+                'weather': stringWeather
+            });
+        } else {console.log(error);}
+    });
+});
+
+// User's top tracks
+/*app.get('/topArtists', function(req, res){
+    var params = {
+        url: 'https://api.spotify.com/v1/me/top/artists',
+        headers: {
+            'Authorization': 'Bearer ' + global_access_token
+        }
+    };
+    request.post(params, function(error, response, body) {
+        if (!error && response.statusCode === 200) {
+            console.log(body);
+        } else {
+            console.log("erreur : " + error);
+        }
+    });
+});*/
+
 app.get('/confidentialite', function(req, res) {
-    res.redirect('/public/PC.html');
+    res.send('../public/PC.html');
 });
 
 console.log('Listening on 8888');
