@@ -3,7 +3,13 @@
  */
 function view_connexion(){
     $('#login').show();
+    $("#login-sign-up").hide();
     $('#loggedin').hide();
+}
+
+function view_sign_up(){
+    $("#login-sign-up").show();
+    $("#login-sign-in").hide();
 }
 
 function view_profile(){

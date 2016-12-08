@@ -2,19 +2,32 @@
 <html>
   <head>
     <title>Mood music</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+      <link rel="stylesheet" href="persoCSS/style.css">
+      <link rel="stylesheet" href="persoCSS/connexion/connexion.css">
+      <link rel="stylesheet" href="ratchet-v2.0.2/css/ratchet.min.css">
+      <link rel="stylesheet" href="ratchet-v2.0.2/css/ratchet-theme-ios.min.css">
+
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
       <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://download.affectiva.com/js/3.1/affdex.js"></script>
-    <script src="https://download.affectiva.com/js/3.1/adapter-1.4.0.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" >
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="js/init_facebook.js"></script>
-    <script src="js/functionsSpotify.js"></script>
-    <script src="js/functionsFacebook.js"></script>
-    <script src="js/functionMoodMusic.js"></script>
-    <script src="js/functionsAffectiva.js"></script>
+      <script src="https://download.affectiva.com/js/3.1/affdex.js"></script>
+      <script src="https://download.affectiva.com/js/3.1/adapter-1.4.0.js"></script>
+
+      <script src="js/init_facebook.js"></script>
+      <script src="js/functionsSpotify.js"></script>
+      <script src="js/functionsFacebook.js"></script>
+      <script src="js/functionMoodMusic.js"></script>
+      <script src="js/functionsAffectiva.js"></script>
       <script src="js/render.js"></script>
 
       <style type="text/css">
@@ -31,15 +44,85 @@
   </head>
 
   <body>
-
     <div class="container">
         <div id="login">
-            <h1>Bienvenue sur mood-music !</h1>
-            <a id="clickLogin" href="/login" class="btn btn-primary">Log in with Spotify</a>
+            <div id="login-sign-in">
+                <nav id="bar-tab" class="bar bar-tab">
+                    <a onclick="view_sign_up()" id="access-login-sign-up" class="tab-item-one" data-transition="fade">
+                        SE CONNECTER
+                    </a>
+                    <a class="tab-item-two" href="#" data-transition="fade">
+                        S'INSCRIRE
+                    </a>
+                </nav>
+                <div class="content">
+                    <div id="logo">
+                        <img src="persoImage/connexion/logo_cercle.png" style="width:100%;height:auto;">
+                    </div>
+                    <div>
+                        <h1 id="titre" class="content-padded titre">bienvenue sur mood music</h1>
+                    </div>
+                    <div>
+                        <h2 id=description class="content-padded titre">Votre première application vous permettant d'écouter des playlists personnalisées en fonction de votre humeur, partout, tout le temps !</h2>
+                    </div>
+                </div><!-- /.content -->
+            </div>
+            <div id="login-sign-up">
+                <nav id="bar-tab" class="bar bar-tab">
+                    <div id="button_login" class="tab-item-one">
+                    <fb:login-button id="fb-button"  scope="public_profile,email,user_likes,user_actions.music" onlogin="checkLoginState();">
+                        <div class="col-xs-4" style="">
+                            <img src="persoImage/connexion/logoFB.png" style="width:100%;height:auto;padding-top: 10px;">
+                        </div>
+                        <div class="col-xs-8">
+                            <h3 id="social" class="content-padded titre">Connexion avec Facebook</h3>
+                        </div>
+                    </fb:login-button>
+                    </div>
+                    <a class="tab-item-two" href="/login" id="spotify-button">
+                        <div class="col-xs-4" style="">
+                            <img src="persoImage/connexion/logoSpotify.png" style="width:100%;height:auto;padding-top: 50%;">
+                        </div>
+                        <div class="col-xs-8">
+                            <h3 id="social" class="content-padded titre">Connexion avec Spotify</h3>
+                        </div>
+                    </a>
+                </nav>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div id="logo">
+                            <img src="persoImage/connexion/logo_cercle.png" style="width:100%;height:auto;">
+                        </div>
+                        <div>
+                            <h1 id="titre" class="content-padded titre">connexion</h1>
+                        </div>
+                        <div>
+                            <form id="connexion-email">
+                                <div class="ligne">
+                                    <div class="col-xs-10 col-xs-offset-1">
+                                        <input type="text" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="ligne">
+                                    <div class="col-xs-10 col-xs-offset-1">
+                                        <input type="text" placeholder="Mot de passe">
+                                    </div>
+                                </div>
+                                <div class="ligne">
+                                    <div class="col-xs-6 col-xs-offset-3">
+                                        <button id="valider-connexion-email" class="btn btn-positive btn-block">Valider</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- /.content -->
+            </div>
         </div>
+
         <div id="loggedin">
             <button onclick="view_accueil()" class="btn" id="goAccueil">Accueil</button>
-            <button onclick="view_moodEvaluation()" class="btn" id="goMoodEval">Evaluer mon humeur</button>
+            <button onclick="view_moodEvaluation();onStart()" class="btn" id="goMoodEval">Evaluer mon humeur</button>
             <button onclick="view_profile()" class="btn" id="goProfile">Voir mon profil</button>
             <button onclick="view_artistsEvaluation();" class="btn" id="goTopArtists">Artistes favoris</button>
             <div id="profile">
@@ -51,11 +134,10 @@
                 <div id="camera"></div>
                 <div id="rechercheSpotify"></div>
             </div>
-            <div id="topArtists">
-
-            </div>
+            <div id="topArtists"></div>
+            <div id="meteo"></div>
         </div>
-        <div id="meteo"></div>
+        <div id="lyrics"></div>
     </div>
 
     <!--
@@ -63,12 +145,7 @@
       the JavaScript SDK to present a graphical Login button that triggers
       the FB.login() function when clicked.
     -->
-    <div id="button_login">
-        <fb:login-button scope="public_profile,email,user_likes,user_actions.music" onlogin="checkLoginState();">
-        </fb:login-button>
-    </div>
-    <div id="status">
-    </div>
+
     <!-- FIN Facebook -->
 
     <script id="user-profile-template" type="text/x-handlebars-template">
@@ -115,6 +192,7 @@
                 <button id="start" onclick="onStart()">Start</button>
                 <button id="stop" onclick="onStop();getIdArtiste('valence+activation');moyenne(tabValence);">Stop</button>
                 <button id="reset" onclick="onReset()">Reset</button>
+                <div style="display: inline-block;padding-left: 20px;" id="emoji"></div>
             </div>
         </div>
     </script>
@@ -175,6 +253,16 @@
         <br><a onclick="afficherMeteo()" class="btn btn-primary">Quel temps fait-il ?</a><br>
     </script>
 
+    <script id="lyrics-template" type="text/x-handlebars-template">
+        <form>
+            <label>Artiste</label>
+            <input id="textLyricsArtist" type="text">
+            <label>Morceau</label>
+            <input id="textLyricsTrack" type="text">
+            <button id="getLyrics">Obtenir les paroles</button>
+        </form>
+    </script>
+
     <script>
 
       (function() {
@@ -208,6 +296,10 @@
             meteoTemplate = Handlebars.compile(meteoSource),
             meteoPlaceholder = document.getElementById('meteo');
 
+          var lyricsSource = document.getElementById('lyrics-template').innerHTML,
+                  lyricsTemplate = Handlebars.compile(lyricsSource),
+                  lyricsPlaceholder = document.getElementById('lyrics');
+
         var params = getHashParams();
 
         var access_token = params.access_token,
@@ -216,7 +308,8 @@
 
           // Chargement des composants
           meteoPlaceholder.innerHTML = meteoTemplate();
-
+          lyricsPlaceholder.innerHTML = lyricsTemplate();
+            view_connexion();
           if (error) {
           alert('There was an error during the authentication');
         } else {
@@ -299,9 +392,24 @@
                 });
             }, false);
 
+              document.getElementById('getLyrics').addEventListener('click', function() {
+                  var artist = document.getElementById('textLyricsArtist').value;
+                  var track = document.getElementById('textLyricsTrack').value;
+                  console.log(artist + " " + track);
+                  $.ajax({
+                      url: '/getLyrics',
+                      data: {
+                          'artist' : artist,
+                          'track' : track
+                      }
+                  }).done(function(data) {
+                      console.log(data.lyrics);
+                  });
+              });
+
             document.getElementById('validerRecommendation').addEventListener('click', function() {
                 var limitTrack = document.getElementById('nbRecommendation').value;
-                var tunetables = {valence: 0.7,danceability: 0.9};
+                var tunetables = {valence: 0.5};
                 var artists = document.getElementById('artistsRecommendation').value.split(",");
                 var genre = document.getElementById('listGenres').value;
                 $.ajax({

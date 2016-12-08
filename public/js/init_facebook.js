@@ -14,7 +14,7 @@ function statusChangeCallback(response) {
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
         // Logged into your app and Facebook.
-        document.getElementById('button_login').innerHTML = '';
+        document.getElementById('button_login').innerHTML = 'Connecté avec Facebook!';
         testAPI();
         getArtistesAimes();
     } else if (response.status === 'not_authorized') {

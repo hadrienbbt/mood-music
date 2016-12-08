@@ -1,0 +1,44 @@
+* {
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.content {
+    background :url(../persoImage/connexion/fond.jpg) no-repeat center fixed;
+    -webkit-background-size: cover; /* pour Chrome et Safari */
+    -moz-background-size: cover; /* pour Firefox */
+    -o-background-size: cover; /* pour Opera */
+    background-size: cover; /* version standardisée */
+}
+
+.bar{
+    height: 11%;
+}
+
+.bar-tab .tab-item-one{
+    display: table-cell;
+    width: 1%;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    background: #212121;
+    font-weight: bold;
+}
+
+.bar-tab .tab-item-two{
+    display: table-cell;
+    width: 1%;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    background: #f1c431;
+    font-weight: bold;
+}
+
+#bar-tab {
+    height: 11%;
+}
+

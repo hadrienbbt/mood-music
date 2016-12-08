@@ -78,12 +78,14 @@ detector.addEventListener("onImageResultsSuccess", function(faces, image, timest
     log('#results', "Timestamp: " + timestamp.toFixed(2));
     log('#results', "Number of faces found: " + faces.length);
     if (faces.length > 0) {
-
         // Ajout Hadrien pour remplir le champ valence et activation
         var valence = ((faces[0]['emotions']['valence']+100)/200).toFixed(4);
         var activation = (faces[0]['emotions']['engagement']/100).toFixed(4);
+        var emoji = faces[0]['emojis']['dominantEmoji'];
         $('#valence').val(valence);
         $('#activation').val(activation);
+        $('#emoji').empty();
+        $('#emoji').append(emoji);
         tabValence.push(valence);
         //Fin ajout
 

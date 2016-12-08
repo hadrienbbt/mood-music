@@ -13,7 +13,8 @@ function chargerGenres(access_token) {
             'Authorization': 'Bearer ' + access_token
         },
         success: function(response) {
-            console.log(response);
+            // Décommenter pour voir les genres disponibles sur la console
+            // console.log(response);
             for (var i = 0; i<response['genres']['length']; i++) {
                 var unGenre = response['genres'][i];
                 tabGenreAvailable.push(unGenre)

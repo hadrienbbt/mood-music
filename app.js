@@ -194,18 +194,17 @@ app.get('/moodmusicRecommendation', function(req, res){
 });
 
 app.get('/getLyrics', function(req, res) {
-    lyrics.get("Patrick Sébastien","Les Sardines", function(err, res) {
+    var artist = req.query.artist;
+    var track = req.query.track;
+    console.log(artist + " " + track);
+    lyrics.get(artist,track, function(err, data) {
         if (err) console.log(err);
         else {
-            var j;
-            var hexes = res.match(/.{1,4}/g) || [];
-            var back = "";
-            for(j = 0; j<hexes.length; j++) {
-                back += String.fromCharCode(parseInt(hexes[j], 16));
-            }
-            console.log(res);
+            res.send({
+                'lyrics': data
+            });
         }
-    })
+    });
 });
 
 // Meteo
@@ -232,23 +231,6 @@ app.get('/user', function (req, res) {
         } else {console.log(error);}
     });
 });
-
-// User's top tracks
-/*app.get('/topArtists', function(req, res){
-    var params = {
-        url: 'https://api.spotify.com/v1/me/top/artists',
-        headers: {
-            'Authorization': 'Bearer ' + global_access_token
-        }
-    };
-    request.post(params, function(error, response, body) {
-        if (!error && response.statusCode === 200) {
-            console.log(body);
-        } else {
-            console.log("erreur : " + error);
-        }
-    });
-});*/
 
 app.get('/confidentialite', function(req, res) {
     res.send('../public/PC.html');

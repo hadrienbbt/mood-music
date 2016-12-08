@@ -92,6 +92,7 @@ function callSpotify(url, data, access_token) {
         dataType: 'json',
         data: data,
         headers: {
+            'User-Agent': 'Chre',
             'Authorization': 'Bearer ' + access_token
         }
     };
