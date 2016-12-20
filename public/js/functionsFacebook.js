@@ -8,9 +8,17 @@ function testAPI() {
     // console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
         // Décommenter pour constater la connexion
-        //console.log('Successful login for: ' + response.name);
-        document.getElementById('status').innerHTML =
-            'Thanks for logging in, ' + response.name + '!';
+        console.log(response.id + " " + response.name);
+        /*$.ajax({
+            url: '/checkSpotifySession',
+            data: {
+                'id': response.id,
+                'name': response.name
+            }
+        }).done(function(data) {
+            console.log("refresh_token : "+data.refresh_token);
+        });*/
+        console.log(response);
     });
     FB.api(
         '/me/music',

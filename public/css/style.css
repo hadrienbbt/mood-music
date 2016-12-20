@@ -1,0 +1,79 @@
+@font-face {
+    font-family: roboto-light;
+    src: url(font/Roboto-Light.ttf);
+}
+
+* {
+    overflow-y: scroll;
+    font-family: roboto-light;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.content {
+    background :url(../img/connexion/fond.jpg) no-repeat center fixed;
+    -webkit-background-size: cover; /* pour Chrome et Safari */
+    -moz-background-size: cover; /* pour Firefox */
+    -o-background-size: cover; /* pour Opera */
+    background-size: cover; /* version standardisée */
+}
+
+.bar{
+    height: 11%;
+}
+
+.bar-tab .tab-item-one{
+    display: table-cell;
+    width: 1%;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    background: #212121;
+    font-weight: bold;
+}
+
+.bar-tab .tab-item-two{
+    display: table-cell;
+    width: 1%;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    background: #f1c431;
+    font-weight: bold;
+}
+
+#bar-tab {
+    height: 11%;
+}
+
+#logo-header {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#artists {
+    text-align: center;
+}
+
+.container-artist {
+    margin: auto;
+    width: 100%;
+}
+
+.on {
+    background: lightgray;
+}
+
+.emoji-select {
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 3px;
+    width: 30px;
+    font-size: 20px;
+    text-align: center;
+    padding: 1px;
+    display: inline-block;
+}

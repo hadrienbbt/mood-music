@@ -29,6 +29,7 @@
       <script src="js/functionMoodMusic.js"></script>
       <script src="js/functionsAffectiva.js"></script>
       <script src="js/render.js"></script>
+      <script src="js/cookies.js"></script>
 
       <style type="text/css">
         #login, #loggedin {
@@ -57,13 +58,13 @@
                 </nav>
                 <div class="content">
                     <div id="logo">
-                        <img src="persoImage/connexion/logo_cercle.png" style="width:100%;height:auto;">
+                        <img src="img/connexion/logo_cercle.png" style="width:100%;height:auto;">
                     </div>
                     <div>
                         <h1 id="titre" class="content-padded titre">bienvenue sur mood music</h1>
                     </div>
                     <div>
-                        <h2 id=description class="content-padded titre">Votre première application vous permettant d'écouter des playlists personnalisées en fonction de votre humeur, partout, tout le temps !</h2>
+                        <h2 id=description class="content-padded titre">Votre première application pour écouter des playlists personnalisées en fonction de votre humeur, partout, tout le temps !</h2>
                     </div>
                 </div><!-- /.content -->
             </div>
@@ -72,7 +73,7 @@
                     <div id="button_login" class="tab-item-one">
                     <fb:login-button id="fb-button"  scope="public_profile,email,user_likes,user_actions.music" onlogin="checkLoginState();">
                         <div class="col-xs-4" style="">
-                            <img src="persoImage/connexion/logoFB.png" style="width:100%;height:auto;padding-top: 10px;">
+                            <img src="img/connexion/logoFB.png" style="width:100%;height:auto;padding-top: 10px;">
                         </div>
                         <div class="col-xs-8">
                             <h3 id="social" class="content-padded titre">Connexion avec Facebook</h3>
@@ -81,7 +82,7 @@
                     </div>
                     <a class="tab-item-two" href="/login" id="spotify-button">
                         <div class="col-xs-4" style="">
-                            <img id="spotify-logo" src="persoImage/connexion/logoSpotify.png">
+                            <img id="spotify-logo" src="img/connexion/logoSpotify.png">
                         </div>
                         <div class="col-xs-8">
                             <h3 id="social" class="content-padded titre">Connexion avec Spotify</h3>
@@ -91,7 +92,7 @@
                 <div class="content">
                     <div class="container-fluid">
                         <div id="logo">
-                            <img src="persoImage/connexion/logo_cercle.png" style="width:100%;height:auto;">
+                            <img src="img/connexion/logo_cercle.png" style="width:100%;height:auto;">
                         </div>
                         <div>
                             <h1 id="titre" class="content-padded titre">connexion</h1>
@@ -121,8 +122,9 @@
         </div>
 
         <div id="loggedin">
+            <img id="logo-header" src="img/moodmusic_written.png">
             <button onclick="view_accueil()" class="btn" id="goAccueil">Accueil</button>
-            <button onclick="view_moodEvaluation();onStart()" class="btn" id="goMoodEval">Evaluer mon humeur</button>
+            <button onclick="view_moodEvaluation();" class="btn" id="goMoodEval">Evaluer mon humeur</button>
             <button onclick="view_profile()" class="btn" id="goProfile">Voir mon profil</button>
             <button onclick="view_artistsEvaluation();" class="btn" id="goTopArtists">Artistes favoris</button>
             <div id="profile">
@@ -139,14 +141,6 @@
         </div>
         <div id="lyrics"></div>
     </div>
-
-    <!--
-      Below we include the Login Button social plugin. This button uses
-      the JavaScript SDK to present a graphical Login button that triggers
-      the FB.login() function when clicked.
-    -->
-
-    <!-- FIN Facebook -->
 
     <script id="user-profile-template" type="text/x-handlebars-template">
       <h1>Logged in as {{display_name}}</h1>
@@ -192,7 +186,7 @@
                 <button id="start" onclick="onStart()">Start</button>
                 <button id="stop" onclick="onStop();getIdArtiste('valence+activation');moyenne(tabValence);">Stop</button>
                 <button id="reset" onclick="onReset()">Reset</button>
-                <div style="display: inline-block;padding-left: 20px;" id="emoji"></div>
+                <div style="font-size: 60px;display: inline-block;padding-left: 20px;" id="emoji"></div>
             </div>
         </div>
     </script>
@@ -240,10 +234,16 @@
 
     <script id="topArtists-template" type="text/x-handlebars-template">
         <div id="artists">
+            <h2>Et si tu nous disais à quels emojis ces artistes te font penser ?</h2>
             {{#each artists}}
-            <div style="display: inline-block" id="{{id}}">
-                <h1>{{name}}</h1>
+            <div class="container-artist" style="display: inline-block" id="{{id}}">
+                <h3>{{name}}</h3>
                 <img src="{{images.0.url}}" width="200"/>
+                <div class="emoji-bar">
+                    {{#each ../moods}}
+                    <div id="{{../id}}-{{state}}" class="emoji-select">{{emoji}}</div>
+                    {{/each}}
+                </div>
             </div>
             {{/each}}
         </div>
@@ -306,7 +306,9 @@
             refresh_token = params.refresh_token,
             error = params.error;
 
-          // Chargement des composants
+          var current_user;
+
+              // Chargement des composants
           meteoPlaceholder.innerHTML = meteoTemplate();
           lyricsPlaceholder.innerHTML = lyricsTemplate();
             view_connexion();
@@ -315,34 +317,71 @@
         } else {
           if (access_token) {
               view_accueil();
-            // render oauth info
-            oauthPlaceholder.innerHTML = oauthTemplate({
-              access_token: access_token,
-              refresh_token: refresh_token
-            });
+              // render oauth info
+              oauthPlaceholder.innerHTML = oauthTemplate({
+                  access_token: access_token,
+                  refresh_token: refresh_token
+              });
               rechercheSpotifyPlaceholder.innerHTML = rechercheSpotifyTemplate();
               cameraPlaceholder.innerHTML = cameraTemplate();
 
-            $.ajax({
-                url: 'https://api.spotify.com/v1/me',
-                headers: {
-                  'Authorization': 'Bearer ' + access_token
-                },
-                success: function(response) {
-                  userProfilePlaceholder.innerHTML = userProfileTemplate(response);
-                  $('#login').hide();
-                  $('#loggedin').show();
-                }
-            });
-
               $.ajax({
-                  url: 'https://api.spotify.com/v1/me/top/artists',
+                  url: 'https://api.spotify.com/v1/me',
                   headers: {
                       'Authorization': 'Bearer ' + access_token
                   },
                   success: function(response) {
-                      var artists = response['items'];
-                      topArtistsPlaceholder.innerHTML = topArtistsTemplate({artists: artists});
+                      console.log(response);
+                      userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+                      current_user = response.id;
+                      $('#login').hide();
+                      $('#loggedin').show();
+
+                      $.ajax({
+                          url: '/getCurrentUserInfos',
+                          data: {
+                              user: current_user
+                          },
+                          success: function(response) {
+                              console.log(response);
+                              var artists = response['0']['tabArtistesPref'];
+                              $.ajax({url: '/getMoods'}).done(function(response) {
+                                  var moods = JSON.parse(response);
+                                  console.log(moods['moods']);
+                                  console.log(artists);
+                                  topArtistsPlaceholder.innerHTML = topArtistsTemplate({artists: artists, moods: moods['moods']});
+
+                                  // Placer la classe 'ON' sur les moods ayant été selectionnés auparavant :
+                                  for (var i = 0; i< artists.length; i++) {
+                                      for (var j = 0; j < artists[i]['mood_related'].length; j++) {
+                                          var stringIdMood = "#"+artists[i].id + "-" + artists[i]['mood_related'][j]
+                                          $(stringIdMood).addClass("on");
+                                      }
+                                  }
+
+                                  // Placer la classe 'ON' quand l'utilisateur clique sur l'emoji
+                                  $(".emoji-select").click(function() {
+                                      var ajouterMood;
+                                      $( this ).toggleClass( "on" );
+                                      if ($(this).hasClass("on"))   ajouterMood = true;
+                                      else                          ajouterMood = false;
+
+                                      var link = $(this).attr('id').split('-');
+                                      $.ajax({
+                                          url: '/addMoodToArtist',
+                                          data: {
+                                              user: current_user,
+                                              artist: link[0],
+                                              mood: link[1],
+                                              ajouterMood: ajouterMood
+                                          }
+                                      }).done(function(data) {
+                                          console.log(data.state);
+                                      });
+                                  });
+                              });
+                          }
+                      });
                   }
               });
 
@@ -353,7 +392,6 @@
               $('#login').show();
               $('#loggedin').hide();
           }
-
 
           document.getElementById('obtain-new-token').addEventListener('click', function() {
             $.ajax({
@@ -372,7 +410,7 @@
 
             document.getElementById('validerLimitTrack').addEventListener('click', function() {
                 var limitTrack = document.getElementById('limitTrack').value;
-                var tunetables ={valence: 0.5};
+                var tunetables ={valence: 0.8, activation: 0.3};
                 $.ajax({
                     url: '/MoodMusicRecommendation',
                     data: {
@@ -403,7 +441,7 @@
                           'track' : track
                       }
                   }).done(function(data) {
-                      console.log(data.lyrics);
+                      console.log("coucou" + data.lyrics);
                   });
               });
 
@@ -425,6 +463,7 @@
                 });
             }, false);
         }
+
           // Appeler ici les infos que l'on doit avoir dès le chargement
           //afficherMeteo();
       })();
