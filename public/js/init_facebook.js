@@ -17,7 +17,7 @@ function statusChangeCallback(response) {
         document.getElementById('button_login').innerHTML = 'Connecté avec Facebook!';
         testAPI();
 
-        console.log(response);
+        //console.log(response);
         getArtistesAimes();
     } else if (response.status === 'not_authorized') {
         // The person is logged into Facebook, but not your app.

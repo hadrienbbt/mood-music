@@ -331,7 +331,7 @@
                       'Authorization': 'Bearer ' + access_token
                   },
                   success: function(response) {
-                      console.log(response);
+                      //console.log(response);
                       userProfilePlaceholder.innerHTML = userProfileTemplate(response);
                       current_user = response.id;
                       $('#login').hide();
@@ -343,12 +343,12 @@
                               user: current_user
                           },
                           success: function(response) {
-                              console.log(response);
+                              //console.log(response);
                               var artists = response['0']['tabArtistesPref'];
                               $.ajax({url: '/getMoods'}).done(function(response) {
                                   var moods = JSON.parse(response);
-                                  console.log(moods['moods']);
-                                  console.log(artists);
+                                  //console.log(moods['moods']);
+                                  //console.log(artists);
                                   topArtistsPlaceholder.innerHTML = topArtistsTemplate({artists: artists, moods: moods['moods']});
 
                                   // Placer la classe 'ON' sur les moods ayant été selectionnés auparavant :
@@ -381,6 +381,16 @@
                                   });
                               });
                           }
+                      });
+
+                      $.ajax({
+                          url: '/getArtistsFromMood',
+                          data: {
+                              user: current_user,
+                              mood: "dance"
+                          }
+                      }).done(function(data) {
+                          console.log(data.artists);
                       });
                   }
               });

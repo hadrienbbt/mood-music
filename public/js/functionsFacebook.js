@@ -18,7 +18,7 @@ function testAPI() {
         }).done(function(data) {
             console.log("refresh_token : "+data.refresh_token);
         });*/
-        console.log(response);
+        //console.log(response);
     });
     FB.api(
         '/me/music',

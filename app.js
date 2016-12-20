@@ -16,7 +16,7 @@ var client_secret = '2e9b13f3f48f4cc5b8d637c699cc2bc7'; // Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 var global_access_token;
 var key_weather = 'e6953ed25cc6095a';
-var limitTopArtistsPerUser = "2";
+var limitTopArtistsPerUser = "30";
 
 /**
  * Generates a random string containing numbers and letters
@@ -149,7 +149,6 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                     request.get(options, function(error, response, body) {
                         // Save id user
                         var user = body;
-                        console.log(user);
 
                         // Work on the user in database
                         db.collection("user").findAndModify(
@@ -227,7 +226,6 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
 
     app.get('/getCurrentUserInfos', function(req, res) {
         var user = req.query.user;
-        console.log("coucou " + user);
         db.collection("user").find({_id: user}, {_id: 0, tabArtistesPref: 1}).toArray(function(error, response) {
             var result = JSON.parse(JSON.stringify(response));
             res.send(result);
@@ -310,13 +308,10 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
     });
 
     app.get('/getMoods', function(req, res){
-        console.log("On va chercher les moods dans la bdd...");
         db.collection("mood").find().toArray(function(error, moods){
             var moodsJSON = JSON.stringify({moods: moods});
-            //db.collection("user").
             res.send(moodsJSON);
         });
-        // Essayer de renvoyer les moods affectés aux artistes aussi ;)
     });
 
     // Called when a mood is assigned to an artist by an user
@@ -325,7 +320,6 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         var mood = req.query.mood;
         var ajouterMood = req.query.ajouterMood;
         var user = req.query.user;
-        console.log(ajouterMood);
         // On regarde si user veut enlever ou ajouter le mood
         if (ajouterMood == "true"){
             db.collection("user").update(
@@ -333,7 +327,6 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                 {$push: {"tabArtistesPref.$.mood_related": mood}},
                 {upsert: true}, function(error,response) {
                     if (error) throw error;
-                    console.log("mood ajouté!");
                     res.send({state: "mood ajouté !"});
                 }
             );
@@ -343,11 +336,32 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                 {$pull: {"tabArtistesPref.$.mood_related": mood}},
                 {upsert: true}, function(error,response) {
                     if (error) throw error;
-                    console.log("mood retiré!");
                     res.send({state: "mood retiré !"});
                 }
             );
         }
+    });
+
+    // Return to the client an array of artists ID that match with the given mood(s)
+    app.get('/getArtistsFromMood', function(req,res) {
+        var mood = req.query.mood.split(",");
+        var user = req.query.user;
+        var tabIdArtists = new Array();
+
+        db.collection("user").find({_id: user}).toArray(function(error, response) {
+            var artistesPrefs = response['0'].tabArtistesPref;
+            var moodIsSet;
+            for (var i=0; i<artistesPrefs.length; i++) {
+                moodIsSet = true;
+                for (var j=0; j<mood.length; j++) {
+                    if (artistesPrefs[i].mood_related.indexOf(mood[j]) == -1)
+                        moodIsSet = false;
+                }
+                if (moodIsSet)  tabIdArtists.push(artistesPrefs[i].id);
+            }
+            res.send({artists: tabIdArtists});
+        });
+
     });
 
     app.get('/getLyrics', function(req, res) {
