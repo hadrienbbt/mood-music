@@ -17,6 +17,7 @@ var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 var global_access_token;
 var key_weather = 'e6953ed25cc6095a';
 var limitTopArtistsPerUser = "30";
+var global_user_id;
 
 /**
  * Generates a random string containing numbers and letters
@@ -91,7 +92,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         res.cookie(stateKey, state);
 
         // your application requests authorization
-        var scope = 'user-read-private user-read-email user-top-read';
+        var scope = 'user-read-private user-read-email user-top-read playlist-modify-public playlist-modify-private';
         res.redirect('https://accounts.spotify.com/authorize?' +
         querystring.stringify({
             response_type: 'code',
@@ -149,6 +150,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                     request.get(options, function(error, response, body) {
                         // Save id user
                         var user = body;
+                        global_user_id = user.id;
 
                         // Work on the user in database
                         db.collection("user").findAndModify(
@@ -346,6 +348,8 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
     app.get('/getArtistsFromMood', function(req,res) {
         var mood = req.query.mood.split(",");
         var user = req.query.user;
+        var tunetables = JSON.stringify(req.query.tunetables);
+        console.log(tunetables);
         var tabIdArtists = new Array();
 
         db.collection("user").find({_id: user}).toArray(function(error, response) {
@@ -359,9 +363,69 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                 }
                 if (moodIsSet)  tabIdArtists.push(artistesPrefs[i].id);
             }
-            res.send({artists: tabIdArtists});
+            var artists = encodeURIComponent(tabIdArtists.slice(0,5));
+            tunetables = encodeURIComponent(tunetables);
+            res.redirect('/moodmusic?artists='+artists+'&tunetables='+tunetables);
         });
 
+    });
+
+    // Utilisation de la classe RecommendationRequest avec directement un tableau d'id d'artistes
+    app.get('/moodmusic', function(req,res) {
+        var artists = req.query.artists.split(',');
+        var limitTrack = 10;
+        var tunetables = JSON.parse(req.query.tunetables);
+        var genre = [];
+
+        RecommendationGenerator.RecommendationRequest(artists,[],genre, tunetables,limitTrack,function(data){
+            var musics = encodeURIComponent(JSON.stringify(data));
+            res.redirect('/create_playlist?moodmusicRecommendation='+musics);
+        }).sendRequest(global_access_token);
+    });
+
+    // Crée une playlist
+    app.get('/create_playlist', function(req,res) {
+        var musics = JSON.parse(JSON.parse(req.query.moodmusicRecommendation));
+        //res.send({moodmusicRecommendation: musics});
+        // parameters
+        var playlistOptions = {
+            url: 'https://api.spotify.com/v1/users/'+global_user_id+'/playlists',
+            headers: {'Authorization': 'Bearer ' + global_access_token},
+            body: JSON.stringify({name: "hey bitches", public: false}),
+            json: true
+        }
+        request.post(playlistOptions, function(error, response, body) {
+            if (error)  throw error;
+            // Add tracks to the playlist
+            var playlist = encodeURIComponent(JSON.stringify(body));
+            musics = encodeURIComponent(JSON.stringify(musics));
+            res.redirect('/addTracksToPlaylist?playlist='+playlist+'&moodmusicRecommendation='+musics);
+        });
+    });
+
+    // Ajouter des titres à une playlist
+    app.get('/addTracksToPlaylist', function(req,res) {
+        var musics = JSON.parse(req.query.moodmusicRecommendation);
+        var JSONplaylistObject = JSON.parse(req.query.playlist);
+
+        // créer le string des uri
+        var uriMusics = ""
+        for (var i=0; i< musics.tracks.length; i++) // Mettre une ',' sauf si c'est le dernier
+            uriMusics += i == musics.tracks.length ? musics.tracks[i].uri : musics.tracks[i].uri+',';
+        console.log(uriMusics);
+
+        var tracksToAdd = {
+            uris: uriMusics
+        }
+        var addTracksOptions = {
+            url: 'https://api.spotify.com/v1/users/'+global_user_id+'/playlists/'+JSONplaylistObject.id+'/tracks?'+querystring.stringify(tracksToAdd),
+            headers: {'Authorization': 'Bearer ' + global_access_token}
+        }
+        request.post(addTracksOptions, function(error,response,body) {
+            console.log(body);
+            //res.redirect(JSONplaylistObject.external_urls.spotify);
+            res.send({moodmusicRecommendation: JSONplaylistObject});
+        });
     });
 
     app.get('/getLyrics', function(req, res) {

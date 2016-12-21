@@ -133,6 +133,7 @@
                 <div id="oauth"></div>
             </div>
             <div id="moodEvaluation">
+                <div id="selectMood"></div>
                 <div id="camera"></div>
                 <div id="rechercheSpotify"></div>
             </div>
@@ -189,6 +190,27 @@
                 <div style="font-size: 60px;display: inline-block;padding-left: 20px;" id="emoji"></div>
             </div>
         </div>
+    </script>
+
+    <script id="select-mood-template" type="text/x-handlebars-template">
+        <h2>Bienvenue dans l'évaluation de votre humeur !</h2>
+        <h4>Sélectionnez la/les emojis qui correspondent le plus à votre état actuel</h4>
+        <div class="emoji-bar" id="mood-select">
+            {{#each moods}}
+            <div id="{{state}}" class="emoji-mood-select">{{emoji}}</div>
+            {{/each}}
+        </div>
+
+        <h4>A quel point voulez vous des musiques positives ?</h4>
+        <h6>(valeur entre 0 et 1)</h6>
+        <input type="text" id="valence-mood">
+
+        <h4>A quel point voulez-vous des musiques intenses ?</h4>
+        <h6>(valeur entre 0 et 1)</h6>
+        <input type="text" id="activation-mood">
+
+        <button id="moodmusic-emoji"><h2>Crée moi une playlist!</h2></button>
+        <hr>
     </script>
 
     <script id="rechercheSpotify-template" type="text/x-handlebars-template">
@@ -288,17 +310,21 @@
             rechercheSpotifyTemplate = Handlebars.compile(rechercheSpotifySource),
             rechercheSpotifyPlaceholder = document.getElementById('rechercheSpotify');
 
-      var topArtistsSource = document.getElementById('topArtists-template').innerHTML,
-              topArtistsTemplate = Handlebars.compile(topArtistsSource),
-              topArtistsPlaceholder = document.getElementById('topArtists');
+        var selectMoodSource = document.getElementById('select-mood-template').innerHTML,
+            selectMoodTemplate = Handlebars.compile(selectMoodSource),
+            selectMoodPlaceholder = document.getElementById('selectMood');
+
+        var topArtistsSource = document.getElementById('topArtists-template').innerHTML,
+            topArtistsTemplate = Handlebars.compile(topArtistsSource),
+            topArtistsPlaceholder = document.getElementById('topArtists');
 
         var meteoSource = document.getElementById('meteo-template').innerHTML,
             meteoTemplate = Handlebars.compile(meteoSource),
             meteoPlaceholder = document.getElementById('meteo');
 
-          var lyricsSource = document.getElementById('lyrics-template').innerHTML,
-                  lyricsTemplate = Handlebars.compile(lyricsSource),
-                  lyricsPlaceholder = document.getElementById('lyrics');
+        var lyricsSource = document.getElementById('lyrics-template').innerHTML,
+            lyricsTemplate = Handlebars.compile(lyricsSource),
+            lyricsPlaceholder = document.getElementById('lyrics');
 
         var params = getHashParams();
 
@@ -306,12 +332,12 @@
             refresh_token = params.refresh_token,
             error = params.error;
 
-          var current_user;
+        var current_user;
 
               // Chargement des composants
           meteoPlaceholder.innerHTML = meteoTemplate();
           lyricsPlaceholder.innerHTML = lyricsTemplate();
-            view_connexion();
+            //view_connexion();
           if (error) {
           alert('There was an error during the authentication');
         } else {
@@ -350,6 +376,7 @@
                                   //console.log(moods['moods']);
                                   //console.log(artists);
                                   topArtistsPlaceholder.innerHTML = topArtistsTemplate({artists: artists, moods: moods['moods']});
+                                  selectMoodPlaceholder.innerHTML = selectMoodTemplate({moods: moods['moods']});
 
                                   // Placer la classe 'ON' sur les moods ayant été selectionnés auparavant :
                                   for (var i = 0; i< artists.length; i++) {
@@ -379,18 +406,39 @@
                                           console.log(data.state);
                                       });
                                   });
+
+                                  $(".emoji-mood-select").click(function() {
+                                      $( this ).toggleClass( "on" );
+                                  });
+
+                                  // recherche de recommendations avec emoji
+                                  $("#moodmusic-emoji").click(function() {
+                                      // Créer un mini csv des emojis selectionnées
+                                      var stringEmoji = "";
+                                      $('#mood-select').children().each(function(){
+                                          if ($(this).hasClass('on')) stringEmoji += $(this).attr('id')+',';
+                                      });
+                                      stringEmoji = stringEmoji.substr(0,stringEmoji.length-1);
+                                      var tunetables = {
+                                          valence: $("#valence-mood").val(),
+                                          energy: $("#activation-mood").val()
+                                      };
+
+                                      $.ajax({
+                                          url: '/getArtistsFromMood',
+                                          data: {
+                                              user: current_user,
+                                              mood: stringEmoji,
+                                              tunetables: tunetables
+                                          }
+                                      }).done(function(data) {
+                                          console.log(data.moodmusicRecommendation)
+                                          window.location.href = data.moodmusicRecommendation.external_urls.spotify;
+                                          //successSearch(JSON.parse(data.moodmusicRecommendation));
+                                      });
+                                  });
                               });
                           }
-                      });
-
-                      $.ajax({
-                          url: '/getArtistsFromMood',
-                          data: {
-                              user: current_user,
-                              mood: "dance"
-                          }
-                      }).done(function(data) {
-                          console.log(data.artists);
                       });
                   }
               });
