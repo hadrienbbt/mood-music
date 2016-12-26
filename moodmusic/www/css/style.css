@@ -1,0 +1,140 @@
+@font-face {
+    font-family: roboto-light;
+    src: url(font/Roboto-Light.ttf);
+}
+
+body {
+    background-color: #19BCFF !important;
+    color: #ffffff !important;
+}
+
+* {
+    overflow-y: scroll;
+    font-family: roboto-light;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+#login, #loggedin {
+    display: none;
+}
+
+.text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 500px;
+}
+
+.content {
+    background :url(../img/connexion/fond.jpg) no-repeat center fixed;
+    -webkit-background-size: cover; /* pour Chrome et Safari */
+    -moz-background-size: cover; /* pour Firefox */
+    -o-background-size: cover; /* pour Opera */
+    background-size: cover; /* version standardisée */
+}
+
+.bar{
+    height: 11%;
+}
+
+.bar-tab .tab-item-one{
+    display: table-cell;
+    width: 1%;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    background: #212121;
+    font-weight: bold;
+}
+
+.bar-tab .tab-item-two{
+    display: table-cell;
+    width: 1%;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    background: #f1c431;
+    font-weight: bold;
+}
+
+#bar-tab {
+    height: 11%;
+}
+
+#logo-header {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#artists {
+    text-align: center;
+}
+
+.container-artist {
+    margin: auto;
+    width: 100%;
+}
+
+.on {
+    background: #ffffff;
+}
+
+.emoji-select, .emoji-mood-select {
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 3px;
+    width: 30px;
+    font-size: 20px;
+    text-align: center;
+    padding: 1px;
+    display: inline-block;
+}
+
+#selectMood {
+    text-align: center;
+}
+
+
+/* the slider bar */
+.slider {
+    position: relative;
+    width: 100%;
+    height: 1em;
+    margin: 1.5em auto;
+    background-color: #29e;
+    border-radius: 0.5em;
+    box-sizing: border-box;
+    font-size: 8vmin;
+    -ms-touch-action: none;
+    touch-action: none;
+}
+
+/* the slider handle */
+.slider:before {
+    content: "";
+    display: block;
+    position: relative;
+    top: -0.5em;
+    width: 2em;
+    height: 2em;
+    margin-left: -1em;
+    border: solid 0.25em #fff;
+    border-radius: 1em;
+    background-color: inherit;
+    box-sizing: border-box;
+}
+
+/* display the value */
+.slider:after {
+    content: attr(data-value);
+    position: absolute;
+    top: -1.5em;
+    width: 2em;
+    line-height:1em;
+    margin-left: -1em;
+    text-align: center;
+}
