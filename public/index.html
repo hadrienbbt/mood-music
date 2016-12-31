@@ -8,7 +8,6 @@
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-      <link rel="stylesheet" href="css/style.css">
       <link rel="stylesheet" href="css/connexion/connexion.css">
       <link rel="stylesheet" href="ratchet-v2.0.2/css/ratchet.min.css">
       <link rel="stylesheet" href="ratchet-v2.0.2/css/ratchet-theme-ios.min.css">
@@ -26,11 +25,12 @@
       <script src="js/init_facebook.js"></script>
       <script src="js/functionsSpotify.js"></script>
       <script src="js/functionsFacebook.js"></script>
-      <script src="js/functionMoodMusic.js"></script>
       <script src="js/render.js"></script>
       <script src="js/cookies.js"></script>
       <script src="js/bootstrap-slider.min.js"></script>
       <link rel="stylesheet" href="css/bootstrap-slider.min.css">
+      <link rel="stylesheet" href="css/style.css">
+      <script src="js/functionMoodMusic.js"></script>
   </head>
 
   <body>
@@ -112,10 +112,13 @@
 
         <div id="loggedin">
             <img id="logo-header" src="img/moodmusic_written.png">
-            <button onclick="view_accueil()" class="btn" id="goAccueil">Accueil</button>
-            <button onclick="view_moodEvaluation();" class="btn" id="goMoodEval">Evaluer mon humeur</button>
-            <button onclick="view_profile()" class="btn" id="goProfile">Voir mon profil</button>
-            <button onclick="view_artistsEvaluation();" class="btn" id="goTopArtists">Artistes favoris</button>
+            <div id="menu">
+                <button style="display: none" onclick="view_accueil()" class="btn" id="goAccueil">Accueil</button>
+                <button style="display: none" onclick="view_profile()" class="btn" id="goProfile">Voir mon profil</button>
+                <button style="margin-right: 7%;" onclick="view_artistsEvaluation();" class="btn" id="goTopArtists">Artistes favoris</button>
+                <button onclick="view_moodEvaluation();" class="btn" id="goMoodEval">Evaluer mon humeur</button>
+
+            </div>
             <div id="profile">
                 <div id="user-profile"></div>
                 <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
@@ -124,12 +127,12 @@
             <div id="moodEvaluation">
                 <div id="selectMood"></div>
                 <div id="camera"></div>
-                <div id="rechercheSpotify"></div>
+                <div hidden="hidden" id="rechercheSpotify"></div>
             </div>
-            <div id="topArtists"></div>
-            <div id="meteo"></div>
+            <div hidden="hidden" id="topArtists"></div>
+            <div hidden="hidden" id="meteo"></div>
         </div>
-        <div id="lyrics"></div>
+        <div hidden="hidden" id="lyrics"></div>
     </div>
 
     <script id="user-profile-template" type="text/x-handlebars-template">
@@ -172,7 +175,7 @@
                 </div>
             </div>
             <div>
-                <h2>Cliquez sur Start pour utiliser la caméra, vos valence et activations vont se calculer ;)</h2>
+                <h3>Cliquez sur Start pour utiliser la caméra magique ;)</h3>
                 <button id="start" onclick="onStart()">Start</button>
                 <button id="stop" onclick="onStop();getIdArtiste('valence+activation');moyenne(tabValence);">Stop</button>
                 <button id="reset" onclick="onReset()">Reset</button>
@@ -182,24 +185,19 @@
     </script>
 
     <script id="select-mood-template" type="text/x-handlebars-template">
-        <h2>Bienvenue dans l'évaluation de votre humeur !</h2>
-        <h4>Sélectionnez la/les emojis qui correspondent le plus à votre état actuel</h4>
+        <h3>Bienvenue dans l'évaluation de votre humeur</h3>
+        <h4>Jaugez votre humeur :</h4>
         <div class="emoji-bar" id="mood-select">
             {{#each moods}}
-            <div id="{{state}}" class="emoji-mood-select">{{emoji}}</div>
+            <div class="mood-with-slider">
+                <div id="{{state}}" class="emoji-mood-select">{{emoji}}</div>
+                <div class="slider-mood" id="div-{{state}}-slider">
+                    <input class="input-slider-mood" id="{{state}}-slider" />
+                </div>
+            </div>
             {{/each}}
         </div>
-        <input id="slider" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
-
-        <h4>A quel point voulez vous des musiques positives ?</h4>
-        <h6>(valeur entre 0 et 1)</h6>
-        <input type="text" id="valence-mood">
-
-        <h4>A quel point voulez-vous des musiques intenses ?</h4>
-        <h6>(valeur entre 0 et 1)</h6>
-        <input type="text" id="activation-mood">
-
-        <button id="moodmusic-emoji"><h2>Crée moi une playlist!</h2></button>
+        <button id="moodmusic-emoji"><h3>Crée moi une playlist!</h3></button>
         <hr>
     </script>
 
@@ -246,14 +244,21 @@
 
     <script id="topArtists-template" type="text/x-handlebars-template">
         <div id="artists">
-            <h2>Et si tu nous disais à quels emojis ces artistes te font penser ?</h2>
+            <div id="addArtistPref">
+                <h3>Tu peux ajouter un artiste à tes artistes préférés</h3>
+                <input id="artistName" type="text" />
+                <button id="button-addArtistPref">+</button>
+            </div>
+            <hr>
+            <h3>Et si tu nous disais à quels emojis ces artistes te font penser ?</h3>
             {{#each artists}}
             <div class="container-artist" style="display: inline-block" id="{{id}}">
-                <h3>{{name}}</h3>
-                <img src="{{images.0.url}}" width="200"/>
+                <h4 class="name_artist">{{name}}</h4>
+                <div class="button-removeArtistPref" id="suppr-{{id}}">×</div>
+                <img class="img-artist" src="{{images.0.url}}" width="200"/>
                 <div class="emoji-bar">
                     {{#each ../moods}}
-                    <div id="{{../id}}-{{state}}" class="emoji-select">{{emoji}}</div>
+                    <div id="{{../id}}-{{state}}" class="emoji-select emoji-artist">{{emoji}}</div>
                     {{/each}}
                 </div>
             </div>

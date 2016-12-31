@@ -25,14 +25,6 @@
         rechercheSpotifyTemplate = Handlebars.compile(rechercheSpotifySource),
         rechercheSpotifyPlaceholder = document.getElementById('rechercheSpotify');
 
-    var selectMoodSource = document.getElementById('select-mood-template').innerHTML,
-        selectMoodTemplate = Handlebars.compile(selectMoodSource),
-        selectMoodPlaceholder = document.getElementById('selectMood');
-
-    var topArtistsSource = document.getElementById('topArtists-template').innerHTML,
-        topArtistsTemplate = Handlebars.compile(topArtistsSource),
-        topArtistsPlaceholder = document.getElementById('topArtists');
-
     var meteoSource = document.getElementById('meteo-template').innerHTML,
         meteoTemplate = Handlebars.compile(meteoSource),
         meteoPlaceholder = document.getElementById('meteo');
@@ -77,93 +69,11 @@
                     current_user = response.id;
                     $('#login').hide();
                     $('#loggedin').show();
+                    view_artistsEvaluation();
+                    //view_moodEvaluation();
 
-                    $.ajax({
-                        url: '/getCurrentUserInfos',
-                        data: {
-                            user: current_user
-                        },
-                        success: function(response) {
-                            //console.log(response);
-                            var artists = response['0']['tabArtistesPref'];
-                            $.ajax({url: '/getMoods'}).done(function(response) {
-                                var moods = JSON.parse(response);
-                                //console.log(moods['moods']);
-                                //console.log(artists);
-                                topArtistsPlaceholder.innerHTML = topArtistsTemplate({artists: artists, moods: moods['moods']});
-                                selectMoodPlaceholder.innerHTML = selectMoodTemplate({moods: moods['moods']});
-
-                                // Placer la classe 'ON' sur les moods ayant été selectionnés auparavant :
-                                for (var i = 0; i< artists.length; i++) {
-                                    for (var j = 0; j < artists[i]['mood_related'].length; j++) {
-                                        var stringIdMood = "#"+artists[i].id + "-" + artists[i]['mood_related'][j]
-                                        $(stringIdMood).addClass("on");
-                                    }
-                                }
-
-                                // Placer la classe 'ON' quand l'utilisateur clique sur l'emoji
-                                $(".emoji-select").click(function() {
-                                    var ajouterMood;
-                                    $( this ).toggleClass( "on" );
-                                    if ($(this).hasClass("on"))   ajouterMood = true;
-                                    else                          ajouterMood = false;
-
-                                    var link = $(this).attr('id').split('-');
-                                    $.ajax({
-                                        url: '/addMoodToArtist',
-                                        data: {
-                                            user: current_user,
-                                            artist: link[0],
-                                            mood: link[1],
-                                            ajouterMood: ajouterMood
-                                        }
-                                    }).done(function(data) {
-                                        console.log(data.state);
-                                    });
-                                });
-
-                                $(".emoji-mood-select").click(function() {
-                                    $( this ).toggleClass( "on" );
-                                });
-
-                                // recherche de recommendations avec emoji
-                                $("#moodmusic-emoji").click(function() {
-                                    // Créer un mini csv des emojis selectionnées
-                                    var stringEmoji = "";
-                                    $('#mood-select').children().each(function(){
-                                        if ($(this).hasClass('on')) stringEmoji += $(this).attr('id')+',';
-                                    });
-                                    stringEmoji = stringEmoji.substr(0,stringEmoji.length-1);
-                                    var tunetables = {
-                                        valence: $("#valence-mood").val(),
-                                        energy: $("#activation-mood").val()
-                                    };
-
-                                    $.ajax({
-                                        url: '/getArtistsFromMood',
-                                        data: {
-                                            user: current_user,
-                                            mood: stringEmoji,
-                                            tunetables: tunetables
-                                        }
-                                    }).done(function(data) {
-                                        console.log(data.moodmusicRecommendation)
-                                        window.location.href = data.moodmusicRecommendation.external_urls.spotify;
-                                        //successSearch(JSON.parse(data.moodmusicRecommendation));
-                                    });
-                                });
-
-                                // With JQuery
-                                var mySlider = $('#slider').slider();
-
-                                mySlider.on("slideStop",function(){
-                                    // Call a method on the slider
-                                    var value = mySlider.slider('getValue');
-                                    console.log(value);
-                                });
-                            });
-                        }
-                    });
+                    // TODO Mettre tout ça dans une fonction et l'appeler à chaque fois...
+                    afficherArtistesPrefs(current_user);
                 }
             });
 
@@ -247,7 +157,4 @@
         }, false);
 
     }
-
-    // Appeler ici les infos que l'on doit avoir dès le chargement
-    //afficherMeteo();
 })();

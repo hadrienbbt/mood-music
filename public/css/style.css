@@ -70,6 +70,12 @@
     margin-bottom: 10px;
 }
 
+#menu {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+
 #artists {
     text-align: center;
 }
@@ -83,6 +89,10 @@
     background: lightgray;
 }
 
+.mood-with-slider {
+    display: inline-table;;
+}
+
 .emoji-select, .emoji-mood-select {
     cursor: pointer;
     border-radius: 10px;
@@ -91,6 +101,10 @@
     font-size: 20px;
     text-align: center;
     padding: 1px;
+    margin-bottom: 10px;
+}
+
+.emoji-artist {
     display: inline-block;
 }
 
@@ -100,4 +114,46 @@
 
 #slider .slider-selection {
     background: #BABABA;
+}
+
+.slider {
+    background-color: #ffffff;
+    height: 150px !important;
+}
+
+.slider-mood {
+    display: none;
+}
+
+.visible {
+    display: inline-block;
+}
+
+#artistName {
+    width: 65%;
+}
+
+#button-addArtistPref {
+    font-size: 27px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.name_artist {
+    display: inline-block;
+}
+
+.img-artist {
+    display: block;
+    margin: auto;
+}
+
+.button-removeArtistPref {
+    width: 20px;
+    margin: auto;
+    font-size: 27px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 0px;
+    margin-left: 20px;
 }
