@@ -2,141 +2,137 @@
 <html>
   <head>
     <title>Mood music</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-    <style type="text/css">
-      #login, #loggedin {
-        display: none;
-      }
-      .text-overflow {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        width: 500px;
-      }
-    </style>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+      <link rel="stylesheet" href="css/connexion/connexion.css">
+      <link rel="stylesheet" href="ratchet-v2.0.2/css/ratchet.min.css">
+      <link rel="stylesheet" href="ratchet-v2.0.2/css/ratchet-theme-ios.min.css">
+
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+      <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      <script src="https://download.affectiva.com/js/3.1/affdex.js"></script>
+      <script src="https://download.affectiva.com/js/3.1/adapter-1.4.0.js"></script>
+
+      <script src="js/init_facebook.js"></script>
+      <script src="js/functionsSpotify.js"></script>
+      <script src="js/functionsFacebook.js"></script>
+      <script src="js/render.js"></script>
+      <script src="js/cookies.js"></script>
+      <script src="js/bootstrap-slider.min.js"></script>
+      <link rel="stylesheet" href="css/bootstrap-slider.min.css">
+      <link rel="stylesheet" href="css/style.css">
+      <script src="js/functionMoodMusic.js"></script>
   </head>
 
   <body>
-                     <!-- login facebook -->
-  <script>
-      // This is called with the results from from FB.getLoginStatus().
-      function statusChangeCallback(response) {
-          console.log('statusChangeCallback');
-          console.log(response);
-          // The response object is returned with a status field that lets the
-          // app know the current login status of the person.
-          // Full docs on the response object can be found in the documentation
-          // for FB.getLoginStatus().
-          if (response.status === 'connected') {
-              // Logged into your app and Facebook.
-              document.getElementById('button_login').innerHTML = '';
-              testAPI();
-          } else if (response.status === 'not_authorized') {
-              // The person is logged into Facebook, but not your app.
-              document.getElementById('status').innerHTML = 'Please log ' +
-              'into this app.';
-          } else {
-              // The person is not logged into Facebook, so we're not sure if
-              // they are logged into this app or not.
-              document.getElementById('status').innerHTML = 'Please log ' +
-              'into Facebook.';
-          }
-      }
-
-      // This function is called when someone finishes with the Login
-      // Button.  See the onlogin handler attached to it in the sample
-      // code below.
-      function checkLoginState() {
-          FB.getLoginStatus(function(response) {
-              statusChangeCallback(response);
-          });
-      }
-
-      window.fbAsyncInit = function() {
-          FB.init({
-              appId      : '1754395221490484',
-              cookie     : true,  // enable cookies to allow the server to access
-                                  // the session
-              xfbml      : true,  // parse social plugins on this page
-              version    : 'v2.5' // use graph api version 2.5
-          });
-
-          // Now that we've initialized the JavaScript SDK, we call
-          // FB.getLoginStatus().  This function gets the state of the
-          // person visiting this page and can return one of three states to
-          // the callback you provide.  They can be:
-          //
-          // 1. Logged into your app ('connected')
-          // 2. Logged into Facebook, but not your app ('not_authorized')
-          // 3. Not logged into Facebook and can't tell if they are logged into
-          //    your app or not.
-          //
-          // These three cases are handled in the callback function.
-
-          FB.getLoginStatus(function(response) {
-              statusChangeCallback(response);
-          });
-
-      };
-
-      // Load the SDK asynchronously
-      (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/sdk.js";
-          fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-
-      // Here we run a very simple test of the Graph API after login is
-      // successful.  See statusChangeCallback() for when this call is made.
-      function testAPI() {
-          console.log('Welcome!  Fetching your information.... ');
-          FB.api('/me', function(response) {
-              console.log('Successful login for: ' + response.name);
-              document.getElementById('status').innerHTML =
-                      'Thanks for logging in, ' + response.name + '!';
-          });
-          FB.api(
-              '/me/music',
-              'GET',
-              {},
-              function(response) {
-                  console.log(response);
-                  $("#search").attr('value', response['data']['0']['name']);
-                  rechercheTextuelleSpotify();
-              }
-          );
-      }
-  </script>
-
-  <!--
-    Below we include the Login Button social plugin. This button uses
-    the JavaScript SDK to present a graphical Login button that triggers
-    the FB.login() function when clicked.
-  -->
-<div id="button_login">
-  <fb:login-button scope="public_profile,email,user_likes,user_actions.music" onlogin="checkLoginState();">
-  </fb:login-button>
-</div>
-  <div id="status">
-  </div>
-                     <!-- FIN Facebook -->
-
-     <div class="container">
-      <div id="login">
-        <h1>Bienvenue sur mood-music !</h1>
-        <a href="/login" class="btn btn-primary">Log in with Spotify</a>
-      </div>
-      <div id="loggedin">
-        <div id="user-profile">
+    <div class="container">
+        <div id="login">
+            <div id="login-sign-in">
+                <nav id="bar-tab" class="bar bar-tab">
+                    <a onclick="view_sign_up()" id="access-login-sign-up" class="tab-item-one" data-transition="fade">
+                        SE CONNECTER
+                    </a>
+                    <a class="tab-item-two" href="#" data-transition="fade">
+                        S'INSCRIRE
+                    </a>
+                </nav>
+                <div class="content">
+                    <div id="logo">
+                        <img src="img/connexion/logo_cercle.png" style="width:100%;height:auto;">
+                    </div>
+                    <div>
+                        <h1 id="titre" class="content-padded titre">bienvenue sur mood music</h1>
+                    </div>
+                    <div>
+                        <h2 id=description class="content-padded titre">Votre première application pour écouter des playlists personnalisées en fonction de votre humeur, partout, tout le temps !</h2>
+                    </div>
+                </div><!-- /.content -->
+            </div>
+            <div id="login-sign-up">
+                <nav id="bar-tab" class="bar bar-tab">
+                    <div id="button_login" class="tab-item-one">
+                    <fb:login-button id="fb-button"  scope="public_profile,email,user_likes,user_actions.music" onlogin="checkLoginState();">
+                        <div class="col-xs-4" style="">
+                            <img src="img/connexion/logoFB.png" style="width:100%;height:auto;padding-top: 10px;">
+                        </div>
+                        <div class="col-xs-8">
+                            <h3 id="social" class="content-padded titre">Connexion avec Facebook</h3>
+                        </div>
+                    </fb:login-button>
+                    </div>
+                    <a class="tab-item-two" href="/login" id="spotify-button">
+                        <div class="col-xs-4" style="">
+                            <img id="spotify-logo" src="img/connexion/logoSpotify.png">
+                        </div>
+                        <div class="col-xs-8">
+                            <h3 id="social" class="content-padded titre">Connexion avec Spotify</h3>
+                        </div>
+                    </a>
+                </nav>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div id="logo">
+                            <img src="img/connexion/logo_cercle.png" style="width:100%;height:auto;">
+                        </div>
+                        <div>
+                            <h1 id="titre" class="content-padded titre">connexion</h1>
+                        </div>
+                        <div>
+                            <form id="connexion-email">
+                                <div class="ligne">
+                                    <div class="col-xs-10 col-xs-offset-1">
+                                        <input type="text" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="ligne">
+                                    <div class="col-xs-10 col-xs-offset-1">
+                                        <input type="text" placeholder="Mot de passe">
+                                    </div>
+                                </div>
+                                <div class="ligne">
+                                    <div class="col-xs-6 col-xs-offset-3">
+                                        <button id="valider-connexion-email" class="btn btn-positive btn-block">Valider</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- /.content -->
+            </div>
         </div>
-        <div id="oauth">
+
+        <div id="loggedin">
+            <img id="logo-header" src="img/moodmusic_written.png">
+            <div id="menu">
+                <button style="display: none" onclick="view_accueil()" class="btn" id="goAccueil">Accueil</button>
+                <button style="display: none" onclick="view_profile()" class="btn" id="goProfile">Voir mon profil</button>
+                <button style="margin-right: 7%;" onclick="view_artistsEvaluation();" class="btn" id="goTopArtists">Artistes favoris</button>
+                <button onclick="view_moodEvaluation();" class="btn" id="goMoodEval">Evaluer mon humeur</button>
+
+            </div>
+            <div id="profile">
+                <div id="user-profile"></div>
+                <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
+                <div id="oauth"></div>
+            </div>
+            <div id="moodEvaluation">
+                <div id="selectMood"></div>
+                <div id="camera"></div>
+                <div hidden="hidden" id="rechercheSpotify"></div>
+            </div>
+            <div hidden="hidden" id="topArtists"></div>
+            <div hidden="hidden" id="meteo"></div>
         </div>
-          <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
-      </div>
+        <div hidden="hidden" id="lyrics"></div>
     </div>
 
     <script id="user-profile-template" type="text/x-handlebars-template">
@@ -156,6 +152,7 @@
             <dt>Country</dt><dd>{{country}}</dd>
           </dl>
         </div>
+
       </div>
     </script>
 
@@ -165,288 +162,126 @@
         <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
         <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}></dd>
       </dl>
-
-      <h2>Entrez un artiste, une valence et une activation pour la recherche de recommandations: </h2>
-      <label>Artiste : </label>
-      <input id="search" type="text" />
-      <input id="valider" onclick="getIdArtiste('texte')" type="button" value="valider"><br>
-
-      <label>Valence : </label>
-      <input id="valence" type="text" />
-      <input id="validerValence" onclick="getIdArtiste('valence')" type="button" value="valider"><br>
-
-      <label>Activation : </label>
-      <input id="activation" type="text" />
-      <input id="validerActivation" onclick="getIdArtiste('valence+activation')" type="button" value="valider"><br>
-
-
-      <br>
-      <div style="display: inline-block; float: right" id="player"></div>
-      <div style="display: inline-block;" id="result"></div>
-      <div id="metadata"></div>
     </script>
 
-    <script>
-        var limitTrack = 50;
-
-        // Rechercher des musiques dont le nom, l'artiste ou l'album match avec la valeur de l'input #search
-        function rechercheTextuelleSpotify(){
-            var artist = getArtiste();
-            var url = 'https://api.spotify.com/v1/search';
-            var params = {
-                q: artist,
-                type:'track',
-                limit: limitTrack
-            };
-            callSpotify(url, params).then(successSearch, erreur);
-        }
-
-        // Rechercher des musiques selon la valence courante
-        // Utiliser getIdArtiste("valence") pour l'appel de l'évènement recherche
-        function rechercheValence(data){
-            var id = data['artists']['items'][0]['id'];
-            var url = 'https://api.spotify.com/v1/recommendations';
-            var params = {
-                seed_artists : id,
-                target_valence: getValence(),
-                limit: limitTrack
-            };
-            callSpotify(url, params).then(successSearch, erreur);
-        }
-
-        // Fonction qui renvoit des recommendations en se rapprochant un maximum de la valence et de l'activation courante
-        // Utiliser getIdArtiste("valence+activation") pour l'appel de l'évènement recherche
-        function rechercheValenceActivation(data) {
-            var id = data['artists']['items'][0]['id'];
-            var url = 'https://api.spotify.com/v1/recommendations';
-            var params = {
-                seed_artists : id,
-                target_valence: getValence(),
-                target_energy: getActivation(),
-                limit: limitTrack
-            };
-            callSpotify(url, params).then(successSearch, erreur);
-        }
-
-        // Afficher résultat de la recherche de titre
-        function successSearch(data){
-            console.log(data);
-            // Réinitialiser les champs pour les nouveaux résultats
-            document.getElementById('result').innerHTML = '';
-            document.getElementById('player').innerHTML = '';
-            var musique;
-
-            // Créer le lecteur pour y mettre les musiques trouvées
-            var player = '<iframe src="https://embed.spotify.com/?uri=spotify:trackset:Ecouter:';
-            for (var i = 0; i<limitTrack; i++){
-
-                // Pour savoir ce qu'on veut afficher
-                if (typeof data['tracks']['items'] != "undefined") {
-                    musique = data['tracks']['items'][i];
-                } else {
-                    musique = data['tracks'][i];
-                }
-
-                // Afficher une div par musique contenant des informations
-                $('#result').append(
-                "<span class='titre' id='"+musique['id']+"'>"+
-                    musique['name']+" - "+musique['artists'][0]['name']+" : </span>" +
-                "<a href='"+musique['external_urls']['spotify']+"'>écouter</a>" +
-                "</br>");
-                player += musique['id']+',';
-            }
-            player = player.substr(0,player.length-1);
-            player += '" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
-
-            // Ajouter le player complet à la suite
-            $('#player').append(player);
-
-            // Ajout d'un écouteur de clic sur les résultats de la recherche
-            // Lorsqu'on clique sur un titre on affiche ses metadonnées
-            $('.titre').click(function(){
-                var id = $(this).attr('id');
-                url = 'https://api.spotify.com/v1/audio-features?ids='+id
-                callSpotify(url).then(alertMetadonnees,erreur);
-            });
-        }
-
-        // TODO Séparer les fonctions js dans un fichier
-
-        // fonction qui renvoit un artiste
-        // V 1.0 : renvoit ce qu'il y a dans l'input
-        function getArtiste() {
-            return $('#search').val();
-        }
-
-        // fonction qui renvoit une valence
-        // V 1.0 : renvoit ce qu'il y a dans l'input
-        function getValence() {
-            var valence = parseFloat($('#valence').val());
-            if (!isNaN(valence))
-                return (valence);
-            else return (null);
-
-        }
-
-        // fonction qui renvoit une activation
-        // V 1.0 : renvoit ce qu'il y a dans l'input
-        function getActivation() {
-            var activation = parseFloat($('#activation').val());
-            if (!isNaN(activation))
-                return (activation);
-            else return (null);
-        }
-
-        // fonction qui formate un artiste avec son id Spotify avant de lancer la recherche adaptée
-        function getIdArtiste(typeRecherche) {
-            // Exemple de récupération de recherche
-            var url = 'https://api.spotify.com/v1/search';
-            var params = {
-                q: $('#search').val(),
-                type: 'artist',
-                limit: 1
-            };
-            if (typeRecherche == "valence+activation") {
-                callSpotify(url, params).then(rechercheValenceActivation, function () {
-                    return null;
-                });
-            }
-            if (typeRecherche == "valence") {
-                callSpotify(url, params).then(rechercheValence, function () {
-                    return null;
-                });
-            }
-            if (typeRecherche == "texte") {
-                callSpotify(url, params).then(rechercheTextuelleSpotify, function () {
-                    return null;
-                });
-            }
-        }
-
-        // Appeler l'API Spotify pour n'importe quel service avec le token d'accès
-        function callSpotify(url, data) {
-            var params = getHashParams();
-            return $.ajax(url, {
-                dataType: 'json',
-                data: data,
-                headers: {
-                    'Authorization': 'Bearer ' + params.access_token
-                }
-            });
-        }
-
-        // Récupérer le token
-        function getHashParams() {
-            var hashParams = {};
-            var e, r = /([^&;=]+)=?([^&;]*)/g,
-                    q = window.location.hash.substring(1);
-            while ( e = r.exec(q)) {
-                hashParams[e[1]] = decodeURIComponent(e[2]);
-            }
-            return hashParams;
-        }
-
-        function erreur(data){
-            console.log(data);
-        }
-
-        // Afficher dans une liste les métadonnées de toutes les musiques passées à l'API Spotify
-        function afficherMetadonnees(data) {
-            console.log(data);
-            var items = [];
-            for (var i = 0; i< data['audio_features'].length; i++){
-                $.each(data['audio_features'][i], function (key, val) {
-                    items.push("<li id='" + key + "'>" + key + " : " + val + "</li>");
-                });
-
-                $("<ul/>", {
-                    "class": "my-new-list",
-                    html: items.join("")
-                }).appendTo("body");
-            }
-        }
-
-        // Afficher les métadonnées de toutes les musiques passée à l'API Spotify dans une alerte au clic sur l'artiste
-        function alertMetadonnees(data) {
-            console.log(data);
-            var items = [];
-            for (var i = 0; i< data['audio_features'].length; i++){
-                $.each(data['audio_features'][i], function (key, val) {
-                    items.push("\n"+key + " : " + val);
-                });
-            }
-            alert(items.toString());
-        }
-
+    <script id="camera-template" type="text/x-handlebars-template">
+        <div class="container-fluid">
+            <div hidden="hidden" class="row">
+                <div class="col-md-8" id="affdex_elements" style="width:680px;height:480px;"></div>
+                <div class="col-md-4">
+                    <div style="height:25em;">
+                        <div id="results" style="word-wrap:break-word;"></div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3>Cliquez sur Start pour utiliser la caméra magique ;)</h3>
+                <button id="start" onclick="onStart()">Start</button>
+                <button id="stop" onclick="onStop();getIdArtiste('valence+activation');moyenne(tabValence);">Stop</button>
+                <button id="reset" onclick="onReset()">Reset</button>
+                <div style="font-size: 60px;display: inline-block;padding-left: 20px;" id="emoji"></div>
+            </div>
+        </div>
     </script>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script>
-      (function() {
+    <script id="select-mood-template" type="text/x-handlebars-template">
+        <h3>Bienvenue dans l'évaluation de votre humeur</h3>
+        <h4>Jaugez votre humeur :</h4>
+        <div class="emoji-bar" id="mood-select">
+            {{#each moods}}
+            <div class="mood-with-slider">
+                <div id="{{state}}" class="emoji-mood-select">{{emoji}}</div>
+                <div class="slider-mood" id="div-{{state}}-slider">
+                    <input class="input-slider-mood" id="{{state}}-slider" />
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <button id="moodmusic-emoji"><h3>Crée moi une playlist!</h3></button>
+        <hr>
+    </script>
 
-        /**
-         * Obtains parameters from the hash of the URL
-         * @return Object
-         */
+    <script id="rechercheSpotify-template" type="text/x-handlebars-template">
+        <h2>Entrez un artiste, une valence et une activation pour la recherche de recommandations: </h2>
+        <label>Artiste : </label>
+        <select id="search">
 
-        var userProfileSource = document.getElementById('user-profile-template').innerHTML,
-            userProfileTemplate = Handlebars.compile(userProfileSource),
-            userProfilePlaceholder = document.getElementById('user-profile');
+        </select>
+        <input id="valider" onclick="getIdArtiste('texte')" type="button" value="musiques relatives à cet artiste"><br>
 
-        var oauthSource = document.getElementById('oauth-template').innerHTML,
-            oauthTemplate = Handlebars.compile(oauthSource),
-            oauthPlaceholder = document.getElementById('oauth');
+        <label>Valence : </label>
+        <input id="valence" type="text" />
+        <input id="validerValence" onclick="getIdArtiste('valence')" type="button" value="musiques relatives à cet artiste et cette valence"><br>
 
-        var params = getHashParams();
+        <label>Activation : </label>
+        <input id="activation" type="text" />
+        <input id="validerActivation" onclick="getIdArtiste('valence+activation')" type="button" value="musiques relatives à cet artiste, cette valence et cette activation"><br>
 
-        var access_token = params.access_token,
-            refresh_token = params.refresh_token,
-            error = params.error;
+        <label>Nombre de musiques : </label>
+        <input id="limitTrack" type="text" />
+        <input id="validerLimitTrack" type="button" value="Chercher n musiques basées sur 3 artistes écrits en dur dans l'exemple"><br>
 
-        if (error) {
-          alert('There was an error during the authentication');
-        } else {
-          if (access_token) {
-            // render oauth info
-            oauthPlaceholder.innerHTML = oauthTemplate({
-              access_token: access_token,
-              refresh_token: refresh_token
-            });
+        <label>Encoder des artistes : </label>
+        <input id="get-id-artists" type="button" value="Test d'encodage de plusieurs artistes"><br>
 
-            $.ajax({
-                url: 'https://api.spotify.com/v1/me',
-                headers: {
-                  'Authorization': 'Bearer ' + access_token
-                },
-                success: function(response) {
-                  userProfilePlaceholder.innerHTML = userProfileTemplate(response);
-                  $('#login').hide();
-                  $('#loggedin').show();
-                }
-            });
-          } else {
-              // render initial screen
-              $('#login').show();
-              $('#loggedin').hide();
-          }
 
-          document.getElementById('obtain-new-token').addEventListener('click', function() {
-            $.ajax({
-              url: '/refresh_token',
-              data: {
-                'refresh_token': refresh_token
-              }
-            }).done(function(data) {
-              access_token = data.access_token;
-              oauthPlaceholder.innerHTML = oauthTemplate({
-                access_token: access_token,
-                refresh_token: refresh_token
-              });
-            });
-          }, false);
-        }
-      })();
+        <h4>Ecrivez des artistes, une valence, une activation et un nombre de musiques</h4><br>
+        <label>Artistes</label>
+        <input id="artistsRecommendation" type="text" /><br>
+        <label>Nombre de musiques</label>
+        <input id="nbRecommendation" type="text" /><br>
+        <label>Style</label>
+        <select id="listGenres">
+            <option></option>
+        </select>
+        <input id="validerRecommendation" type="button" value="recommendation sur ces artistes"><br><br>
+
+        <br>
+        <div style="display: inline-block; float: right" id="player"></div>
+        <div style="display: inline-block;" id="result"></div>
+        <div id="metadata"></div>
+    </script>
+
+    <script id="topArtists-template" type="text/x-handlebars-template">
+        <div id="artists">
+            <div id="addArtistPref">
+                <h3>Tu peux ajouter un artiste à tes artistes préférés</h3>
+                <input id="artistName" type="text" />
+                <button id="button-addArtistPref">+</button>
+            </div>
+            <hr>
+            <h3>Et si tu nous disais à quels emojis ces artistes te font penser ?</h3>
+            {{#each artists}}
+            <div class="container-artist" style="display: inline-block" id="{{id}}">
+                <h4 class="name_artist">{{name}}</h4>
+                <div class="button-removeArtistPref" id="suppr-{{id}}">×</div>
+                <img class="img-artist" src="{{images.0.url}}" width="200"/>
+                <div class="emoji-bar">
+                    {{#each ../moods}}
+                    <div id="{{../id}}-{{state}}" class="emoji-select emoji-artist">{{emoji}}</div>
+                    {{/each}}
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </script>
+
+    <script id="meteo-template" type="text/x-handlebars-template">
+        <br><a onclick="afficherMeteo()" class="btn btn-primary">Quel temps fait-il ?</a><br>
+    </script>
+
+    <script id="lyrics-template" type="text/x-handlebars-template">
+        <form>
+            <label>Artiste</label>
+            <input id="textLyricsArtist" type="text">
+            <label>Morceau</label>
+            <input id="textLyricsTrack" type="text">
+            <button id="getLyrics">Obtenir les paroles</button>
+        </form>
     </script>
   </body>
+
+  <script src="js/index.js"></script>
+  <script src="js/functionsAffectiva.js"></script>
+
 </html>
