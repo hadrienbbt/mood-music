@@ -543,7 +543,6 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
             } else {console.log(error);}
         });
     });
-
     console.log('Listening on 8888');
     app.listen(8888);
 });
