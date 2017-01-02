@@ -87,6 +87,8 @@ function processTunetables() {
 
     tunetables['energy'] = parseFloat(moyenne(tunetables['energy']));
     tunetables['valence'] = parseFloat(moyenne(tunetables['valence']));
+    if (isNaN(tunetables['energy'])) tunetables['energy'] = 0.5;
+    if (isNaN(tunetables['valence'])) tunetables['valence'] = 0.5;
     console.log(tunetables);
 
     return tunetables
@@ -231,7 +233,6 @@ function afficherArtistesPrefs(current_user) {
                     }).done(function(data) {
                         console.log(data.moodmusicRecommendation)
                         //window.location.href = data.moodmusicRecommendation.external_urls.spotify;
-                        successSearch(JSON.parse(data.moodmusicRecommendation));
                     });
                 });
             });

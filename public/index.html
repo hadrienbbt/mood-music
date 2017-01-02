@@ -79,14 +79,14 @@
                     </a>
                 </nav>
                 <div class="content">
-                    <div class="container-fluid">
+                    <div style="margin-top: 30%;" class="container-fluid">
                         <div id="logo">
                             <img src="img/connexion/logo_cercle.png" style="width:100%;height:auto;">
                         </div>
                         <div>
                             <h1 id="titre" class="content-padded titre">connexion</h1>
                         </div>
-                        <div>
+                       <!-- <div>
                             <form id="connexion-email">
                                 <div class="ligne">
                                     <div class="col-xs-10 col-xs-offset-1">
@@ -104,7 +104,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                        </div>-->
                     </div>
                 </div><!-- /.content -->
             </div>
@@ -255,7 +255,7 @@
             <div class="container-artist" style="display: inline-block" id="{{id}}">
                 <h4 class="name_artist">{{name}}</h4>
                 <div class="button-removeArtistPref" id="suppr-{{id}}">×</div>
-                <img class="img-artist" src="{{images.0.url}}" width="200"/>
+                <img class="img-artist" src="{{images.1.url}}" width="200"/>
                 <div class="emoji-bar">
                     {{#each ../moods}}
                     <div id="{{../id}}-{{state}}" class="emoji-select emoji-artist">{{emoji}}</div>
