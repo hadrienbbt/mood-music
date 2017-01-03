@@ -14,7 +14,7 @@ var user = require('./public/js/class/User.js');
 
 var client_id = 'a3b5315e6cdd4583acfc54f639aeb020'; // Your client id
 var client_secret = '2e9b13f3f48f4cc5b8d637c699cc2bc7'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+var redirect_uri = 'http://moodmusic.fr/callback'; // Your redirect uri
 var global_access_token;
 var key_weather = 'e6953ed25cc6095a';
 var limitTopArtistsPerUser = "15";
@@ -48,7 +48,7 @@ app.use(function(req, res, next) {
 });
 
 // Script BDD
-MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
+MongoClient.connect("mongodb://107.170.244.236//moodmusic", function(error, bdd) {
     if (error) return funcCallback(error);
 
     console.log("Connecté à la base de données 'moodmusic'");
@@ -659,6 +659,6 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
             } else {console.log(error);}
         });
     });
-    console.log('Listening on 8888');
-    app.listen(8888);
+    console.log('Listening on 80');
+    app.listen(80);
 });
