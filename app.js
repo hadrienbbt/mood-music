@@ -14,7 +14,7 @@ var user = require('./public/js/class/User.js');
 
 var client_id = 'a3b5315e6cdd4583acfc54f639aeb020'; // Your client id
 var client_secret = '2e9b13f3f48f4cc5b8d637c699cc2bc7'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+var redirect_uri = 'http://moodmusic.fr/callback'; // Your redirect uri
 var global_access_token;
 var key_weather = 'e6953ed25cc6095a';
 var limitTopArtistsPerUser = "15";
@@ -48,7 +48,7 @@ app.use(function(req, res, next) {
 });
 
 // Script BDD
-MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
+MongoClient.connect("mongodb://107.170.244.236//moodmusic", function(error, bdd) {
     if (error) return funcCallback(error);
 
     console.log("Connecté à la base de données 'moodmusic'");
@@ -337,7 +337,6 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                 {$push: {"tabArtistesPref.$.mood_related": mood}},
                 {upsert: true}, function(error,response) {
                     if (error) throw error;
-                    res.send({state: "mood ajouté !"});
                 }
             );
         } else {
@@ -346,31 +345,147 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                 {$pull: {"tabArtistesPref.$.mood_related": mood}},
                 {upsert: true}, function(error,response) {
                     if (error) throw error;
-                    res.send({state: "mood retiré !"});
                 }
             );
         }
+        res.redirect('/calculerTunetables?artist='+artist+'&user='+user);
+    });
+
+    // Mettre a jour les valence et activation moyennes de l'artiste
+    app.get('/calculerTunetables', function(req,res) {
+        var user = req.query.user;
+        var artist = req.query.artist;
+        var valence = 0;
+        var activation = 0;
+        console.log(user+" - "+artist);
+        // chercher l'artiste dans les artistes préférés de l'utilisateur
+        db.collection("user").find({_id: user}).toArray(function(error,data_user) {
+            var tabArtistesPref = data_user[0].tabArtistesPref;
+            for (var i=0; i<tabArtistesPref.length; i++) {
+                if (tabArtistesPref[i].id == artist) {
+                    var mood_related = tabArtistesPref[i].mood_related;
+                    var nbMood = parseInt(tabArtistesPref[i].mood_related.length);
+                    if (nbMood != 0) {
+                        console.log(nbMood + " moods au total");
+                        var compteur_mood = 0; // Pour savoir quand on a fini d'additionner les tunetables
+                        var dance = false;
+                        // On regarde les emojis qui correspondent à l'artiste pour faire une moyenne des valences et activations
+                        for (var j=0; j<nbMood; j++) {
+                            // Récupérer le mood j si ce n'est pas une exception
+                            db.collection("mood").find({state: mood_related[j]}).toArray(function(error,response) {
+                                compteur_mood++;
+                                console.log(response[0]);
+
+                                if (response[0].state != 'dance') {
+                                    valence += parseFloat(response[0].valence);
+                                    activation += parseFloat(response[0].activation);
+                                    console.log (response[0].state+ " a pour valence "+response[0].valence+" ,et pour activation "+response[0].activation);
+                                    // quand c'est le dernier aller retour vers la BDD on passe à la suite
+                                    if (compteur_mood == nbMood) {
+
+                                        // Enlever la tunetable dance si elle n'est plus sélectionnée
+                                        if (!dance) {
+                                            db.collection("user").update({_id: user, "tabArtistesPref.id": artist},{
+                                                $unset: {"tabArtistesPref.$.danceability":1}},function(error,response){
+                                                if (error)  throw error;
+                                                console.log("danceability supprimée");
+                                            });
+                                        }
+                                        valence = dance ? valence/(nbMood-1) : valence/nbMood;
+                                        activation = dance ? activation/(nbMood-1) : activation/nbMood;
+
+                                        // Modifier l'artiste pref avec la valence et l'activation calculée
+                                        db.collection("user").update({_id: user, "tabArtistesPref.id": artist},{
+                                            $set: {"tabArtistesPref.$.valence":valence,"tabArtistesPref.$.activation":activation}},function(error,response){
+                                            if (error)  throw error;
+                                            console.log("tunetables modifiées : "+valence+ " - "+activation);
+                                        });
+                                    }
+                                } else {  // si il y a dance on ajoute la tunetable (on enlève les autres si il n'y a que ça)
+                                    dance = true;
+                                    if (nbMood == 1) {
+                                        db.collection("user").update({_id: user, "tabArtistesPref.id": artist},{
+                                            $unset: {"tabArtistesPref.$.activation":1,"tabArtistesPref.$.valence":1}},function(error,response){
+                                            if (error)  throw error;
+                                            console.log("valence et activation supprimées");
+                                        });
+                                    }
+                                    db.collection("user").update({_id: user, "tabArtistesPref.id": artist},{
+                                        $set: {"tabArtistesPref.$.danceability":response[0].danceability}},function(error,response){
+                                        if (error)  throw error;
+                                        console.log("danceability set");
+                                    });
+                                }
+                            });
+                        }
+                        res.send({state: "tunetables modifiée"});
+                    } else { // Cas où aucune emoji n'est sélectionnée
+                        db.collection("user").update({_id: user, "tabArtistesPref.id": artist},{
+                            $unset: {"tabArtistesPref.$.danceability":1,"tabArtistesPref.$.activation":1,"tabArtistesPref.$.valence":1}},function(error,response){
+                            if (error)  throw error;
+                            console.log("toutes les tunetables supprimées");
+                            res.send({state: "tunetables supprimées"});
+                        });
+                    }
+                }
+            }
+        });
     });
 
     // Return to the client an array of artists ID that match with the given mood(s)
     app.get('/getArtistsFromMood', function(req,res) {
         req.session.moods = req.query.mood;
-        var mood = req.query.mood.split(",");
         var user = req.query.user;
         var tunetables = JSON.stringify(req.query.tunetables);
-        console.log(mood);
         var tabIdArtists = new Array();
 
+        // Tunetables
+        var valence_base = req.query.tunetables.valence;
+        var activation_base = req.query.tunetables.energy;
+        var danceability_base = req.query.tunetables.danceability ? req.query.tunetables.danceability : null;
+
+        // Récupérer les artistes préférés qui correspondent à une ou plusieurs humeurs choisies
+        db.collection("user").find({_id: user}).toArray(function(error, response) {
+            var artistesPrefs = response['0'].tabArtistesPref;
+            var artiste_proche;
+            var ecartAbsolu;
+            do {
+                ecartAbsolu = 2; // valeur absurde
+                for (var i=0; i<artistesPrefs.length; i++) {
+                    var artisteCourant = artistesPrefs[i];
+                    if (artisteCourant.valence) {
+                        var ecartRelatif = Math.abs(valence_base - artisteCourant.valence) + Math.abs(activation_base - artisteCourant.activation);
+                        if (ecartRelatif < ecartAbsolu) {
+                            ecartAbsolu = ecartRelatif;
+                            artiste_proche = artisteCourant;
+                        }
+                    }
+                }
+                console.log("Artiste proche définitif : " + artiste_proche.name + " avec un écart de " + ecartAbsolu);
+                // traitement sur les tableaux avant de recommencer
+                tabIdArtists.push(artiste_proche.id); // ajouter l'artiste au tableau
+                artistesPrefs.splice(artistesPrefs.indexOf(artiste_proche),1); // supprimer l'artiste qu'on a déjà ajouté
+            } while (ecartAbsolu < 0.5 && tabIdArtists.length < 5) // On ne met pas d'artiste inutilement ni trop
+
+            var artists = encodeURIComponent(tabIdArtists);
+            tunetables = encodeURIComponent(tunetables);
+            res.redirect('/moodmusic?artists='+artists+'&tunetables='+tunetables);
+        });
+
+/*          V 1 en cherchant seulement les moods. à utiliser comme complément de recherche ?
+
         // Récupérer tous les moods
+        var mood = req.query.mood.split(",");
+
         db.collection("mood").find().toArray(function(error,moods) {
             var moodsJSON = JSON.stringify({moods: moods});
-            moodsJSON = JSON.parse(moodsJSON);
 
             // Récupérer les artistes préférés qui correspondent à une ou plusieurs humeurs choisies
             db.collection("user").find({_id: user}).toArray(function(error, response) {
                 var artistesPrefs = response['0'].tabArtistesPref;
                 var moodIsSet;
                 for (var i=0; i<artistesPrefs.length; i++) {
+
                     moodIsSet = false;
                     for (var j=0; j<mood.length; j++) {
                         if (artistesPrefs[i].mood_related.indexOf(mood[j]) != -1)
@@ -383,6 +498,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                 res.redirect('/moodmusic?artists='+artists+'&tunetables='+tunetables);
             });
         });
+*/
     });
 
     // Utilisation de la classe RecommendationRequest avec directement un tableau d'id d'artistes
@@ -543,6 +659,6 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
             } else {console.log(error);}
         });
     });
-    console.log('Listening on 8888');
-    app.listen(8888);
+    console.log('Listening on 80');
+    app.listen(80);
 });
