@@ -232,7 +232,7 @@ function afficherArtistesPrefs(current_user) {
                         }
                     }).done(function(data) {
                         console.log(data.moodmusicRecommendation)
-                        //window.location.href = data.moodmusicRecommendation.external_urls.spotify;
+                        window.location.href = data.moodmusicRecommendation.external_urls.spotify;
                     });
                 });
             });
