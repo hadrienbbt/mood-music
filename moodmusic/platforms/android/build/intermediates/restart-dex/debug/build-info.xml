@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="armeabi-v7a"
+    api-level="19"
+    density="xhdpi"
+    format="8"
+    plugin-version="2.2.3"
+    timestamp="90078888228932"
+    token="-56124265194959430"
+    verifier="FULL_BUILD_REQUESTED" >
+
+    <task
+        name="javac"
+        duration="716" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="2776" />
+    <task
+        name="verifier"
+        duration="780" />
+
+    <artifact
+        location="/Users/hadrien1/Desktop/moodmusic/moodmusic/platforms/android/build/outputs/apk/android-debug.apk"
+        type="MAIN" />
+
+    <build
+        timestamp="90078888228932"
+        verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="/Users/hadrien1/Desktop/moodmusic/moodmusic/platforms/android/build/outputs/apk/android-debug.apk"
+            type="MAIN" />
+    </build>
+
+</instant-run>
