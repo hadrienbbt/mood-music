@@ -325,7 +325,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         });
     });
 
-// Called when a mood is assigned to an artist by an user
+    // Called when a mood is assigned to an artist by an user
     app.get('/addMoodToArtist', function(req, res){
         var artist = req.query.artist;
         var mood = req.query.mood;
@@ -352,7 +352,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         res.redirect('/calculerTunetables?artist='+artist+'&user='+user);
     });
 
-// Mettre a jour les valence et activation moyennes de l'artiste
+    // Mettre a jour les valence et activation moyennes de l'artiste
     app.get('/calculerTunetables', function(req,res) {
         var user = req.query.user;
         var artist = req.query.artist;
@@ -436,7 +436,6 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
 // Return to the client an array of artists ID that match with the given mood(s)
     app.get('/getArtistsFromMood', function(req,res) {
         req.session.nom_playlist = req.query.nom_playlist ? req.query.nom_playlist : req.query.mood;
-
         var user = req.query.user;
         var tunetables = JSON.stringify(req.query.tunetables);
         var tabIdArtists = new Array();
@@ -474,36 +473,36 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
             res.redirect('/moodmusic?artists='+artists+'&tunetables='+tunetables);
         });
 
-        /*          V 1 en cherchant seulement les moods. à utiliser comme complément de recherche ?
+/*          V 1 en cherchant seulement les moods. à utiliser comme complément de recherche ?
 
-         // Récupérer tous les moods
-         var mood = req.query.mood.split(",");
+        // Récupérer tous les moods
+        var mood = req.query.mood.split(",");
 
-         db.collection("mood").find().toArray(function(error,moods) {
-         var moodsJSON = JSON.stringify({moods: moods});
+        db.collection("mood").find().toArray(function(error,moods) {
+            var moodsJSON = JSON.stringify({moods: moods});
 
-         // Récupérer les artistes préférés qui correspondent à une ou plusieurs humeurs choisies
-         db.collection("user").find({_id: user}).toArray(function(error, response) {
-         var artistesPrefs = response['0'].tabArtistesPref;
-         var moodIsSet;
-         for (var i=0; i<artistesPrefs.length; i++) {
+            // Récupérer les artistes préférés qui correspondent à une ou plusieurs humeurs choisies
+            db.collection("user").find({_id: user}).toArray(function(error, response) {
+                var artistesPrefs = response['0'].tabArtistesPref;
+                var moodIsSet;
+                for (var i=0; i<artistesPrefs.length; i++) {
 
-         moodIsSet = false;
-         for (var j=0; j<mood.length; j++) {
-         if (artistesPrefs[i].mood_related.indexOf(mood[j]) != -1)
-         moodIsSet = true;
-         }
-         if (moodIsSet)  tabIdArtists.push(artistesPrefs[i].id);
-         }
-         var artists = encodeURIComponent(tabIdArtists.slice(0,5)); // NUL DE FAIRE CA
-         tunetables = encodeURIComponent(tunetables);
-         res.redirect('/moodmusic?artists='+artists+'&tunetables='+tunetables);
-         });
-         });
-         */
+                    moodIsSet = false;
+                    for (var j=0; j<mood.length; j++) {
+                        if (artistesPrefs[i].mood_related.indexOf(mood[j]) != -1)
+                            moodIsSet = true;
+                    }
+                    if (moodIsSet)  tabIdArtists.push(artistesPrefs[i].id);
+                }
+                var artists = encodeURIComponent(tabIdArtists.slice(0,5)); // NUL DE FAIRE CA
+                tunetables = encodeURIComponent(tunetables);
+                res.redirect('/moodmusic?artists='+artists+'&tunetables='+tunetables);
+            });
+        });
+*/
     });
 
-// Utilisation de la classe RecommendationRequest avec directement un tableau d'id d'artistes
+    // Utilisation de la classe RecommendationRequest avec directement un tableau d'id d'artistes
     app.get('/moodmusic', function(req,res) {
         var artists = req.query.artists.split(',');
         var limitTrack = 30;
@@ -521,7 +520,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         }).sendRequest(global_access_token);
     });
 
-// Crée une playlist
+    // Crée une playlist
     app.get('/create_playlist', function(req,res) {
         // parameters
         var playlistOptions = {
@@ -538,7 +537,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         });
     });
 
-// Ajouter des titres à une playlist
+    // Ajouter des titres à une playlist
     app.get('/addTracksToPlaylist', function(req,res) {
         var musics = JSON.parse(req.session.musics); // got from the session
         var JSONplaylistObject = JSON.parse(req.query.playlist);
@@ -560,7 +559,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         });
     });
 
-// Ajouter un artiste préféré à l'utilisateur
+    // Ajouter un artiste préféré à l'utilisateur
     app.get('/addArtistPref', function(req,res) {
         var artist = req.query.name;
         var user = req.query.user;
@@ -572,7 +571,6 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
             console.log(json.artists.items['0']);
             if (!artist)  res.send({state: "L'artiste n'a pas été trouvé !"});
             else {
-                console.log("artiste trouve");
                 // Ajouter l'artiste préféré s'il n'existe pas
                 db.collection("user").find({_id: user}).toArray(function(error,response) {
                     var artistesPrefs = response[0].tabArtistesPref;
@@ -670,4 +668,3 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
     console.log('Listening on 8888');
     app.listen(8888);
 });
-
