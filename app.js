@@ -15,11 +15,9 @@ var user = require('./public/js/class/User.js');
 var client_id = 'a3b5315e6cdd4583acfc54f639aeb020'; // Your client id
 var client_secret = '2e9b13f3f48f4cc5b8d637c699cc2bc7'; // Your secret
 //var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
-var redirect_uri = 'http://moodmusic_V0.fr/callback'; // Your redirect uri
-var global_access_token;
+var redirect_uri = 'http://moodmusic.fr/callback'; // Your redirect uri
 var key_weather = 'e6953ed25cc6095a';
 var limitTopArtistsPerUser = "15";
-var global_user_id;
 
 /**
  * Generates a random string containing numbers and letters
@@ -146,7 +144,7 @@ MongoClient.connect("mongodb://localhost/moodmusic_V0", function(error, bdd) {
 
                     var access_token = body.access_token,
                         refresh_token = body.refresh_token;
-                    global_access_token = body.access_token;
+                    req.session.global_access_token = body.access_token;
                     var top_artists = 0;
 
                     var options = {
@@ -159,7 +157,7 @@ MongoClient.connect("mongodb://localhost/moodmusic_V0", function(error, bdd) {
                     request.get(options, function(error, response, body) {
                         // Save id user
                         var user = body;
-                        global_user_id = user.id;
+                        req.session.global_user_id = user.id;
 
                         // Work on the user in database
                         db.collection("user").findAndModify(
@@ -170,7 +168,7 @@ MongoClient.connect("mongodb://localhost/moodmusic_V0", function(error, bdd) {
                                 lien_profil: user.external_urls,
                                 _id: user.id,
                                 //image: body['images']['0']['url'],
-                                refresh_token: refresh_token,
+                                refresh_token: refresh_token
                             }},
                             {new: true, upsert: true}, function(error,response){
                                 if (error)  throw error;
@@ -285,7 +283,7 @@ MongoClient.connect("mongodb://localhost/moodmusic_V0", function(error, bdd) {
                     'idArtist': tabId
                 });
             }
-        }).sendRequest(global_access_token);
+        }).sendRequest(req.session.global_access_token);
     });
 
 // Recommandation moodmusic_V0
@@ -313,9 +311,9 @@ MongoClient.connect("mongodb://localhost/moodmusic_V0", function(error, bdd) {
                     res.send({
                         'moodmusicRecommendation': data
                     });
-                }).sendRequest(global_access_token);
+                }).sendRequest(req.session.global_access_token);
             }
-        }).sendRequest(global_access_token);
+        }).sendRequest(req.session.global_access_token);
     });
 
     app.get('/getMoods', function(req, res){
@@ -517,15 +515,15 @@ MongoClient.connect("mongodb://localhost/moodmusic_V0", function(error, bdd) {
             // Put the musics got in the session because there's too many musics to pass them by the url...
             req.session.musics = data;
             res.redirect('/create_playlist');
-        }).sendRequest(global_access_token);
+        }).sendRequest(req.session.global_access_token);
     });
 
     // Crée une playlist
     app.get('/create_playlist', function(req,res) {
         // parameters
         var playlistOptions = {
-            url: 'https://api.spotify.com/v1/users/'+global_user_id+'/playlists',
-            headers: {'Authorization': 'Bearer ' + global_access_token},
+            url: 'https://api.spotify.com/v1/users/'+req.session.global_user_id+'/playlists',
+            headers: {'Authorization': 'Bearer ' + req.session.global_access_token},
             body: JSON.stringify({name: req.session.nom_playlist, public: false}),
             json: true
         }
@@ -547,9 +545,9 @@ MongoClient.connect("mongodb://localhost/moodmusic_V0", function(error, bdd) {
             uriMusics.push(musics.tracks[i].uri);
 
         var addTracksOptions = {
-            url: 'https://api.spotify.com/v1/users/'+global_user_id+'/playlists/'+JSONplaylistObject.id+'/tracks',
+            url: 'https://api.spotify.com/v1/users/'+req.session.global_user_id+'/playlists/'+JSONplaylistObject.id+'/tracks',
             body: JSON.stringify({"uris": uriMusics}),
-            headers: {'Authorization': 'Bearer ' + global_access_token}
+            headers: {'Authorization': 'Bearer ' + req.session.global_access_token}
         }
         request.post(addTracksOptions, function(error,response,body) {
             if (error)  throw error;
@@ -605,7 +603,7 @@ MongoClient.connect("mongodb://localhost/moodmusic_V0", function(error, bdd) {
                     }
                 });
             }
-        }).sendRequest(global_access_token);
+        }).sendRequest(req.session.global_access_token);
     });
 
     app.get('/removeArtistPref', function(req,res) {
