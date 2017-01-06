@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+
+        <title>Mood music</title>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="css/connexion/connexion.css">
+        <link rel="stylesheet" href="css/ratchet.min.css">
+        <link rel="stylesheet" href="css/ratchet-theme-ios.min.css">
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="https://download.affectiva.com/js/3.1/affdex.js"></script>
+        <script src="https://download.affectiva.com/js/3.1/adapter-1.4.0.js"></script>
+
+        <script src="js/init_facebook.js"></script>
+        <script src="js/functionsSpotify.js"></script>
+        <script src="js/functionsFacebook.js"></script>
+        <script src="js/render.js"></script>
+        <script src="js/cookies.js"></script>
+        <script src="js/bootstrap-slider.min.js"></script>
+        <link rel="stylesheet" href="css/bootstrap-slider.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/functionMoodMusic.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div id="login">
+                <div id="login-sign-in">
+                    <nav id="bar-tab" class="bar bar-tab">
+                        <a onclick="view_sign_up()" id="access-login-sign-up" class="tab-item-one" data-transition="fade">
+                            SE CONNECTER
+                        </a>
+                        <a class="tab-item-two" href="#" data-transition="fade">
+                            S'INSCRIRE
+                        </a>
+                    </nav>
+                    <div class="content">
+                        <div id="logo">
+                            <img src="img/connexion/logo_cercle.png" style="width:100%;height:auto;">
+                        </div>
+                        <div>
+                            <h1 id="titre" class="content-padded titre">bienvenue sur mood music</h1>
+                        </div>
+                        <div>
+                            <h2 id=description class="content-padded titre">Votre première application pour écouter des playlists personnalisées en fonction de votre humeur, partout, tout le temps !</h2>
+                        </div>
+                    </div><!-- /.content -->
+                </div>
+                <div id="login-sign-up">
+                    <nav id="bar-tab" class="bar bar-tab">
+                        <div id="button_login" class="tab-item-one">
+                            <fb:login-button id="fb-button"  scope="public_profile,email,user_likes,user_actions.music" onlogin="checkLoginState();">
+                                <div class="col-xs-4" style="">
+                                    <img src="img/connexion/logoFB.png" style="width:100%;height:auto;padding-top: 10px;">
+                                </div>
+                                <div class="col-xs-8">
+                                    <h3 id="social" class="content-padded titre">Connexion avec Facebook</h3>
+                                </div>
+                            </fb:login-button>
+                        </div>
+                        <a class="tab-item-two" href="/login" id="spotify-button">
+                            <div class="col-xs-4" style="">
+                                <img id="spotify-logo" src="img/connexion/logoSpotify.png">
+                            </div>
+                            <div class="col-xs-8">
+                                <h3 id="social" class="content-padded titre">Connexion avec Spotify</h3>
+                            </div>
+                        </a>
+                    </nav>
+                    <div class="content">
+                        <div style="margin-top: 30%;" class="container-fluid">
+                            <div id="logo">
+                                <img src="img/connexion/logo_cercle.png" style="width:100%;height:auto;">
+                            </div>
+                            <div>
+                                <h1 id="titre" class="content-padded titre">connexion</h1>
+                            </div>
+                            <!-- <div>
+                                 <form id="connexion-email">
+                                     <div class="ligne">
+                                         <div class="col-xs-10 col-xs-offset-1">
+                                             <input type="text" placeholder="Email">
+                                         </div>
+                                     </div>
+                                     <div class="ligne">
+                                         <div class="col-xs-10 col-xs-offset-1">
+                                             <input type="text" placeholder="Mot de passe">
+                                         </div>
+                                     </div>
+                                     <div class="ligne">
+                                         <div class="col-xs-6 col-xs-offset-3">
+                                             <button id="valider-connexion-email" class="btn btn-positive btn-block">Valider</button>
+                                         </div>
+                                     </div>
+                                 </form>
+                             </div>-->
+                        </div>
+                    </div><!-- /.content -->
+                </div>
+            </div>
+
+            <div id="loggedin">
+                <img id="logo-header" src="img/moodmusic_written.png">
+                <div id="menu">
+                    <button style="display: none" onclick="view_accueil()" class="btn" id="goAccueil">Accueil</button>
+                    <button style="display: none" onclick="view_profile()" class="btn" id="goProfile">Voir mon profil</button>
+                    <button style="margin-right: 4%;" onclick="view_artistsEvaluation();" class="btn" id="goTopArtists">Artistes favoris</button>
+                    <button onclick="view_moodEvaluation();" class="btn" id="goMoodEval">Evaluer mon humeur</button>
+
+                </div>
+                <div id="profile">
+                    <div id="user-profile"></div>
+                    <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
+                    <div id="oauth"></div>
+                </div>
+                <div id="moodEvaluation">
+                    <div id="selectMood"></div>
+                    <div id="camera"></div>
+                    <div hidden="hidden" id="rechercheSpotify"></div>
+                </div>
+                <div hidden="hidden" id="topArtists"></div>
+                <div hidden="hidden" id="meteo"></div>
+            </div>
+            <div hidden="hidden" id="lyrics"></div>
+        </div>
+
+        <script id="user-profile-template" type="text/x-handlebars-template">
+            <h1>Logged in as {{display_name}}</h1>
+            <div class="media">
+                <div class="pull-left">
+                    <img class="media-object" width="150" src="{{images.0.url}}" />
+                </div>
+                <div class="media-body">
+                    <dl class="dl-horizontal">
+                        <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
+                        <dt>Id</dt><dd>{{id}}</dd>
+                        <dt>Email</dt><dd>{{email}}</dd>
+                        <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
+                        <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
+                        <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
+                        <dt>Country</dt><dd>{{country}}</dd>
+                    </dl>
+                </div>
+
+            </div>
+        </script>
+
+        <script id="oauth-template" type="text/x-handlebars-template">
+            <h2>oAuth info</h2>
+            <dl class="dl-horizontal">
+                <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
+                <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}></dd>
+            </dl>
+        </script>
+
+        <script id="camera-template" type="text/x-handlebars-template">
+            <div hidden="hidden" class="container-fluid">
+                <div hidden="hidden" class="row">
+                    <div class="col-md-8" id="affdex_elements" style="width:680px;height:480px;"></div>
+                    <div class="col-md-4">
+                        <div style="height:25em;">
+                            <div id="results" style="word-wrap:break-word;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3>Cliquez sur Start pour utiliser la caméra magique ;)</h3>
+                    <button id="start" onclick="onStart()">Start</button>
+                    <button id="stop" onclick="onStop();getIdArtiste('valence+activation');moyenne(tabValence);">Stop</button>
+                    <button id="reset" onclick="onReset()">Reset</button>
+                    <div style="font-size: 60px;display: inline-block;padding-left: 20px;" id="emoji"></div>
+                </div>
+            </div>
+        </script>
+
+        <script id="select-mood-template" type="text/x-handlebars-template">
+            <h3 style="margin-top: 5%;">Bienvenue dans l'évaluation de votre humeur</h3>
+            <h4 >Jaugez votre humeur :</h4>
+            <div class="emoji-bar" id="mood-select">
+                {{#each moods}}
+                <div class="mood-with-slider">
+                    <div id="{{state}}" class="emoji-mood-select">{{emoji}}</div>
+                    <div class="slider-mood" id="div-{{state}}-slider">
+                        <input class="input-slider-mood" id="{{state}}-slider" />
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+            <div id="container-playlist-name">
+                <label><h4>Un petit mot ?</h4></label>
+                <input id="nom-playlist" type="text" />
+            </div>
+            <img src="img/create_playlist_button.png" id="moodmusic-emoji">
+        </script>
+
+        <script id="rechercheSpotify-template" type="text/x-handlebars-template">
+            <h2>Entrez un artiste, une valence et une activation pour la recherche de recommandations: </h2>
+            <label>Artiste : </label>
+            <select id="search">
+
+            </select>
+            <input id="valider" onclick="getIdArtiste('texte')" type="button" value="musiques relatives à cet artiste"><br>
+
+            <label>Valence : </label>
+            <input id="valence" type="text" />
+            <input id="validerValence" onclick="getIdArtiste('valence')" type="button" value="musiques relatives à cet artiste et cette valence"><br>
+
+            <label>Activation : </label>
+            <input id="activation" type="text" />
+            <input id="validerActivation" onclick="getIdArtiste('valence+activation')" type="button" value="musiques relatives à cet artiste, cette valence et cette activation"><br>
+
+            <label>Nombre de musiques : </label>
+            <input id="limitTrack" type="text" />
+            <input id="validerLimitTrack" type="button" value="Chercher n musiques basées sur 3 artistes écrits en dur dans l'exemple"><br>
+
+            <label>Encoder des artistes : </label>
+            <input id="get-id-artists" type="button" value="Test d'encodage de plusieurs artistes"><br>
+
+
+            <h4>Ecrivez des artistes, une valence, une activation et un nombre de musiques</h4><br>
+            <label>Artistes</label>
+            <input id="artistsRecommendation" type="text" /><br>
+            <label>Nombre de musiques</label>
+            <input id="nbRecommendation" type="text" /><br>
+            <label>Style</label>
+            <select id="listGenres">
+                <option></option>
+            </select>
+            <input id="validerRecommendation" type="button" value="recommendation sur ces artistes"><br><br>
+
+            <br>
+            <div style="display: inline-block; float: right" id="player"></div>
+            <div style="display: inline-block;" id="result"></div>
+            <div id="metadata"></div>
+        </script>
+
+        <script id="topArtists-template" type="text/x-handlebars-template">
+            <div id="artists">
+                <div id="addArtistPref">
+                    <h3>Tu peux ajouter un artiste à tes artistes préférés</h3>
+                    <input id="artistName" type="text" />
+                    <img src="img/plus.ico" id="button-addArtistPref" />
+                </div>
+                <hr>
+                <h3>Et si tu nous disais à quels emojis ces artistes te font penser ?</h3>
+                <div id="container-demo">
+                    {{#each moods}}
+                    <div class="container-emoji-demo">
+                        <div class="emoji-demo">{{emoji}}</div>
+                        <div class="label">{{stateFR}}</div>
+                    </div>
+                    {{/each}}
+                </div>
+                {{#each artists}}
+                <div class="container-artist" style="display: inline-block" id="{{id}}">
+                    <h4 class="name_artist">{{name}}</h4>
+                    <div class="button-removeArtistPref" id="suppr-{{id}}">×</div>
+                    <img class="img-artist" src="{{images.1.url}}" width="200"/>
+                    <div class="emoji-bar">
+                        {{#each ../moods}}
+                        <div id="{{../id}}-{{state}}" class="emoji-select emoji-artist">{{emoji}}</div>
+                        {{/each}}
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+            <button onclick="view_moodEvaluation();" class="btn" id="goMoodEvalFinArtistes">Evaluer mon humeur</button>
+        </script>
+
+        <script id="meteo-template" type="text/x-handlebars-template">
+            <br><a onclick="afficherMeteo()" class="btn btn-primary">Quel temps fait-il ?</a><br>
+        </script>
+
+        <script id="lyrics-template" type="text/x-handlebars-template">
+            <form>
+                <label>Artiste</label>
+                <input id="textLyricsArtist" type="text">
+                <label>Morceau</label>
+                <input id="textLyricsTrack" type="text">
+                <button id="getLyrics">Obtenir les paroles</button>
+            </form>
+        </script>
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+
+    <script src="js/indexMoodmusic.js"></script>
+    <script src="js/functionsAffectiva.js"></script>
+</html>

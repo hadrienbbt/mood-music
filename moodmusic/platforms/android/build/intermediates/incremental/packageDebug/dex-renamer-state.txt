@@ -1,4 +1,0 @@
-#Sat Dec 24 16:32:20 CET 2016
-base.0=/Users/hadrien1/Desktop/moodmusic/moodmusic/platforms/android/build/intermediates/transforms/dex/debug/folders/1000/1f/main
-renamed.0=classes.dex
-file.0=/Users/hadrien1/Desktop/moodmusic/moodmusic/platforms/android/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

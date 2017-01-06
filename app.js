@@ -15,7 +15,7 @@ var user = require('./public/js/class/User.js');
 var client_id = 'a3b5315e6cdd4583acfc54f639aeb020'; // Your client id
 var client_secret = '2e9b13f3f48f4cc5b8d637c699cc2bc7'; // Your secret
 //var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
-var redirect_uri = 'http://moodmusic.fr/callback'; // Your redirect uri
+var redirect_uri = 'http://moodmusic_V0.fr/callback'; // Your redirect uri
 var global_access_token;
 var key_weather = 'e6953ed25cc6095a';
 var limitTopArtistsPerUser = "15";
@@ -49,10 +49,10 @@ app.use(function(req, res, next) {
 });
 
 // Script BDD
-MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
+MongoClient.connect("mongodb://localhost/moodmusic_V0", function(error, bdd) {
     if (error) return funcCallback(error);
 
-    console.log("Connecté à la base de données 'moodmusic'");
+    console.log("Connecté à la base de données 'moodmusic_V0'");
     db = bdd;
     app.use(express.static(__dirname + '/public'))
         .use(cookieParser())
@@ -288,7 +288,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         }).sendRequest(global_access_token);
     });
 
-// Recommandation moodmusic
+// Recommandation moodmusic_V0
 // Fonctionnalité qui permet d'obtenir n chansons en fonction d'artistes, de styles, de musiques mais aussi d'émotions
 // Voir la classe RecommendationGenerator pour plus d'informations
     app.get('/moodmusicRecommendation', function(req, res){
@@ -470,7 +470,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
 
             var artists = encodeURIComponent(tabIdArtists);
             tunetables = encodeURIComponent(tunetables);
-            res.redirect('/moodmusic?artists='+artists+'&tunetables='+tunetables);
+            res.redirect('/moodmusic_V0?artists='+artists+'&tunetables='+tunetables);
         });
 
 /*          V 1 en cherchant seulement les moods. à utiliser comme complément de recherche ?
@@ -496,14 +496,14 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                 }
                 var artists = encodeURIComponent(tabIdArtists.slice(0,5)); // NUL DE FAIRE CA
                 tunetables = encodeURIComponent(tunetables);
-                res.redirect('/moodmusic?artists='+artists+'&tunetables='+tunetables);
+                res.redirect('/moodmusic_V0?artists='+artists+'&tunetables='+tunetables);
             });
         });
 */
     });
 
     // Utilisation de la classe RecommendationRequest avec directement un tableau d'id d'artistes
-    app.get('/moodmusic', function(req,res) {
+    app.get('/moodmusic_V0', function(req,res) {
         var artists = req.query.artists.split(',');
         var limitTrack = 30;
         var tunetables = JSON.parse(req.query.tunetables);

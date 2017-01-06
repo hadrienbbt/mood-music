@@ -92,7 +92,6 @@ function callSpotify(url, data, access_token) {
         dataType: 'json',
         data: data,
         headers: {
-            'User-Agent': 'Chre',
             'Authorization': 'Bearer ' + access_token
         }
     };
@@ -102,7 +101,7 @@ function callSpotify(url, data, access_token) {
         request(options, function(error, response, body){
             console.log('callback déclenchée' + '\nREPONSE :');
             // On écrit la réponse dans la console
-            console.log(body)
+            //console.log(body)
             if (!error && response.statusCode == 200) {
                 // On renvoit la réponse à l'objet
                 resolve(body);

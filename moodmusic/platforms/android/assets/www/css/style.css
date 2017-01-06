@@ -3,10 +3,10 @@
     src: url(font/Roboto-Light.ttf);
 }
 
-body {
+/*body {
     background-color: #19BCFF !important;
     color: #ffffff !important;
-}
+}*/
 
 * {
     overflow-y: scroll;
@@ -70,6 +70,12 @@ body {
     margin-bottom: 10px;
 }
 
+#menu {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+
 #artists {
     text-align: center;
 }
@@ -80,7 +86,11 @@ body {
 }
 
 .on {
-    background: #ffffff;
+    background: lightgray;
+}
+
+.mood-with-slider {
+    display: inline-table;;
 }
 
 .emoji-select, .emoji-mood-select {
@@ -91,6 +101,10 @@ body {
     font-size: 20px;
     text-align: center;
     padding: 1px;
+    margin-bottom: 10px;
+}
+
+.emoji-artist {
     display: inline-block;
 }
 
@@ -98,43 +112,122 @@ body {
     text-align: center;
 }
 
+#slider .slider-selection {
+    background: #BABABA;
+}
 
-/* the slider bar */
 .slider {
-    position: relative;
-    width: 100%;
-    height: 1em;
-    margin: 1.5em auto;
-    background-color: #29e;
-    border-radius: 0.5em;
-    box-sizing: border-box;
-    font-size: 8vmin;
-    -ms-touch-action: none;
-    touch-action: none;
+    background-color: #ffffff;
+    height: 150px !important;
 }
 
-/* the slider handle */
-.slider:before {
-    content: "";
+.slider-mood {
+    display: none;
+}
+
+.visible {
+    display: inline-block;
+}
+
+#button-addArtistPref {
+    font-size: 27px;
+    font-weight: bold;
+    margin-left: 30px;
+    width: 30px;
+    margin-bottom: 60px;
+    transition-duration: 400ms;
+}
+
+#button-addArtistPref:hover {
+    cursor: pointer;
+    -ms-transform: rotate(360deg); /* IE 9 */
+    -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+    transform: rotate(360deg);
+}
+
+#artistName {
+    width: 55%;
+    margin-top: 15px;
+    padding-bottom: 0px !important;
+}
+
+hr {
+    margin-top: 0px !important;
+}
+
+.name_artist {
+    display: inline-block;
+}
+
+.img-artist {
     display: block;
-    position: relative;
-    top: -0.5em;
-    width: 2em;
-    height: 2em;
-    margin-left: -1em;
-    border: solid 0.25em #fff;
-    border-radius: 1em;
-    background-color: inherit;
-    box-sizing: border-box;
+    margin: auto;
 }
 
-/* display the value */
-.slider:after {
-    content: attr(data-value);
-    position: absolute;
-    top: -1.5em;
-    width: 2em;
-    line-height:1em;
-    margin-left: -1em;
+.button-removeArtistPref {
+    width: 20px;
+    margin: auto;
+    font-size: 27px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: -10px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+#moodmusic-emoji {
+    width: 80%;
+    margin-top: 20px;
+}
+
+#mood-select {
+    margin-top: 3%;
+}
+
+#goMoodEvalFinArtistes {
+    margin: 0;
+    display: inline-block;
     text-align: center;
+    width: 50%;
+    margin-bottom: 50px;
+    margin-top: 20px;
+    left: 90px;
+}
+
+.emoji-demo {
+    width: 100%;
+    margin: auto;
+    font-size: 20px;
+}
+
+.label {
+    color: green;
+    letter-spacing: 1px;
+    padding: 0;
+    font-variant: small-caps;
+    font-size: 65%;
+}
+
+.container-emoji-demo {
+    display: inline-block;width: 15%;
+}
+
+#container-demo {
+
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h4 {
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+#nom-playlist {
+    width: 170px;
+    display: block;
+    margin: auto;
+    height: 30px;
 }
