@@ -47,10 +47,10 @@ app.use(function(req, res, next) {
 });
 
 // Script BDD
-MongoClient.connect("mongodb://localhost/moodmusic_V0", function(error, bdd) {
+MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
     if (error) return funcCallback(error);
 
-    console.log("Connecté à la base de données 'moodmusic_V0'");
+    console.log("Connecté à la base de données 'moodmusic'");
     db = bdd;
     app.use(express.static(__dirname + '/public'))
         .use(cookieParser())
@@ -157,7 +157,6 @@ MongoClient.connect("mongodb://localhost/moodmusic_V0", function(error, bdd) {
                     request.get(options, function(error, response, body) {
                         // Save id user
                         var user = body;
-                        req.session.global_user_id = user.id;
 
                         // Work on the user in database
                         db.collection("user").findAndModify(
@@ -286,7 +285,7 @@ MongoClient.connect("mongodb://localhost/moodmusic_V0", function(error, bdd) {
         }).sendRequest(req.session.global_access_token);
     });
 
-// Recommandation moodmusic_V0
+// Recommandation moodmusic
 // Fonctionnalité qui permet d'obtenir n chansons en fonction d'artistes, de styles, de musiques mais aussi d'émotions
 // Voir la classe RecommendationGenerator pour plus d'informations
     app.get('/moodmusicRecommendation', function(req, res){
@@ -434,6 +433,7 @@ MongoClient.connect("mongodb://localhost/moodmusic_V0", function(error, bdd) {
 // Return to the client an array of artists ID that match with the given mood(s)
     app.get('/getArtistsFromMood', function(req,res) {
         req.session.nom_playlist = req.query.nom_playlist ? req.query.nom_playlist : req.query.mood;
+        req.session.global_user_id = req.query.user;
         var user = req.query.user;
         var tunetables = JSON.stringify(req.query.tunetables);
         var tabIdArtists = new Array();
@@ -468,7 +468,7 @@ MongoClient.connect("mongodb://localhost/moodmusic_V0", function(error, bdd) {
 
             var artists = encodeURIComponent(tabIdArtists);
             tunetables = encodeURIComponent(tunetables);
-            res.redirect('/moodmusic_V0?artists='+artists+'&tunetables='+tunetables);
+            res.redirect('/moodmusic?artists='+artists+'&tunetables='+tunetables);
         });
 
 /*          V 1 en cherchant seulement les moods. à utiliser comme complément de recherche ?
@@ -501,7 +501,7 @@ MongoClient.connect("mongodb://localhost/moodmusic_V0", function(error, bdd) {
     });
 
     // Utilisation de la classe RecommendationRequest avec directement un tableau d'id d'artistes
-    app.get('/moodmusic_V0', function(req,res) {
+    app.get('/moodmusic', function(req,res) {
         var artists = req.query.artists.split(',');
         var limitTrack = 30;
         var tunetables = JSON.parse(req.query.tunetables);
@@ -509,7 +509,6 @@ MongoClient.connect("mongodb://localhost/moodmusic_V0", function(error, bdd) {
 
         console.log("Artistes = "+artists);
         console.log("tunetables = "+JSON.stringify(tunetables));
-
 
         RecommendationGenerator.RecommendationRequest(artists,[],genre, tunetables,limitTrack,function(data){
             // Put the musics got in the session because there's too many musics to pass them by the url...
@@ -521,6 +520,7 @@ MongoClient.connect("mongodb://localhost/moodmusic_V0", function(error, bdd) {
     // Crée une playlist
     app.get('/create_playlist', function(req,res) {
         // parameters
+        console.log("user id : " +req.session.global_user_id);
         var playlistOptions = {
             url: 'https://api.spotify.com/v1/users/'+req.session.global_user_id+'/playlists',
             headers: {'Authorization': 'Bearer ' + req.session.global_access_token},
@@ -543,7 +543,7 @@ MongoClient.connect("mongodb://localhost/moodmusic_V0", function(error, bdd) {
         var uriMusics = new Array();
         for (var i=0; i< musics.tracks.length; i++) // Mettre une ',' sauf si c'est le dernier
             uriMusics.push(musics.tracks[i].uri);
-
+        console.log("Id de la playlist "+JSONplaylistObject.id);
         var addTracksOptions = {
             url: 'https://api.spotify.com/v1/users/'+req.session.global_user_id+'/playlists/'+JSONplaylistObject.id+'/tracks',
             body: JSON.stringify({"uris": uriMusics}),
