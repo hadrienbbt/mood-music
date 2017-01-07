@@ -437,6 +437,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         var user = req.query.user;
         var tunetables = JSON.stringify(req.query.tunetables);
         var tabIdArtists = new Array();
+        var tabNameArtists = [];
 
         // Tunetables
         var valence_base = req.query.tunetables.valence;
@@ -463,9 +464,11 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                 console.log("Artiste proche définitif : " + artiste_proche.name + " avec un écart de " + ecartAbsolu);
                 // traitement sur les tableaux avant de recommencer
                 tabIdArtists.push(artiste_proche.id); // ajouter l'artiste au tableau
-                artistesPrefs.splice(artistesPrefs.indexOf(artiste_proche),1); // supprimer l'artiste qu'on a déjà ajouté
+                tabNameArtists.push(artiste_proche.name);
+                artistesPrefs.splice(artistesPrefs.indexOf(artiste_proche),1); // supprimer de l'autre tableau l'artiste qu'on vient d'ajouter
             } while (ecartAbsolu < 0.5 && tabIdArtists.length < 5) // On ne met pas d'artiste inutilement ni trop
 
+            req.session.artistesProches = JSON.parse(JSON.stringify(tabNameArtists));
             var artists = encodeURIComponent(tabIdArtists);
             tunetables = encodeURIComponent(tunetables);
             res.redirect('/moodmusic?artists='+artists+'&tunetables='+tunetables);
@@ -506,6 +509,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         var limitTrack = 30;
         var tunetables = JSON.parse(req.query.tunetables);
         var genre = [];
+        req.session.tunetables = JSON.parse(req.query.tunetables);
 
         console.log("Artistes = "+artists);
         console.log("tunetables = "+JSON.stringify(tunetables));
@@ -529,6 +533,18 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         }
         request.post(playlistOptions, function(error, response, body) {
             if (error)  throw error;
+            // Save the playlist
+            db.collection("playlist").insert({
+                _id: body.id,
+                name: body.name,
+                id_user: req.session.global_user_id,
+                tunetables: req.session.tunetables,
+                artists: req.session.artistesProches
+            }, function(error,response) {
+                if (error) throw error;
+                console.log("Playlist saved!")
+            });
+
             // Add tracks to the playlist
             var playlist = encodeURIComponent(JSON.stringify(body));
             res.redirect('/addTracksToPlaylist?playlist='+playlist);
