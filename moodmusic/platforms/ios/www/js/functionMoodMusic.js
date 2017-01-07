@@ -239,8 +239,10 @@ function afficherArtistesPrefs(current_user) {
                             nom_playlist: nom_playlist
                         }
                     }).done(function(data) {
-                        console.log(data.moodmusicRecommendation)
-                        window.open(data.moodmusicRecommendation.external_urls.spotify, '_system');
+                        console.log(data.moodmusicRecommendation);
+                        cordova.InAppBrowser.open(data.moodmusicRecommendation.external_urls.spotify, '_blank', 'location=yes');
+
+                       // window.open(data.moodmusicRecommendation.external_urls.spotify, '_system');
                     });
                 });
             });

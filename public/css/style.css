@@ -135,8 +135,37 @@
     margin-left: 30px;
     width: 30px;
     margin-bottom: 60px;
-    transition-duration: 400ms;
 }
+
+.processRotate {
+    -webkit-animation: rotate 1s linear infinite;
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        -ms-transform: rotate(0deg); /* IE 9 */
+        -webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+        transform: rotate(0deg);
+    } to {
+        -ms-transform: rotate(360deg); /* IE 9 */
+        -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes rotate {
+    from {
+        -ms-transform: rotate(0deg); /* IE 9 */
+        -webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+        transform: rotate(0deg);
+    } to {
+        -ms-transform: rotate(360deg); /* IE 9 */
+        -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+        transform: rotate(360deg);
+    }
+}
+
 
 #button-addArtistPref:hover {
     cursor: pointer;
@@ -175,9 +204,45 @@ hr {
     cursor: pointer;
 }
 
-#moodmusic-emoji {
-    width: 80%;
+.dot {
+    display: inline-block;
+    background: #648f00;
+    width: 5px;
+    height: 5px;
+    border-radius: 50px;
+    margin: auto;
     margin-top: 20px;
+    border: 1px solid white;
+}
+
+.dot-full {
+    background: #ffffff;
+}
+
+#bouton-creer-playlist {
+    background-image: url('../img/create_playlist_button.png');
+    background-size: 100%;
+    width: 250px;
+    height: 44px;
+    border-radius: 50px;
+    margin: auto;
+    margin-top: 20px;
+
+}
+
+.processReduce {
+    -webkit-animation: reduce 1s ease forwards;
+    animation: reduce 1s ease forwards;
+    background-image: none !important;
+    background: #648f00 ;
+}
+
+@keyframes reduce {
+    from {
+        width: 250px;
+    } to {
+        width: 45px;
+    }
 }
 
 #mood-select {

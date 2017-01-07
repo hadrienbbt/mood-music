@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Mood music</title>
+    <title>Moodmusic</title>
       <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
       <meta name="apple-mobile-web-app-capable" content="yes">
       <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -11,6 +11,8 @@
       <link rel="stylesheet" href="css/connexion/connexion.css">
       <link rel="stylesheet" href="css/ratchet.min.css">
       <link rel="stylesheet" href="css/ratchet-theme-ios.min.css">
+      <link rel="icon" type="image/ico" href="img/icon.ico" />
+      <link rel="apple-touch-icon" href="img/icon.ico" />
 
       <!-- Latest compiled and minified CSS -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -202,7 +204,12 @@
             <label><h4>Un petit mot ?</h4></label>
             <input id="nom-playlist" type="text" />
         </div>
-        <img src="img/create_playlist_button.png" id="moodmusic-emoji">
+        <div id="bouton-creer-playlist">
+            <div id="1"></div>
+            <div id="2"></div>
+            <div id="3"></div>
+        </div>
+
     </script>
 
     <script id="rechercheSpotify-template" type="text/x-handlebars-template">

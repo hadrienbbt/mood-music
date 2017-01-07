@@ -38,9 +38,9 @@ function afficherMeteo () {
 
 function initMoodEval() {
 
-    $("#dance").click();
-    $("#tired").click();
-    $("#serene").click();
+    $("#mood-select").find('.emoji-mood-select').each(function() {
+        $(this).click();
+    });
 }
 
 function processTunetables() {
@@ -131,20 +131,30 @@ function afficherArtistesPrefs(current_user) {
 
                 // Ajouter un artiste préféré
                 $("#button-addArtistPref").click(function(){
-                    $.ajax({
-                        url: '/addArtistPref',
-                        data: {
-                            name: $("#artistName").val(),
-                            user: current_user
-                        }
-                    }).done(function(data) {
-                        console.log(data);
-                        afficherArtistesPrefs(current_user);
-                    });
+                    var artist_name = $("#artistName").val();
+                    if (artist_name) {
+                        $(this).toggleClass('processRotate');
+                        $.ajax({
+                            url: '/addArtistPref',
+                            data: {
+                                name: artist_name,
+                                user: current_user
+                            }
+                        }).done(function(data) {
+                            if(data.state)  alert("L'artiste n'existe pas");
+                            console.log(data);
+                            afficherArtistesPrefs(current_user);
+                            // Arreter la rotation du bouton +
+                            $("#button-addArtistPref").toggleClass('processRotate');
+                        });
+                    }
                 });
 
                 // Supprimer un artiste préféré
                 $(".button-removeArtistPref").click(function(){
+                    // commencer a tourner le btn x
+                    $(this).toggleClass('processRotate');
+
                     var idArtist = $(this).attr('id').split('-');
                     $("#"+idArtist).fadeOut();
                     $.ajax({
@@ -154,6 +164,8 @@ function afficherArtistesPrefs(current_user) {
                             user: current_user
                         }
                     }).done(function(data) {
+                        // Arreter la rotation du bouton x
+                        $(this).toggleClass('processRotate');
                         console.log(data);
                         afficherArtistesPrefs(current_user)
                     });
@@ -216,7 +228,7 @@ function afficherArtistesPrefs(current_user) {
                 initMoodEval();
 
                 // recherche de recommendations avec emoji
-                $("#moodmusic-emoji").click(function() {
+                $("#bouton-creer-playlist").click(function(){
 
                     var nom_playlist = $("#nom-playlist").val().slice(0,25);
                     console.log(nom_playlist);
@@ -226,24 +238,44 @@ function afficherArtistesPrefs(current_user) {
                     $('.emoji-mood-select').each(function(){
                         if ($(this).hasClass('on')) stringEmoji += $(this).attr('id')+',';
                     });
-                    stringEmoji = stringEmoji.substr(0,stringEmoji.length-1);
-                    console.log('moods = '+stringEmoji);
-                    var tunetables = processTunetables();
 
-                    $.ajax({
-                        url: '/getArtistsFromMood',
-                        data: {
-                            user: current_user,
-                            mood: stringEmoji,
-                            tunetables: tunetables,
-                            nom_playlist: nom_playlist
-                        }
-                    }).done(function(data) {
-                        console.log(data.moodmusicRecommendation)
-                        window.location.href = data.moodmusicRecommendation.external_urls.spotify;
-                    });
+                    if (stringEmoji != "") {
+                        // Commencer animation UX
+                        animateButtonPlaylist();
+                        stringEmoji = stringEmoji.substr(0,stringEmoji.length-1);
+                        console.log('moods = '+stringEmoji);
+                        var tunetables = processTunetables();
+
+                        $.ajax({
+                            url: '/getArtistsFromMood',
+                            data: {
+                                user: current_user,
+                                mood: stringEmoji,
+                                tunetables: tunetables,
+                                nom_playlist: nom_playlist
+                            }
+                        }).done(function(data) {
+                            console.log(data.moodmusicRecommendation)
+                            window.location.href = data.moodmusicRecommendation.external_urls.spotify;
+                        });
+                    } else {
+                        alert("Sélectionnez au moins une emotion");
+                    }
                 });
             });
         }
+    });
+}
+
+function animateButtonPlaylist() {
+    var bouton = $("#bouton-creer-playlist");
+    //bouton.unbind("click");
+    bouton.toggleClass('processReduce');
+    bouton.children().each(function() {
+        var dot = $(this);
+        dot.toggleClass('dot');
+        setTimeout(function(){
+            dot.toggleClass('dot-full');
+        },1000*parseInt(dot.attr('id')));
     });
 }
