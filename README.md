@@ -4,12 +4,12 @@
 Install node.js
 
 ### Step 2 :
-Write on command line tool :
+Go to moodmusic directory and type on terminal :
 `npm install`
 `node app.js`
 
 ### Step 3 :
-Open localhost:8888 on browser
+Open http://localhost:8888 on browser
 
 ## Author
 Hadrien Barbat
