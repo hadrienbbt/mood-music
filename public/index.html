@@ -255,13 +255,7 @@
 
     <script id="topArtists-template" type="text/x-handlebars-template">
         <div id="artists">
-            <div id="addArtistPref">
-                <h3>Tu peux ajouter un artiste à tes artistes préférés</h3>
-                <input id="artistName" type="text" />
-                <img src="img/plus.ico" id="button-addArtistPref" />
-            </div>
-            <hr>
-            <h3>Et si tu nous disais à quels emojis ces artistes te font penser ?</h3>
+            <h3>Touche les emojis pour nous dire dans quels états te mettent ces artistes</h3>
             <div id="container-demo">
                 {{#each moods}}
                 <div class="container-emoji-demo">
@@ -270,6 +264,12 @@
                 </div>
                 {{/each}}
             </div>
+            <div id="addArtistPref">
+                <h3>Tu peux ajouter tes artistes préférés</h3>
+                <input id="artistName" type="text" />
+                <img src="img/plus.ico" id="button-addArtistPref" />
+            </div>
+            <hr>
             {{#each artists}}
             <div class="container-artist" style="display: inline-block" id="{{id}}">
                 <h4 class="name_artist">{{name}}</h4>

@@ -212,9 +212,12 @@ function afficherArtistesPrefs(current_user) {
                         console.log($(this).slider('getValue'));
                         if($(this).slider('getValue') == "1") {
                             var id_mood = $(this).attr('id').split('-')[0];
-                            $(this).slider('setValue',0.5);
                             $("#"+id_mood).click();
-
+                            var slider = $(this);
+                            var restaurerslider = setTimeout(function(){
+                                slider.slider('setValue',0.5);
+                            },300);
+                            restaurerslider();
                         }
                     });
                 }

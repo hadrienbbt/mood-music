@@ -70,6 +70,14 @@
     margin-bottom: 10px;
 }
 
+@media screen and (min-width: 450px) {
+    #logo-header {
+        display: block;
+        width: 400px;
+        margin: auto;
+    }
+}
+
 #menu {
     margin: auto;
     width: 100%;
@@ -83,6 +91,24 @@
 .container-artist {
     margin: auto;
     width: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+    .container-artist {
+        width: 24%;
+    }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 990px) {
+    .container-artist {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 990px) and (min-width: 650px) {
+    .container-artist {
+        width: 40%;
+    }
 }
 
 .on {
@@ -102,6 +128,8 @@
     text-align: center;
     padding: 1px;
     margin-bottom: 10px;
+    transition-duration: .25s;
+    transition-timing-function: ease-in-out;
 }
 
 .emoji-artist {
@@ -122,11 +150,15 @@
 }
 
 .slider-mood {
-    display: none;
+    display: inline-block;
+    opacity: 0;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
 }
 
 .visible {
-    display: inline-block;
+    opacity: 1;
 }
 
 #button-addArtistPref {
@@ -233,7 +265,8 @@ hr {
     border-radius: 50px;
     margin: auto;
     margin-top: 20px;
-
+    margin-bottom: 30px;
+    cursor: pointer;
 }
 
 .processReduce {
@@ -283,8 +316,10 @@ hr {
     display: inline-block;width: 15%;
 }
 
-#container-demo {
-
+@media screen and (min-width: 500px) {
+    .container-emoji-demo {
+        width: 60px;
+    }
 }
 
 h3 {

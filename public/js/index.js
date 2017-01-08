@@ -72,7 +72,6 @@
                     view_artistsEvaluation();
                     //view_moodEvaluation();
 
-                    // TODO Mettre tout ça dans une fonction et l'appeler à chaque fois...
                     afficherArtistesPrefs(current_user);
                 }
             });
