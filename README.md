@@ -1,4 +1,4 @@
-# mood-music 
+# Moodmusic 
 ## How to execute
 ### Step 1 :
 Install node.js
