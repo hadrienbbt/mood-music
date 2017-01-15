@@ -14,8 +14,8 @@ var user = require('./public/js/class/User.js');
 
 var client_id = 'a3b5315e6cdd4583acfc54f639aeb020'; // Your client id
 var client_secret = '2e9b13f3f48f4cc5b8d637c699cc2bc7'; // Your secret
-//var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
-var redirect_uri = 'http://moodmusic.fr/callback'; // Your redirect uri
+var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+//var redirect_uri = 'http://moodmusic.fr/callback'; // Your redirect uri
 var key_weather = 'e6953ed25cc6095a';
 var limitTopArtistsPerUser = "15";
 
@@ -48,7 +48,7 @@ app.use(function(req, res, next) {
 
 // Script BDD
 MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
-    if (error) return funcCallback(error);
+    if (error) throw error;
 
     console.log("Connecté à la base de données 'moodmusic'");
     db = bdd;
@@ -171,9 +171,9 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                             }},
                             {new: true, upsert: true}, function(error,response){
                                 if (error)  throw error;
-                                var userExixts = response.lastErrorObject.updatedExisting;
+                                var userExists = response.lastErrorObject.updatedExisting;
                                 // if the user didn't exist, we look for his top artists
-                                if (!userExixts) {
+                                if (!userExists) {
                                     // use the access token to access user's top artists
                                     options['url'] = "https://api.spotify.com/v1/me/top/artists?limit="+limitTopArtistsPerUser;
                                     request.get(options, function (error, response, body) {
@@ -211,17 +211,16 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                                         }
                                     });
                                 }
+                                // we can also pass the token to the browser to make requests from there
+                                res.redirect('/#' +
+                                querystring.stringify({
+                                    access_token: access_token,
+                                    refresh_token: refresh_token,
+                                    user_exists: userExists
+                                }));
                             }
                         );
                     });
-
-                    // we can also pass the token to the browser to make requests from there
-                    res.redirect('/#' +
-                    querystring.stringify({
-                        access_token: access_token,
-                        refresh_token: refresh_token,
-                        top_artists: top_artists
-                    }));
                 } else {
                     res.redirect('/#' +
                     querystring.stringify({

@@ -37,7 +37,8 @@
 
     var access_token = params.access_token,
         refresh_token = params.refresh_token,
-        error = params.error;
+        error = params.error,
+        user_exists = params.user_exists;
 
     var current_user;
 
@@ -69,10 +70,18 @@
                     current_user = response.id;
                     $('#login').hide();
                     $('#loggedin').show();
-                    view_artistsEvaluation();
-                    //view_moodEvaluation();
 
-                    afficherArtistesPrefs(current_user);
+                    // Calibrage de l'application si c'est la première fois que l'utilisateur se connecte
+                    if (user_exists == "false") {
+                        console.log("Bienvenue !");
+                        afficherCalibrage(response);
+                    } else {
+                        view_artistsEvaluation();
+                        //view_moodEvaluation();
+
+                        afficherArtistesPrefs(current_user);
+
+                    }
                 }
             });
 

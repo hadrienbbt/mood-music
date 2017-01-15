@@ -7,16 +7,11 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.example.moodmusic"
-        },
         "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.example.moodmusic"
+            "PACKAGE_NAME": "com.moodmusic"
         },
-        "com.phonegap.plugins.facebookconnect": {
-            "APP_ID": "1754395221490484",
-            "APP_NAME": "mood-music",
-            "PACKAGE_NAME": "com.example.moodmusic"
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.moodmusic"
         }
     },
     "dependent_plugins": {}

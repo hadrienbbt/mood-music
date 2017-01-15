@@ -282,3 +282,15 @@ function animateButtonPlaylist() {
         },1000*parseInt(dot.attr('id')));
     });
 }
+
+function afficherCalibrage(user) {
+    console.log("Bienvenue sur moodmusic !");
+    $("#menu").hide();
+
+    var calibrageSource = document.getElementById('calibrage-template').innerHTML,
+        calibrageTemplate = Handlebars.compile(calibrageSource),
+        calibragePlaceholder = document.getElementById('calibrage');
+
+    calibragePlaceholder.innerHTML = calibrageTemplate({user: user});
+
+}

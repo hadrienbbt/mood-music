@@ -122,6 +122,7 @@
                 <button onclick="view_moodEvaluation();" class="btn" id="goMoodEval">Evaluer mon humeur</button>
 
             </div>
+            <div id="calibrage"></div>
             <div id="profile">
                 <div id="user-profile"></div>
                 <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
@@ -137,6 +138,11 @@
         </div>
         <div hidden="hidden" id="lyrics"></div>
     </div>
+
+    <script id="calibrage-template" type="text/x-handlebars-template">
+        <h3>Bienvenue {{name}} !</h3>
+        <h4>Nous allons calibrer moodmusic sur tes goûts musicaux, touche les emojis pour nous dire dans quels états te mettent ces artistes</h4>
+    </script>
 
     <script id="user-profile-template" type="text/x-handlebars-template">
       <h1>Logged in as {{display_name}}</h1>
@@ -188,7 +194,7 @@
     </script>
 
     <script id="select-mood-template" type="text/x-handlebars-template">
-        <h3 style="margin-top: 5%;">Coucou toi</h3>
+        <h3 style="margin-top: 5%;">Bienvenue dans l'évaluation de votre humeur</h3>
         <h4 >Jaugez votre humeur :</h4>
         <div class="emoji-bar" id="mood-select">
             {{#each moods}}

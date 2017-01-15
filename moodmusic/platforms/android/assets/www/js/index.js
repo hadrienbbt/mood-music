@@ -28,6 +28,7 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
+        window.open = cordova.InAppBrowser.open;
     },
 
     // Update DOM on a Received Event
