@@ -65,22 +65,44 @@
                     'Authorization': 'Bearer ' + access_token
                 },
                 success: function(response) {
+                    var user = response;
                     //console.log(response);
                     userProfilePlaceholder.innerHTML = userProfileTemplate(response);
-                    current_user = response.id;
                     $('#login').hide();
                     $('#loggedin').show();
 
-                    // Calibrage de l'application si c'est la première fois que l'utilisateur se connecte
+                    // Calibrage de l'application si c'est la première fois que l'utilisateur se connecte (ou s'il a fait de la merde)
                     if (user_exists == "false") {
-                        console.log("Bienvenue !");
-                        afficherCalibrage(response);
+                        $.ajax({
+                            url: '/getCurrentUserInfos',
+                            data: {
+                                user: user.id
+                            },
+                            success: function(response) {
+                                var artists = response['0']['tabArtistesPref'];
+
+                                // On check si l'utilisateur a des artistes préférés
+                                if (artists.length == 0) {
+                                    afficherCalibrage(user);
+                                } else {
+                                    // On check si l'utilisateur a entré assez de moods pour ses artistes
+                                    var nb_moods = 0;
+                                    for (var i=0; i< artists.length; i++) {
+                                        nb_moods += artists[i].mood_related.length;
+                                    }
+                                    if (nb_moods == 0) {
+                                        afficherCalibrage(user);
+                                    } else {
+                                        view_artistsEvaluation();
+                                        afficherArtistesPrefs(user.id);
+                                    }
+                                }
+                            }
+                        });
                     } else {
-                        view_artistsEvaluation();
                         //view_moodEvaluation();
-
-                        afficherArtistesPrefs(current_user);
-
+                        view_artistsEvaluation();
+                        afficherArtistesPrefs(user.id);
                     }
                 }
             });

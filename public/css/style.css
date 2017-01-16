@@ -161,14 +161,6 @@
     opacity: 1;
 }
 
-#button-addArtistPref {
-    font-size: 27px;
-    font-weight: bold;
-    margin-left: 30px;
-    width: 30px;
-    margin-bottom: 60px;
-}
-
 .processRotate {
     -webkit-animation: rotate 1s linear infinite;
     animation: rotate 1s linear infinite;
@@ -180,10 +172,10 @@
         -webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
         transform: rotate(0deg);
     } to {
-        -ms-transform: rotate(360deg); /* IE 9 */
-        -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
-        transform: rotate(360deg);
-    }
+          -ms-transform: rotate(360deg); /* IE 9 */
+          -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+          transform: rotate(360deg);
+      }
 }
 
 @-webkit-keyframes rotate {
@@ -192,12 +184,18 @@
         -webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
         transform: rotate(0deg);
     } to {
-        -ms-transform: rotate(360deg); /* IE 9 */
-        -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
-        transform: rotate(360deg);
-    }
+          -ms-transform: rotate(360deg); /* IE 9 */
+          -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+          transform: rotate(360deg);
+      }
 }
 
+#button-addArtistPref {
+    width: 30px;
+    position: relative;
+    bottom: 7px;
+    left: 20px;
+}
 
 #button-addArtistPref:hover {
     cursor: pointer;
@@ -206,10 +204,24 @@
     transform: rotate(360deg);
 }
 
-#artistName {
-    width: 55%;
+#artistName, #calibrage-artistName {
+    width: 210px;
     margin-top: 15px;
     padding-bottom: 0px !important;
+}
+
+#calibrage-button-addArtistPref {
+    width: 30px;
+    position: relative;
+    bottom: 6px;
+    left: 13px;
+}
+
+#calibrage-button-addArtistPref:hover {
+    cursor: pointer;
+    -ms-transform: rotate(360deg); /* IE 9 */
+    -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+    transform: rotate(360deg);
 }
 
 hr {
@@ -280,8 +292,8 @@ hr {
     from {
         width: 250px;
     } to {
-        width: 45px;
-    }
+          width: 45px;
+      }
 }
 
 #mood-select {
@@ -289,13 +301,7 @@ hr {
 }
 
 #goMoodEvalFinArtistes {
-    margin: 0;
-    display: inline-block;
-    text-align: center;
-    width: 50%;
-    margin-bottom: 50px;
-    margin-top: 20px;
-    left: 90px;
+    margin-bottom: 40px;
 }
 
 .emoji-demo {
@@ -336,4 +342,52 @@ h4 {
     display: block;
     margin: auto;
     height: 30px;
+}
+
+#calibrage, #calibrage-manuel, #topArtists {
+    text-align: center;
+}
+
+.titre1 {
+    margin-top: 0px;
+    font-size: 18px;
+}
+
+.titre2 {
+    margin: auto;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: justify;
+    width: 260px;
+}
+
+#etapes {
+    margin-top: 15px;
+}
+
+#suite {
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.fin-calibrage {
+    display: inline-block;
+    margin-top: 100px;
+    width: 270px;
+}
+
+.messageEcran {
+    margin-bottom: 20px;
+    line-height: 28px;
+    font-size: 17px;
+}
+
+#debut-calibrage-manuel {
+    text-align: center;
+}
+
+.bas-de-page {
+    margin-bottom: 30px;
 }

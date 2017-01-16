@@ -16,10 +16,11 @@ function view_profile(){
     $("#profile").show();
     $("#moodEvaluation").hide();
     $("#topArtists").hide();
-
 }
 
 function view_moodEvaluation(){
+    $("#calibrage").hide();
+    $("#calibrage-manuel").hide();
     $("#profile").hide();
     $("#moodEvaluation").show();
     $("#topArtists").hide();
@@ -33,6 +34,8 @@ function view_accueil(){
 }
 
 function view_artistsEvaluation(){
+    $("#calibrage").hide();
+    $("#calibrage-manuel").hide();
     $("#moodEvaluation").hide();
     $("#profile").hide();
     $("#topArtists").show();

@@ -446,31 +446,42 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         // Récupérer les artistes préférés qui correspondent à une ou plusieurs humeurs choisies
         db.collection("user").find({_id: user}).toArray(function(error, response) {
             var artistesPrefs = response['0'].tabArtistesPref;
-            var artiste_proche;
-            var ecartAbsolu;
-            do {
-                ecartAbsolu = 2; // valeur absurde
-                for (var i=0; i<artistesPrefs.length; i++) {
-                    var artisteCourant = artistesPrefs[i];
-                    if (artisteCourant.valence) {
-                        var ecartRelatif = Math.abs(valence_base - artisteCourant.valence) + Math.abs(activation_base - artisteCourant.activation);
-                        if (ecartRelatif < ecartAbsolu) {
-                            ecartAbsolu = ecartRelatif;
-                            artiste_proche = artisteCourant;
+
+            if (artistesPrefs.length == 0) res.send({error: "Pas d'artiste représentant cette émotion. Ajoutez d'abord des artistes et choisissez des émotions."});
+            else {
+                var artiste_proche;
+                var ecartAbsolu;
+                do {
+                    ecartAbsolu = 2; // valeur absurde
+                    for (var i=0; i<artistesPrefs.length; i++) {
+                        var artisteCourant = artistesPrefs[i];
+                        if (artisteCourant.valence) {
+                            var ecartRelatif = Math.abs(valence_base - artisteCourant.valence) + Math.abs(activation_base - artisteCourant.activation);
+                            if (ecartRelatif < ecartAbsolu) {
+                                ecartAbsolu = ecartRelatif;
+                                artiste_proche = artisteCourant;
+                            }
                         }
                     }
-                }
-                console.log("Artiste proche définitif : " + artiste_proche.name + " avec un écart de " + ecartAbsolu);
-                // traitement sur les tableaux avant de recommencer
-                tabIdArtists.push(artiste_proche.id); // ajouter l'artiste au tableau
-                tabNameArtists.push(artiste_proche.name);
-                artistesPrefs.splice(artistesPrefs.indexOf(artiste_proche),1); // supprimer de l'autre tableau l'artiste qu'on vient d'ajouter
-            } while (ecartAbsolu < 0.5 && tabIdArtists.length < 5) // On ne met pas d'artiste inutilement ni trop
+                    if (artiste_proche) {
+                        console.log("Artiste proche définitif : " + artiste_proche.name + " avec un écart de " + ecartAbsolu);
+                        // traitement sur les tableaux avant de recommencer
+                        tabIdArtists.push(artiste_proche.id); // ajouter l'artiste au tableau
+                        tabNameArtists.push(artiste_proche.name);
+                        artistesPrefs.splice(artistesPrefs.indexOf(artiste_proche),1); // supprimer de l'autre tableau l'artiste qu'on vient d'ajouter
+                    } else {
+                        var error_throwed = true;
+                        res.send({error: "Pas assez d'émotions sélectionnées. Ajoutez d'abord des émotions aux artistes."});
+                    }
+                } while (ecartAbsolu < 0.5 && tabIdArtists.length < 5) // On ne met pas d'artiste inutilement ni trop
 
-            req.session.artistesProches = JSON.parse(JSON.stringify(tabNameArtists));
-            var artists = encodeURIComponent(tabIdArtists);
-            tunetables = encodeURIComponent(tunetables);
-            res.redirect('/moodmusic?artists='+artists+'&tunetables='+tunetables);
+                if (!error_throwed) {
+                    req.session.artistesProches = JSON.parse(JSON.stringify(tabNameArtists));
+                    var artists = encodeURIComponent(tabIdArtists);
+                    tunetables = encodeURIComponent(tunetables);
+                    res.redirect('/moodmusic?artists=' + artists + '&tunetables=' + tunetables);
+                }
+            }
         });
 
 /*          V 1 en cherchant seulement les moods. à utiliser comme complément de recherche ?
