@@ -1,7 +1,7 @@
 /**
  * Created by hadrien1 on 17/11/16.
  */
-var minArtistes = 2; // Constante pour un nombre minimum d'artistes à ajouter
+var minArtistes = 5; // Constante pour un nombre minimum d'artistes à ajouter
 var calibrageManuel = false;
 
 // Fonction qui retourne la moyenne des éléments du tableau
@@ -268,32 +268,23 @@ function animateButtonPlaylist() {
     });
 }
 
-function afficherCalibrage(user) {
+function afficherCalibrage(user, artists) {
     console.log("Bienvenue sur moodmusic !");
     $("#menu").hide();
+    var artists = artists;
+    $.ajax({url: '/getMoods'}).done(function(response) {
+        var moods = JSON.parse(response);
+        console.log(user);
+        console.log(artists);
+        console.log(moods);
 
-    $.ajax({
-        url: '/getCurrentUserInfos',
-        data: {
-            user: user.id
-        },
-        success: function (response) {
-            var artists = response['0']['tabArtistesPref'];
-            $.ajax({url: '/getMoods'}).done(function(response) {
-                var moods = JSON.parse(response);
-                console.log(user);
-                console.log(artists);
-                console.log(moods);
+        var numArtiste = -1;
 
-                var numArtiste = -1;
-
-                if(artists.length == 0) {
-                    calibrageManuel = true;
-                    afficherAjoutArtiste(user,artists,numArtiste,moods);
-                } else {
-                    afficherArtisteSuivant(user, artists, numArtiste,moods);
-                }
-            });
+        if(artists.length == 0) {
+            calibrageManuel = true;
+            afficherAjoutArtiste(user,artists,numArtiste,moods);
+        } else {
+            afficherArtisteSuivant(user, artists, numArtiste,moods);
         }
     });
 }
@@ -317,7 +308,7 @@ function afficherArtisteSuivant(user,artists,numArtiste,moods) {
         });
     } else {
         calibragePlaceholder.innerHTML = calibrageTemplate({
-            username: user.display_name.split(' ')[0] ? user.display_name.split(' ')[0] : '',
+            username: user.display_name ? user.display_name.split(' ')[0] : '',
             user: user,
             artist: artists[numArtiste],
             moods: moods['moods'],
@@ -349,7 +340,7 @@ function afficherAjoutArtiste(user,artists,numArtiste,moods) {
         });
     } else {
         calibrageManuelPlaceholder.innerHTML = calibrageManuelTemplate({
-            username: user.display_name.split(' ')[0] ? user.display_name.split(' ')[0] : '',
+            username: user.display_name ? user.display_name.split(' ')[0] : '',
             moods: moods['moods'],
             numArtiste: numArtiste+1,
             nbArtistes: minArtistes // ajouter 5 artistes
@@ -371,29 +362,32 @@ function eventListenerAddArtist(user,artists,numArtiste,moods) {
                     user: user.id
                 }
             }).done(function(data) {
-                if(data.state)  alert("L'artiste n'existe pas");
-                console.log(data);
                 // Arreter la rotation du bouton +
                 $("#calibrage-button-addArtistPref").toggleClass('processRotate');
 
-                // Afficher artiste trouvé pour le noter
-                var calibrageManuelSource = document.getElementById('calibrage-manuel-template').innerHTML,
-                    calibrageManuelTemplate = Handlebars.compile(calibrageManuelSource),
-                    calibrageManuelPlaceholder = document.getElementById('calibrage-manuel');
+                if(data.state)  alert("L'artiste n'existe pas");
+                else {
+                    console.log(data);
 
-                var artist = data[0].tabArtistesPref[0];
-                calibrageManuelPlaceholder.innerHTML = calibrageManuelTemplate({
-                    username: user.display_name.split(' ')[0] ? user.display_name.split(' ')[0] : '',
-                    moods: moods['moods'],
-                    artist: artist,
-                    numArtiste: numArtiste+1,
-                    nbArtistes: minArtistes // ajouter 5 artistes
-                });
-                $("#calibrage-addArtistPref").hide();
-                $("#"+artist.id).show();
-                eventListenerEmojiSelect(user.id);
-                eventListenerSupprArtist(user,artists,numArtiste,moods);
-                eventListenerValiderCalibrage(user,artists,numArtiste,moods);
+                    // Afficher artiste trouvé pour le noter
+                    var calibrageManuelSource = document.getElementById('calibrage-manuel-template').innerHTML,
+                        calibrageManuelTemplate = Handlebars.compile(calibrageManuelSource),
+                        calibrageManuelPlaceholder = document.getElementById('calibrage-manuel');
+
+                    var artist = data[0] ? data[0].tabArtistesPref[0] : [];
+                    calibrageManuelPlaceholder.innerHTML = calibrageManuelTemplate({
+                        username: user.display_name ? user.display_name.split(' ')[0] : '',
+                        moods: moods['moods'],
+                        artist: artist,
+                        numArtiste: numArtiste+1,
+                        nbArtistes: minArtistes // ajouter 5 artistes
+                    });
+                    $("#calibrage-addArtistPref").hide();
+                    $("#"+artist.id).show();
+                    eventListenerEmojiSelect(user.id);
+                    eventListenerSupprArtist(user,artists,numArtiste,moods);
+                    eventListenerValiderCalibrage(user,artists,numArtiste,moods);
+                }
             });
         }
     });

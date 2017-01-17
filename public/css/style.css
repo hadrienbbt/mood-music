@@ -80,6 +80,13 @@
     top: 9px;
 }
 
+#logo-accueil {
+    width: 220px;
+    margin: auto;
+    display: block;
+    margin-bottom: 60px;
+}
+
 @media screen and (min-width: 700px) {
     #bar-tab {
         height: 130px;
@@ -87,6 +94,31 @@
 
     #social {
         margin-top: 44px;
+    }
+}
+
+@media screen and (min-height: 800px) and (max-height: 500px) {
+
+    #container_connexion {
+        margin-top: 240px;
+    }
+}
+
+@media screen and (max-height: 500px) {
+
+    #container_connexion    {  margin-top: 50px;  }
+    #spotify-logo           {   width: 30px;  }
+    #bar-tab                {  height: 50px;  }
+    #social {
+        font-size: 19px;
+        margin-top: 9px;
+        top: 7px;
+    }
+    #logo-accueil {
+        width: 120px;
+        margin: auto;
+        display: block;
+        margin-bottom: 30px;
     }
 }
 
@@ -112,13 +144,6 @@
         margin-top: 22px;
         top: 5px;
     }
-}
-
-#logo-accueil {
-    width: 220px;
-    margin: auto;
-    display: block;
-    margin-bottom: 60px;
 }
 
 #logo-header {

@@ -10,7 +10,6 @@
     text-align: -webkit-center;
     font-weight: bold;
     font-size: 220%;
-    width: 310px;
     margin: auto;
     line-height: 40px;
     font-variant: small-caps;
@@ -34,25 +33,23 @@
     padding-top: 8px;
 }
 
-#social{
-    color: white;
-    font-size: 100%;
-}
-
 #button_login {
     background: #4767ab;
+    width: 50%;
 }
 
 #spotify-logo {
-    width: 130%;
+    width: 40px;
     height: auto;
-    padding-top: 38%;
+    display: inline-block;
 }
 
 #spotify-button {
     background: #000000;
     padding: 0;
     margin: 0;
+    width: 100%;
+    display: block;
 }
 
 .ligne{

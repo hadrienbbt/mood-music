@@ -14,8 +14,8 @@ var user = require('./public/js/class/User.js');
 
 var client_id = 'a3b5315e6cdd4583acfc54f639aeb020'; // Your client id
 var client_secret = '2e9b13f3f48f4cc5b8d637c699cc2bc7'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
-//var redirect_uri = 'http://moodmusic.fr/callback'; // Your redirect uri
+//var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+var redirect_uri = 'http://moodmusic.fr/callback'; // Your redirect uri
 var key_weather = 'e6953ed25cc6095a';
 var limitTopArtistsPerUser = "15";
 

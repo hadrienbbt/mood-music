@@ -79,11 +79,11 @@
                                 user: user.id
                             },
                             success: function(response) {
-                                var artists = response['0']['tabArtistesPref'];
+                                var artists = response['0']['tabArtistesPref'] ? response['0']['tabArtistesPref'] : new Array();
 
                                 // On check si l'utilisateur a des artistes préférés
                                 if (artists.length == 0) {
-                                    afficherCalibrage(user);
+                                    afficherCalibrage(user,artists);
                                 } else {
                                     // On check si l'utilisateur a entré assez de moods pour ses artistes
                                     var nb_moods = 0;
@@ -91,7 +91,7 @@
                                         nb_moods += artists[i].mood_related.length;
                                     }
                                     if (nb_moods == 0) {
-                                        afficherCalibrage(user);
+                                        afficherCalibrage(user,artists);
                                     } else {
                                         view_artistsEvaluation();
                                         afficherArtistesPrefs(user.id);
@@ -113,7 +113,9 @@
             // render initial screen
             $('#login').show();
             $('#loggedin').hide();
+
             //window.location.href = "/login";
+            return;
         }
 
         document.getElementById('obtain-new-token').addEventListener('click', function() {

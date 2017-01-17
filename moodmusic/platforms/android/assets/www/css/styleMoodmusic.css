@@ -3,10 +3,10 @@
     src: url(font/Roboto-Light.ttf);
 }
 
-body {
+/*body {
     background-color: #19BCFF !important;
     color: #ffffff !important;
-}
+}*/
 
 * {
     overflow-y: scroll;
@@ -30,13 +30,13 @@ body {
 
 .content {
     background :url(../img/connexion/fond.jpg) no-repeat center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    -webkit-background-size: cover; /* pour Chrome et Safari */
+    -moz-background-size: cover; /* pour Firefox */
+    -o-background-size: cover; /* pour Opera */
+    background-size: cover; /* version standardisée */
 }
 
-.bar{
+.bar {
     height: 11%;
 }
 
@@ -61,13 +61,103 @@ body {
 }
 
 #bar-tab {
-    height: 11%;
+    height: 70px;
+    display: inline-flex;
+}
+
+#container_connexion {
+    margin-top: 160px;
+}
+
+#social{
+    color: white;
+    font-size: 25px;
+    display: inline-block;
+    margin: auto;
+    margin-top: 14px;
+    margin-left: 20px;
+    position: relative;
+    top: 9px;
+}
+
+#logo-accueil {
+    width: 220px;
+    margin: auto;
+    display: block;
+    margin-bottom: 60px;
+}
+
+@media screen and (min-width: 700px) {
+    #bar-tab {
+        height: 130px;
+    }
+
+    #social {
+        margin-top: 44px;
+    }
+}
+
+@media screen and (min-height: 800px) and (max-height: 500px) {
+
+    #container_connexion {
+        margin-top: 240px;
+    }
+}
+
+@media screen and (max-height: 500px) {
+
+    #container_connexion    {  margin-top: 50px;  }
+    #spotify-logo           {   width: 30px;  }
+    #bar-tab                {  height: 50px;  }
+    #social {
+        font-size: 19px;
+        margin-top: 9px;
+        top: 7px;
+    }
+    #logo-accueil {
+        width: 120px;
+        margin: auto;
+        display: block;
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (min-height: 800px) {
+
+    #container_connexion {
+        margin-top: 240px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #container_connexion {
+        margin-top: 120px;
+    }
+
+    #logo-accueil {
+        width: 180px;
+        margin-bottom: 50px;
+    }
+
+    #social {
+        font-size: 17px;
+        margin-top: 22px;
+        top: 5px;
+    }
 }
 
 #logo-header {
     width: 100%;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+@media screen and (min-width: 450px) {
+    #logo-header {
+        display: block;
+        width: 400px;
+        margin: auto;
+    }
 }
 
 #menu {
@@ -83,6 +173,24 @@ body {
 .container-artist {
     margin: auto;
     width: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+    .container-artist {
+        width: 24%;
+    }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 990px) {
+    .container-artist {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 990px) and (min-width: 650px) {
+    .container-artist {
+        width: 40%;
+    }
 }
 
 .on {
@@ -102,6 +210,8 @@ body {
     text-align: center;
     padding: 1px;
     margin-bottom: 10px;
+    transition-duration: .25s;
+    transition-timing-function: ease-in-out;
 }
 
 .emoji-artist {
@@ -122,33 +232,78 @@ body {
 }
 
 .slider-mood {
-    display: none;
+    display: inline-block;
+    opacity: 0;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
 }
 
 .visible {
-    display: inline-block;
+    opacity: 1;
+}
+
+.processRotate {
+    -webkit-animation: rotate 1s linear infinite;
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        -ms-transform: rotate(0deg); /* IE 9 */
+        -webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+        transform: rotate(0deg);
+    } to {
+          -ms-transform: rotate(360deg); /* IE 9 */
+          -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+          transform: rotate(360deg);
+      }
+}
+
+@-webkit-keyframes rotate {
+    from {
+        -ms-transform: rotate(0deg); /* IE 9 */
+        -webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+        transform: rotate(0deg);
+    } to {
+          -ms-transform: rotate(360deg); /* IE 9 */
+          -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+          transform: rotate(360deg);
+      }
 }
 
 #button-addArtistPref {
-    font-size: 27px;
-    font-weight: bold;
-    margin-left: 30px;
     width: 30px;
-    margin-bottom: 60px;
-    transition-duration: 400ms;
+    position: relative;
+    bottom: 7px;
+    left: 20px;
 }
 
 #button-addArtistPref:hover {
     cursor: pointer;
-    -ms-transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg); /* IE 9 */
+    -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
     transform: rotate(360deg);
 }
 
-#artistName {
-    width: 55%;
+#artistName, #calibrage-artistName {
+    width: 210px;
     margin-top: 15px;
     padding-bottom: 0px !important;
+}
+
+#calibrage-button-addArtistPref {
+    width: 30px;
+    position: relative;
+    bottom: 6px;
+    left: 13px;
+}
+
+#calibrage-button-addArtistPref:hover {
+    cursor: pointer;
+    -ms-transform: rotate(360deg); /* IE 9 */
+    -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+    transform: rotate(360deg);
 }
 
 hr {
@@ -162,6 +317,12 @@ hr {
 .img-artist {
     display: block;
     margin: auto;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    margin-top: 10px;
+}
+
+.emoji-bar {
+    margin-top: 20px;
 }
 
 .button-removeArtistPref {
@@ -175,9 +336,46 @@ hr {
     cursor: pointer;
 }
 
-#moodmusic-emoji {
-    width: 80%;
+.dot {
+    display: inline-block;
+    background: #648f00;
+    width: 5px;
+    height: 5px;
+    border-radius: 50px;
+    margin: auto;
     margin-top: 20px;
+    border: 1px solid white;
+}
+
+.dot-full {
+    background: #ffffff;
+}
+
+#bouton-creer-playlist {
+    background-image: url('../img/create_playlist_button.png');
+    background-size: 100%;
+    width: 250px;
+    height: 44px;
+    border-radius: 50px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.processReduce {
+    -webkit-animation: reduce 1s ease forwards;
+    animation: reduce 1s ease forwards;
+    background-image: none !important;
+    background: #648f00 ;
+}
+
+@keyframes reduce {
+    from {
+        width: 250px;
+    } to {
+          width: 45px;
+      }
 }
 
 #mood-select {
@@ -185,13 +383,7 @@ hr {
 }
 
 #goMoodEvalFinArtistes {
-    margin: 0;
-    display: inline-block;
-    text-align: center;
-    width: 50%;
-    margin-bottom: 50px;
-    margin-top: 20px;
-    left: 90px;
+    margin-bottom: 40px;
 }
 
 .emoji-demo {
@@ -212,6 +404,12 @@ hr {
     display: inline-block;width: 15%;
 }
 
+@media screen and (min-width: 500px) {
+    .container-emoji-demo {
+        width: 60px;
+    }
+}
+
 h3 {
     font-size: 20px;
 }
@@ -226,4 +424,52 @@ h4 {
     display: block;
     margin: auto;
     height: 30px;
+}
+
+#calibrage, #calibrage-manuel, #topArtists {
+    text-align: center;
+}
+
+.titre1 {
+    margin-top: 0px;
+    font-size: 18px;
+}
+
+.titre2 {
+    margin: auto;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: justify;
+    width: 260px;
+}
+
+#etapes {
+    margin-top: 15px;
+}
+
+#suite {
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.fin-calibrage {
+    display: inline-block;
+    margin-top: 100px;
+    width: 270px;
+}
+
+.messageEcran {
+    margin-bottom: 20px;
+    line-height: 28px;
+    font-size: 17px;
+}
+
+#debut-calibrage-manuel {
+    text-align: center;
+}
+
+.bas-de-page {
+    margin-bottom: 30px;
 }

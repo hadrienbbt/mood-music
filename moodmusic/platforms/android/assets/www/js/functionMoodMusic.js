@@ -1,6 +1,8 @@
 /**
  * Created by hadrien1 on 17/11/16.
  */
+var minArtistes = 5; // Constante pour un nombre minimum d'artistes à ajouter
+var calibrageManuel = false;
 
 // Fonction qui retourne la moyenne des éléments du tableau
 function moyenne(tab) {
@@ -38,9 +40,9 @@ function afficherMeteo () {
 
 function initMoodEval() {
 
-    $("#dance").click();
-    $("#tired").click();
-    $("#serene").click();
+    $("#mood-select").find('.emoji-mood-select').each(function() {
+        $(this).click();
+    });
 }
 
 function processTunetables() {
@@ -131,20 +133,30 @@ function afficherArtistesPrefs(current_user) {
 
                 // Ajouter un artiste préféré
                 $("#button-addArtistPref").click(function(){
-                    $.ajax({
-                        url: '/addArtistPref',
-                        data: {
-                            name: $("#artistName").val(),
-                            user: current_user
-                        }
-                    }).done(function(data) {
-                        console.log(data);
-                        afficherArtistesPrefs(current_user);
-                    });
+                    var artist_name = $("#artistName").val();
+                    if (artist_name) {
+                        $(this).toggleClass('processRotate');
+                        $.ajax({
+                            url: '/addArtistPref',
+                            data: {
+                                name: artist_name,
+                                user: current_user
+                            }
+                        }).done(function(data) {
+                            if(data.state)  alert("L'artiste n'existe pas");
+                            console.log(data);
+                            afficherArtistesPrefs(current_user);
+                            // Arreter la rotation du bouton +
+                            $("#button-addArtistPref").toggleClass('processRotate');
+                        });
+                    }
                 });
 
                 // Supprimer un artiste préféré
                 $(".button-removeArtistPref").click(function(){
+                    // commencer a tourner le btn x
+                    $(this).toggleClass('processRotate');
+
                     var idArtist = $(this).attr('id').split('-');
                     $("#"+idArtist).fadeOut();
                     $.ajax({
@@ -154,32 +166,14 @@ function afficherArtistesPrefs(current_user) {
                             user: current_user
                         }
                     }).done(function(data) {
+                        // Arreter la rotation du bouton x
+                        $(this).toggleClass('processRotate');
                         console.log(data);
                         afficherArtistesPrefs(current_user)
                     });
                 });
 
-                // Placer la classe 'ON' quand l'utilisateur clique sur l'emoji
-                $(".emoji-select").click(function() {
-                    var ajouterMood;
-                    $( this ).toggleClass( "on" );
-                    if ($(this).hasClass("on"))   ajouterMood = true;
-                    else                          ajouterMood = false;
-
-                    // Dire à la bdd que cet artiste représente cet emoji pour l'utilisateur
-                    var link = $(this).attr('id').split('-');
-                    $.ajax({
-                        url: '/addMoodToArtist',
-                        data: {
-                            user: current_user,
-                            artist: link[0],
-                            mood: link[1],
-                            ajouterMood: ajouterMood
-                        }
-                    }).done(function(data) {
-                        console.log(data.state);
-                    });
-                });
+                eventListenerEmojiSelect(current_user);
 
                 // Créer tous les sliders
                 var sliders = new Array();
@@ -200,9 +194,12 @@ function afficherArtistesPrefs(current_user) {
                         console.log($(this).slider('getValue'));
                         if($(this).slider('getValue') == "1") {
                             var id_mood = $(this).attr('id').split('-')[0];
-                            $(this).slider('setValue',0.5);
                             $("#"+id_mood).click();
-
+                            var slider = $(this);
+                            var restaurerslider = setTimeout(function(){
+                                slider.slider('setValue',0.5);
+                            },300);
+                            restaurerslider();
                         }
                     });
                 }
@@ -216,7 +213,7 @@ function afficherArtistesPrefs(current_user) {
                 initMoodEval();
 
                 // recherche de recommendations avec emoji
-                $("#moodmusic-emoji").click(function() {
+                $("#bouton-creer-playlist").click(function(){
 
                     var nom_playlist = $("#nom-playlist").val().slice(0,25);
                     console.log(nom_playlist);
@@ -226,26 +223,229 @@ function afficherArtistesPrefs(current_user) {
                     $('.emoji-mood-select').each(function(){
                         if ($(this).hasClass('on')) stringEmoji += $(this).attr('id')+',';
                     });
-                    stringEmoji = stringEmoji.substr(0,stringEmoji.length-1);
-                    console.log('moods = '+stringEmoji);
-                    var tunetables = processTunetables();
 
-                    $.ajax({
-                        url: '/getArtistsFromMood',
-                        data: {
-                            user: current_user,
-                            mood: stringEmoji,
-                            tunetables: tunetables,
-                            nom_playlist: nom_playlist
-                        }
-                    }).done(function(data) {
-                        console.log(data.moodmusicRecommendation);
-                        cordova.InAppBrowser.open(data.moodmusicRecommendation.external_urls.spotify, '_blank', 'location=yes');
+                    if (stringEmoji != "") {
+                        // Commencer animation UX
+                        animateButtonPlaylist();
+                        stringEmoji = stringEmoji.substr(0,stringEmoji.length-1);
+                        console.log('moods = '+stringEmoji);
+                        var tunetables = processTunetables();
 
-                       // window.open(data.moodmusicRecommendation.external_urls.spotify, '_system');
-                    });
+                        $.ajax({
+                            url: '/getArtistsFromMood',
+                            data: {
+                                user: current_user,
+                                mood: stringEmoji,
+                                tunetables: tunetables,
+                                nom_playlist: nom_playlist
+                            }
+                        }).done(function(data) {
+                            if (data.error) alert(data.error);
+                            else {
+                                console.log(data.moodmusicRecommendation)
+                                window.location.href = data.moodmusicRecommendation.external_urls.spotify;
+                            }
+                        });
+                    } else {
+                        alert("Sélectionnez au moins une emotion");
+                    }
                 });
             });
         }
+    });
+}
+
+function animateButtonPlaylist() {
+    var bouton = $("#bouton-creer-playlist");
+    bouton.unbind("click");
+    bouton.toggleClass('processReduce');
+    bouton.children().each(function() {
+        var dot = $(this);
+        dot.toggleClass('dot');
+        setTimeout(function(){
+            dot.toggleClass('dot-full');
+        },1000*parseInt(dot.attr('id')));
+    });
+}
+
+function afficherCalibrage(user, artists) {
+    console.log("Bienvenue sur moodmusic !");
+    $("#menu").hide();
+    var artists = artists;
+    $.ajax({url: '/getMoods'}).done(function(response) {
+        var moods = JSON.parse(response);
+        console.log(user);
+        console.log(artists);
+        console.log(moods);
+
+        var numArtiste = -1;
+
+        if(artists.length == 0) {
+            calibrageManuel = true;
+            afficherAjoutArtiste(user,artists,numArtiste,moods);
+        } else {
+            afficherArtisteSuivant(user, artists, numArtiste,moods);
+        }
+    });
+}
+
+function afficherArtisteSuivant(user,artists,numArtiste,moods) {
+    var calibrageSource = document.getElementById('calibrage-template').innerHTML,
+        calibrageTemplate = Handlebars.compile(calibrageSource),
+        calibragePlaceholder = document.getElementById('calibrage');
+
+    // On passe à l'artiste suivant ou on arrête s'il n'y en a plus
+    numArtiste++;
+    if (numArtiste == artists.length){
+        // Passer à autre chose
+        $(".fin-calibrage").show();
+        $("#debut-calibrage").hide();
+
+        $(".finir-calibrage").click(function() {
+            $("#menu").show();
+            view_moodEvaluation();
+            afficherArtistesPrefs(user.id);
+        });
+    } else {
+        calibragePlaceholder.innerHTML = calibrageTemplate({
+            username: user.display_name ? user.display_name.split(' ')[0] : '',
+            user: user,
+            artist: artists[numArtiste],
+            moods: moods['moods'],
+            numArtiste: numArtiste+1,
+            nbArtistes: artists.length
+        });
+        eventListenerEmojiSelect(user.id);
+        eventListenerSupprArtist(user,artists,numArtiste,moods);
+        eventListenerValiderCalibrage(user,artists,numArtiste,moods);
+    }
+}
+
+function afficherAjoutArtiste(user,artists,numArtiste,moods) {
+    var calibrageManuelSource = document.getElementById('calibrage-manuel-template').innerHTML,
+        calibrageManuelTemplate = Handlebars.compile(calibrageManuelSource),
+        calibrageManuelPlaceholder = document.getElementById('calibrage-manuel');
+
+    numArtiste++;
+    if (numArtiste == minArtistes) {
+        console.log("FINI");
+        // Passer à autre chose
+        $(".fin-calibrage").show();
+        $("#debut-calibrage-manuel").hide();
+
+        $(".finir-calibrage").click(function() {
+            $("#menu").show();
+            view_moodEvaluation();
+            afficherArtistesPrefs(user.id);
+        });
+    } else {
+        calibrageManuelPlaceholder.innerHTML = calibrageManuelTemplate({
+            username: user.display_name ? user.display_name.split(' ')[0] : '',
+            moods: moods['moods'],
+            numArtiste: numArtiste+1,
+            nbArtistes: minArtistes // ajouter 5 artistes
+        });
+        eventListenerAddArtist(user,artists,numArtiste,moods); // margot treinsoutrot c la best
+    }
+}
+
+function eventListenerAddArtist(user,artists,numArtiste,moods) {
+    // Ajouter un artiste préféré
+    $("#calibrage-button-addArtistPref").click(function(){
+        var artist_name = $("#calibrage-artistName").val();
+        if (artist_name) {
+            $(this).toggleClass('processRotate');
+            $.ajax({
+                url: '/addArtistPref',
+                data: {
+                    name: artist_name,
+                    user: user.id
+                }
+            }).done(function(data) {
+                // Arreter la rotation du bouton +
+                $("#calibrage-button-addArtistPref").toggleClass('processRotate');
+
+                if(data.state)  alert("L'artiste n'existe pas");
+                else {
+                    console.log(data);
+
+                    // Afficher artiste trouvé pour le noter
+                    var calibrageManuelSource = document.getElementById('calibrage-manuel-template').innerHTML,
+                        calibrageManuelTemplate = Handlebars.compile(calibrageManuelSource),
+                        calibrageManuelPlaceholder = document.getElementById('calibrage-manuel');
+
+                    var artist = data[0] ? data[0].tabArtistesPref[0] : [];
+                    calibrageManuelPlaceholder.innerHTML = calibrageManuelTemplate({
+                        username: user.display_name ? user.display_name.split(' ')[0] : '',
+                        moods: moods['moods'],
+                        artist: artist,
+                        numArtiste: numArtiste+1,
+                        nbArtistes: minArtistes // ajouter 5 artistes
+                    });
+                    $("#calibrage-addArtistPref").hide();
+                    $("#"+artist.id).show();
+                    eventListenerEmojiSelect(user.id);
+                    eventListenerSupprArtist(user,artists,numArtiste,moods);
+                    eventListenerValiderCalibrage(user,artists,numArtiste,moods);
+                }
+            });
+        }
+    });
+}
+
+function eventListenerSupprArtist(user,artists,numArtiste,moods) {
+
+    // Supprimer un artiste préféré
+    $(".removeArtistPref").click(function(){
+        var idArtist = $(this).attr('id').split('-');
+        $("#"+idArtist).fadeOut();
+        $.ajax({
+            url: '/removeArtistPref',
+            data: {
+                idArtist: idArtist[1],
+                user: user.id
+            }
+        }).done(function(data) {
+            if (calibrageManuel) {
+                afficherAjoutArtiste(user,artists,numArtiste-1,moods);
+            } else {
+                afficherArtisteSuivant(user,artists,numArtiste,moods);
+            }
+        });
+    });
+}
+
+function eventListenerValiderCalibrage(user,artists,numArtiste,moods) {
+
+    $("#suite").click(function(){
+        if (calibrageManuel) {
+            afficherAjoutArtiste(user,artists,numArtiste,moods);
+        } else {
+            afficherArtisteSuivant(user,artists,numArtiste,moods);
+        }
+    });
+}
+
+function eventListenerEmojiSelect(id_user) {
+    // Placer la classe 'ON' quand l'utilisateur clique sur l'emoji
+    $(".emoji-select").click(function() {
+        var ajouterMood;
+        $( this ).toggleClass( "on" );
+        if ($(this).hasClass("on"))   ajouterMood = true;
+        else                          ajouterMood = false;
+
+        // Dire à la bdd que cet artiste représente cet emoji pour l'utilisateur
+        var link = $(this).attr('id').split('-');
+        $.ajax({
+            url: '/addMoodToArtist',
+            data: {
+                user: id_user,
+                artist: link[0],
+                mood: link[1],
+                ajouterMood: ajouterMood
+            }
+        }).done(function(data) {
+            console.log(data.state);
+        });
     });
 }

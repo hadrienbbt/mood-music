@@ -37,7 +37,8 @@
 
     var access_token = params.access_token,
         refresh_token = params.refresh_token,
-        error = params.error;
+        error = params.error,
+        user_exists = params.user_exists;
 
     var current_user;
 
@@ -64,16 +65,45 @@
                     'Authorization': 'Bearer ' + access_token
                 },
                 success: function(response) {
+                    var user = response;
                     //console.log(response);
                     userProfilePlaceholder.innerHTML = userProfileTemplate(response);
-                    current_user = response.id;
                     $('#login').hide();
                     $('#loggedin').show();
-                    view_artistsEvaluation();
-                    //view_moodEvaluation();
 
-                    // TODO Mettre tout ça dans une fonction et l'appeler à chaque fois...
-                    afficherArtistesPrefs(current_user);
+                    // Calibrage de l'application si c'est la première fois que l'utilisateur se connecte (ou s'il a fait de la merde)
+                    if (user_exists == "false") {
+                        $.ajax({
+                            url: '/getCurrentUserInfos',
+                            data: {
+                                user: user.id
+                            },
+                            success: function(response) {
+                                var artists = response['0']['tabArtistesPref'] ? response['0']['tabArtistesPref'] : new Array();
+
+                                // On check si l'utilisateur a des artistes préférés
+                                if (artists.length == 0) {
+                                    afficherCalibrage(user,artists);
+                                } else {
+                                    // On check si l'utilisateur a entré assez de moods pour ses artistes
+                                    var nb_moods = 0;
+                                    for (var i=0; i< artists.length; i++) {
+                                        nb_moods += artists[i].mood_related.length;
+                                    }
+                                    if (nb_moods == 0) {
+                                        afficherCalibrage(user,artists);
+                                    } else {
+                                        view_artistsEvaluation();
+                                        afficherArtistesPrefs(user.id);
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        //view_moodEvaluation();
+                        view_artistsEvaluation();
+                        afficherArtistesPrefs(user.id);
+                    }
                 }
             });
 
