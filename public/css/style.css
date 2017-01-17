@@ -61,7 +61,64 @@
 }
 
 #bar-tab {
-    height: 11%;
+    height: 70px;
+    display: inline-flex;
+}
+
+#container_connexion {
+    margin-top: 160px;
+}
+
+#social{
+    color: white;
+    font-size: 25px;
+    display: inline-block;
+    margin: auto;
+    margin-top: 14px;
+    margin-left: 20px;
+    position: relative;
+    top: 9px;
+}
+
+@media screen and (min-width: 700px) {
+    #bar-tab {
+        height: 130px;
+    }
+
+    #social {
+        margin-top: 44px;
+    }
+}
+
+@media screen and (min-height: 800px) {
+
+    #container_connexion {
+        margin-top: 240px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #container_connexion {
+        margin-top: 120px;
+    }
+
+    #logo-accueil {
+        width: 180px;
+        margin-bottom: 50px;
+    }
+
+    #social {
+        font-size: 17px;
+        margin-top: 22px;
+        top: 5px;
+    }
+}
+
+#logo-accueil {
+    width: 220px;
+    margin: auto;
+    display: block;
+    margin-bottom: 60px;
 }
 
 #logo-header {

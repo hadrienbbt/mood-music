@@ -39,29 +39,9 @@
 
   <div class="container">
         <div id="login">
-            <div id="login-sign-in">
-                <nav id="bar-tab" class="bar bar-tab">
-                    <a onclick="view_sign_up()" id="access-login-sign-up" class="tab-item-one" data-transition="fade">
-                        SE CONNECTER
-                    </a>
-                    <a class="tab-item-two" href="#" data-transition="fade">
-                        S'INSCRIRE
-                    </a>
-                </nav>
-                <div class="content">
-                    <div id="logo">
-                        <img src="img/connexion/logo_cercle.png" style="width:100%;height:auto;">
-                    </div>
-                    <div>
-                        <h1 id="titre" class="content-padded titre">bienvenue sur mood music</h1>
-                    </div>
-                    <div>
-                        <h2 id=description class="content-padded titre">Votre première application pour écouter des playlists personnalisées en fonction de votre humeur, directement depuis Spotify !</h2>
-                    </div>
-                </div><!-- /.content -->
-            </div>
             <div id="login-sign-up">
                 <nav id="bar-tab" class="bar bar-tab">
+                    <!--        CONNEXION FACEBOOK
                     <div id="button_login" class="tab-item-one">
                     <fb:login-button id="fb-button"  scope="public_profile,email,user_likes,user_actions.music" onlogin="checkLoginState();">
                         <div class="col-xs-4" style="">
@@ -72,44 +52,18 @@
                         </div>
                     </fb:login-button>
                     </div>
+                    -->
                     <a class="tab-item-two" href="/login" id="spotify-button">
-                        <div class="col-xs-4" style="">
                             <img id="spotify-logo" src="img/connexion/logoSpotify.png">
-                        </div>
-                        <div class="col-xs-8">
                             <h3 id="social" class="content-padded titre">Connexion avec Spotify</h3>
-                        </div>
                     </a>
                 </nav>
                 <div class="content">
-                    <div style="margin-top: 30%;" class="container-fluid">
-                        <div id="logo">
-                            <img src="img/connexion/logo_cercle.png" style="width:100%;height:auto;">
-                        </div>
-                        <div>
-                            <h1 id="titre" class="content-padded titre">connexion</h1>
-                        </div>
-                       <!-- <div>
-                            <form id="connexion-email">
-                                <div class="ligne">
-                                    <div class="col-xs-10 col-xs-offset-1">
-                                        <input type="text" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="ligne">
-                                    <div class="col-xs-10 col-xs-offset-1">
-                                        <input type="text" placeholder="Mot de passe">
-                                    </div>
-                                </div>
-                                <div class="ligne">
-                                    <div class="col-xs-6 col-xs-offset-3">
-                                        <button id="valider-connexion-email" class="btn btn-positive btn-block">Valider</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>-->
+                    <div id="container_connexion" class="container-fluid">
+                        <img id="logo-accueil" src="img/connexion/logo_cercle.png">
+                        <h1 id="titre" class="content-padded titre">connexion</h1>
                     </div>
-                </div><!-- /.content -->
+                </div>
             </div>
         </div>
 
@@ -172,7 +126,7 @@
     </script>
 
   <!-- On affiche ça quand l'utilisateur n'avait pas de compte spotify ou aucun artiste pref -->
-  <script id="calibrage-manuel-template" type="text/x-handlebars-template">
+    <script id="calibrage-manuel-template" type="text/x-handlebars-template">
       <div id="debut-calibrage-manuel">
           <h3 class="titre1">Bienvenue {{username}} !</h3>
           <h4 class="titre2">Nous allons calibrer Moodmusic sur tes goûts musicaux, écris quelques un de tes artistes préférés et touche les emojis pour nous dire dans quels états ils te mettent.</h4>
@@ -208,7 +162,7 @@
       </div>
   </script>
 
-      <script id="user-profile-template" type="text/x-handlebars-template">
+    <script id="user-profile-template" type="text/x-handlebars-template">
       <h1>Logged in as {{display_name}}</h1>
       <div class="media">
         <div class="pull-left">
@@ -369,6 +323,7 @@
             <button id="getLyrics">Obtenir les paroles</button>
         </form>
     </script>
+
   </body>
 
   <script src="js/index.js"></script>
