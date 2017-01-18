@@ -474,7 +474,12 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                         res.send({error: "Pas assez d'émotions sélectionnées. Ajoutez d'abord des émotions aux artistes."});
                     }
                 } while (ecartAbsolu < 0.5 && tabIdArtists.length < 5) // On ne met pas d'artiste inutilement ni trop
-
+                if(ecartAbsolu > 0.5 && tabIdArtists.length > 1) { // Supprimer l'artiste qui a un trop grand écart si on peut
+                    console.log("écart de " + tabNameArtists[tabNameArtists.length-1] + " trop élevé");
+                    tabIdArtists.pop();
+                    tabNameArtists.pop();
+                    for (var i = 0; i < tabNameArtists.length; i++) console.log("artistes définitifs : "+tabNameArtists[i]);
+                }
                 if (!error_throwed) {
                     req.session.artistesProches = JSON.parse(JSON.stringify(tabNameArtists));
                     var artists = encodeURIComponent(tabIdArtists);

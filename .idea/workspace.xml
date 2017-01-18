@@ -2,135 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="812f24d3-dbcd-4dc2-b8bf-784903233c5b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/icon_circle.ico" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/generated/source/buildConfig/release/org/apache/cordova/BuildConfig.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/bundles/release/AndroidManifest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/bundles/release/classes.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/AuthenticationToken.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/BuildConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CallbackContext.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CallbackMap.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/Config.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/ConfigXmlParser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$4$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaArgs.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaBridge.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaClientCertRequest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$7.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$8.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$9.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper$Result.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaDialogsHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaHttpAuthHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaInterfaceImpl$ActivityResultHolder.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaInterfaceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaPlugin.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaPreferences.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaResourceApi$OpenForReadResult.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaResourceApi.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewEngine$Client.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewEngine$EngineView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewEngine.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$EngineClient$1$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$EngineClient$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl$EngineClient.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CordovaWebViewImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/CoreAndroid.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/ExposedJsApi.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/ICordovaClientCertRequest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/ICordovaCookieManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/ICordovaHttpAuthHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/LOG.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$BridgeMode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$EvalBridgeMode$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$EvalBridgeMode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$JsMessage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$NoOpBridgeMode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$OnlineEventsBridgeModeDelegate.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/NativeToJsMessageQueue.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/PluginEntry.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/PluginManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/PluginResult$Status.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/PluginResult.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/ResumeCallback.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/Whitelist$URLPattern.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/Whitelist.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemCookieManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemExposedJsApi.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebChromeClient.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewClient.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewEngine$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewEngine$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/classes/release/org/apache/cordova/engine/SystemWebViewEngine.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/incremental-safeguard/release/tag.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/incremental/compileReleaseAidl/dependency.store" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseAssets/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseShaders/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/incremental/packageReleaseResources/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/manifests/aapt/release/AndroidManifest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/img/icon.ico" afterPath="$PROJECT_DIR$/public/img/icon_square.ico" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/font/Futura.ttc" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/journal/WiredTigerLog.0000000011" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/WiredTiger.wt" afterPath="$PROJECT_DIR$/db/WiredTiger.wt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/android-release.apk" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/android-release.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/collection-0--5777677700233186971.wt" afterPath="$PROJECT_DIR$/db/collection-0--5777677700233186971.wt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/collection-0--8189439538551372924.wt" afterPath="$PROJECT_DIR$/db/collection-0--8189439538551372924.wt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/collection-0-4724928895187386827.wt" afterPath="$PROJECT_DIR$/db/collection-0-4724928895187386827.wt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/collection-2--3444353987612515557.wt" afterPath="$PROJECT_DIR$/db/collection-2--3444353987612515557.wt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/diagnostic.data/metrics.2017-01-15T11-16-33Z-00000" afterPath="$PROJECT_DIR$/db/diagnostic.data/metrics.2017-01-15T11-16-33Z-00000" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/index-1--5777677700233186971.wt" afterPath="$PROJECT_DIR$/db/index-1--5777677700233186971.wt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/index-1--8189439538551372924.wt" afterPath="$PROJECT_DIR$/db/index-1--8189439538551372924.wt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/index-3--3444353987612515557.wt" afterPath="$PROJECT_DIR$/db/index-3--3444353987612515557.wt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/diagnostic.data/metrics.interim" afterPath="$PROJECT_DIR$/db/diagnostic.data/metrics.interim" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/sizeStorer.wt" afterPath="$PROJECT_DIR$/db/sizeStorer.wt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/AndroidManifest.xml" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/CordovaLib.iml" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/CordovaLib.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/android.iml" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/android.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/WiredTiger.turtle" afterPath="$PROJECT_DIR$/db/WiredTiger.turtle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/build.gradle" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build.gradle" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/assets/www/css/connexion/connexion.css" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/assets/www/css/connexion/connexion.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/assets/www/js/functionMoodMusic.js" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/assets/www/js/functionMoodMusic.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/connexion/connexion.css" afterPath="$PROJECT_DIR$/public/css/connexion/connexion.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/functionMoodMusic.js" afterPath="$PROJECT_DIR$/public/js/functionMoodMusic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/assets/www/index.html" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/assets/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/index.js" afterPath="$PROJECT_DIR$/public/js/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/assets/www/js/indexMoodmusic.js" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/assets/www/js/indexMoodmusic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.idea/misc.xml" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/assets/www/js/render.js" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/assets/www/js/render.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/mongod.lock" afterPath="$PROJECT_DIR$/db/mongod.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/assets/www/css/styleMoodmusic.css" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/assets/www/css/styleMoodmusic.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.idea/workspace.xml" />
     </list>
@@ -160,12 +64,10 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1710">
-              <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
+            <state vertical-scroll-proportion="-21.923077" vertical-offset="0" max-vertical-offset="2460">
+              <caret line="38" column="16" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#2038#3688#0" expanded="false" />
-                <element signature="e#3733#4263#0" expanded="false" />
                 <element signature="e#4311#10602#0" expanded="false" />
                 <element signature="e#10661#10922#0" expanded="false" />
                 <element signature="e#10975#11791#0" expanded="false" />
@@ -174,14 +76,14 @@
                 <element signature="e#14142#14339#0" expanded="false" />
                 <element signature="e#14455#15427#0" expanded="false" />
                 <element signature="e#15553#20946#0" expanded="false" />
-                <element signature="e#21084#25417#0" expanded="false" />
-                <element signature="e#25563#26272#0" expanded="false" />
-                <element signature="e#26351#27503#0" expanded="false" />
-                <element signature="e#27602#28632#0" expanded="false" />
-                <element signature="e#28734#30871#0" expanded="false" />
-                <element signature="e#30926#31425#0" expanded="false" />
-                <element signature="e#31474#31821#0" expanded="false" />
-                <element signature="e#31875#32794#0" expanded="false" />
+                <element signature="e#21084#25872#0" expanded="false" />
+                <element signature="e#26018#26727#0" expanded="false" />
+                <element signature="e#26806#27958#0" expanded="false" />
+                <element signature="e#28057#29087#0" expanded="false" />
+                <element signature="e#29189#31326#0" expanded="false" />
+                <element signature="e#31381#31880#0" expanded="false" />
+                <element signature="e#31929#32276#0" expanded="false" />
+                <element signature="e#32330#33249#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -190,8 +92,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1095" max-vertical-offset="2955">
-              <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+            <state vertical-scroll-proportion="-61.73077" vertical-offset="300" max-vertical-offset="3000">
+              <caret line="127" column="50" selection-start-line="127" selection-start-column="50" selection-end-line="127" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -200,25 +102,31 @@
       <file leaf-file-name="functionMoodMusic.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/functionMoodMusic.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1367" max-vertical-offset="3075">
-              <caret line="366" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="450" selection-end-column="1" />
+            <state vertical-scroll-proportion="-12.954545" vertical-offset="0" max-vertical-offset="2955">
+              <caret line="121" column="88" selection-start-line="121" selection-start-column="88" selection-end-line="121" selection-end-column="88" />
               <folding>
                 <element signature="n#!!block;n#moyenne#0" expanded="false" />
                 <element signature="n#!!block;n#afficherMeteo#0" expanded="false" />
                 <element signature="n#!!block;n#initMoodEval#0" expanded="false" />
                 <element signature="n#!!block;n#processTunetables#0" expanded="false" />
-                <element signature="n#!!block;n#afficherArtistesPrefs#0" expanded="false" />
                 <element signature="n#!!block;n#animateButtonPlaylist#0" expanded="false" />
+                <element signature="n#!!block;n#afficherCalibrage#0" expanded="false" />
+                <element signature="n#!!block;n#afficherArtisteSuivant#0" expanded="false" />
+                <element signature="n#!!block;n#afficherAjoutArtiste#0" expanded="false" />
+                <element signature="n#!!block;n#eventListenerAddArtist#0" expanded="false" />
+                <element signature="n#!!block;n#eventListenerSupprArtist#0" expanded="false" />
+                <element signature="n#!!block;n#eventListenerValiderCalibrage#0" expanded="false" />
+                <element signature="n#!!block;n#eventListenerEmojiSelect#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1035" max-vertical-offset="7200">
-              <caret line="83" column="17" selection-start-line="83" selection-start-column="17" selection-end-line="83" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.4493882" vertical-offset="6136" max-vertical-offset="7800">
+              <caret line="436" column="33" selection-start-line="436" selection-start-column="33" selection-end-line="436" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -227,22 +135,26 @@
       <file leaf-file-name="connexion.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/connexion/connexion.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="1095">
-              <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+            <state vertical-scroll-proportion="-2.8846154" vertical-offset="0" max-vertical-offset="1110">
+              <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46614873" vertical-offset="375" max-vertical-offset="5325">
-              <caret line="53" column="19" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
+            <state vertical-scroll-proportion="-5.52" vertical-offset="1329" max-vertical-offset="4065">
+              <caret line="107" column="60" selection-start-line="107" selection-start-column="60" selection-end-line="107" selection-end-column="60" />
               <folding>
                 <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="tag#script#2;tag#body#0;tag#html#0" expanded="false" />
+                <element signature="tag#script#3;tag#body#0;tag#html#0" expanded="false" />
+                <element signature="tag#script#4;tag#body#0;tag#html#0" expanded="false" />
+                <element signature="tag#script#6;tag#body#0;tag#html#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -287,19 +199,19 @@
         <option value="$PROJECT_DIR$/moodmusic/www/js/index.js" />
         <option value="$PROJECT_DIR$/moodmusic/www/js/functionMoodMusic.js" />
         <option value="$PROJECT_DIR$/public/js/render.js" />
+        <option value="$PROJECT_DIR$/public/js/index.js" />
         <option value="$PROJECT_DIR$/public/css/connexion/connexion.css" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/public/css/style.css" />
-        <option value="$PROJECT_DIR$/public/js/functionMoodMusic.js" />
-        <option value="$PROJECT_DIR$/public/js/index.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/public/js/functionMoodMusic.js" />
+        <option value="$PROJECT_DIR$/public/css/style.css" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="840" />
-    <option name="width" value="840" />
+    <option name="x" value="622" />
+    <option name="width" value="1058" />
     <option name="height" value="1045" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -448,11 +360,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/css/font" />
       <recent name="$PROJECT_DIR$/public/img" />
       <recent name="$PROJECT_DIR$/moodmusic/www/img" />
       <recent name="$PROJECT_DIR$/moodmusic/www/js" />
       <recent name="$PROJECT_DIR$/moodmusic/platforms/ios/moodmusic/Images.xcassets/AppIcon.appiconset" />
-      <recent name="$PROJECT_DIR$/moodmusic/www" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public/css" />
@@ -503,16 +415,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="840" y="0" width="840" height="1045" extended-state="0" />
-    <editor active="true" />
+    <frame x="622" y="0" width="1058" height="1045" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20314136" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24937344" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29197994" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18110237" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -566,7 +478,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="27" />
+      <option name="time" value="28" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -577,8 +489,6 @@
           <caret line="541" column="52" selection-start-line="541" selection-start-column="52" selection-end-line="541" selection-end-column="52" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#2038#3688#0" expanded="false" />
-            <element signature="e#3733#4263#0" expanded="false" />
             <element signature="e#4311#10602#0" expanded="false" />
             <element signature="e#10661#10922#0" expanded="false" />
             <element signature="e#10975#11791#0" expanded="false" />
@@ -587,14 +497,14 @@
             <element signature="e#14142#14339#0" expanded="false" />
             <element signature="e#14455#15427#0" expanded="false" />
             <element signature="e#15553#20946#0" expanded="false" />
-            <element signature="e#21084#25417#0" expanded="false" />
-            <element signature="e#25563#26272#0" expanded="false" />
-            <element signature="e#26351#27503#0" expanded="false" />
-            <element signature="e#27602#28632#0" expanded="false" />
-            <element signature="e#28734#30871#0" expanded="false" />
-            <element signature="e#30926#31425#0" expanded="false" />
-            <element signature="e#31474#31821#0" expanded="false" />
-            <element signature="e#31875#32794#0" expanded="false" />
+            <element signature="e#21084#25872#0" expanded="false" />
+            <element signature="e#26018#26727#0" expanded="false" />
+            <element signature="e#26806#27958#0" expanded="false" />
+            <element signature="e#28057#29087#0" expanded="false" />
+            <element signature="e#29189#31326#0" expanded="false" />
+            <element signature="e#31381#31880#0" expanded="false" />
+            <element signature="e#31929#32276#0" expanded="false" />
+            <element signature="e#32330#33249#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -607,6 +517,10 @@
             <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="tag#script#2;tag#body#0;tag#html#0" expanded="false" />
+            <element signature="tag#script#3;tag#body#0;tag#html#0" expanded="false" />
+            <element signature="tag#script#4;tag#body#0;tag#html#0" expanded="false" />
+            <element signature="tag#script#6;tag#body#0;tag#html#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -635,8 +549,14 @@
             <element signature="n#!!block;n#afficherMeteo#0" expanded="false" />
             <element signature="n#!!block;n#initMoodEval#0" expanded="false" />
             <element signature="n#!!block;n#processTunetables#0" expanded="false" />
-            <element signature="n#!!block;n#afficherArtistesPrefs#0" expanded="false" />
             <element signature="n#!!block;n#animateButtonPlaylist#0" expanded="false" />
+            <element signature="n#!!block;n#afficherCalibrage#0" expanded="false" />
+            <element signature="n#!!block;n#afficherArtisteSuivant#0" expanded="false" />
+            <element signature="n#!!block;n#afficherAjoutArtiste#0" expanded="false" />
+            <element signature="n#!!block;n#eventListenerAddArtist#0" expanded="false" />
+            <element signature="n#!!block;n#eventListenerSupprArtist#0" expanded="false" />
+            <element signature="n#!!block;n#eventListenerValiderCalibrage#0" expanded="false" />
+            <element signature="n#!!block;n#eventListenerEmojiSelect#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -670,6 +590,10 @@
             <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="tag#script#2;tag#body#0;tag#html#0" expanded="false" />
+            <element signature="tag#script#3;tag#body#0;tag#html#0" expanded="false" />
+            <element signature="tag#script#4;tag#body#0;tag#html#0" expanded="false" />
+            <element signature="tag#script#6;tag#body#0;tag#html#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -687,8 +611,6 @@
           <caret line="299" column="0" selection-start-line="299" selection-start-column="0" selection-end-line="299" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#2038#3688#0" expanded="false" />
-            <element signature="e#3733#4263#0" expanded="false" />
             <element signature="e#4311#10602#0" expanded="false" />
             <element signature="e#10661#10922#0" expanded="false" />
             <element signature="e#10975#11791#0" expanded="false" />
@@ -697,14 +619,14 @@
             <element signature="e#14142#14339#0" expanded="false" />
             <element signature="e#14455#15427#0" expanded="false" />
             <element signature="e#15553#20946#0" expanded="false" />
-            <element signature="e#21084#25417#0" expanded="false" />
-            <element signature="e#25563#26272#0" expanded="false" />
-            <element signature="e#26351#27503#0" expanded="false" />
-            <element signature="e#27602#28632#0" expanded="false" />
-            <element signature="e#28734#30871#0" expanded="false" />
-            <element signature="e#30926#31425#0" expanded="false" />
-            <element signature="e#31474#31821#0" expanded="false" />
-            <element signature="e#31875#32794#0" expanded="false" />
+            <element signature="e#21084#25872#0" expanded="false" />
+            <element signature="e#26018#26727#0" expanded="false" />
+            <element signature="e#26806#27958#0" expanded="false" />
+            <element signature="e#28057#29087#0" expanded="false" />
+            <element signature="e#29189#31326#0" expanded="false" />
+            <element signature="e#31381#31880#0" expanded="false" />
+            <element signature="e#31929#32276#0" expanded="false" />
+            <element signature="e#32330#33249#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -732,6 +654,10 @@
             <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="tag#script#2;tag#body#0;tag#html#0" expanded="false" />
+            <element signature="tag#script#3;tag#body#0;tag#html#0" expanded="false" />
+            <element signature="tag#script#4;tag#body#0;tag#html#0" expanded="false" />
+            <element signature="tag#script#6;tag#body#0;tag#html#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -749,8 +675,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#2038#3688#0" expanded="false" />
-            <element signature="e#3733#4263#0" expanded="false" />
             <element signature="e#4311#10602#0" expanded="false" />
             <element signature="e#10661#10922#0" expanded="false" />
             <element signature="e#10975#11791#0" expanded="false" />
@@ -759,14 +683,14 @@
             <element signature="e#14142#14339#0" expanded="false" />
             <element signature="e#14455#15427#0" expanded="false" />
             <element signature="e#15553#20946#0" expanded="false" />
-            <element signature="e#21084#25417#0" expanded="false" />
-            <element signature="e#25563#26272#0" expanded="false" />
-            <element signature="e#26351#27503#0" expanded="false" />
-            <element signature="e#27602#28632#0" expanded="false" />
-            <element signature="e#28734#30871#0" expanded="false" />
-            <element signature="e#30926#31425#0" expanded="false" />
-            <element signature="e#31474#31821#0" expanded="false" />
-            <element signature="e#31875#32794#0" expanded="false" />
+            <element signature="e#21084#25872#0" expanded="false" />
+            <element signature="e#26018#26727#0" expanded="false" />
+            <element signature="e#26806#27958#0" expanded="false" />
+            <element signature="e#28057#29087#0" expanded="false" />
+            <element signature="e#29189#31326#0" expanded="false" />
+            <element signature="e#31381#31880#0" expanded="false" />
+            <element signature="e#31929#32276#0" expanded="false" />
+            <element signature="e#32330#33249#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -779,6 +703,10 @@
             <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="tag#script#2;tag#body#0;tag#html#0" expanded="false" />
+            <element signature="tag#script#3;tag#body#0;tag#html#0" expanded="false" />
+            <element signature="tag#script#4;tag#body#0;tag#html#0" expanded="false" />
+            <element signature="tag#script#6;tag#body#0;tag#html#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -789,8 +717,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#2038#3688#0" expanded="false" />
-            <element signature="e#3733#4263#0" expanded="false" />
             <element signature="e#4311#10602#0" expanded="false" />
             <element signature="e#10661#10922#0" expanded="false" />
             <element signature="e#10975#11791#0" expanded="false" />
@@ -799,14 +725,14 @@
             <element signature="e#14142#14339#0" expanded="false" />
             <element signature="e#14455#15427#0" expanded="false" />
             <element signature="e#15553#20946#0" expanded="false" />
-            <element signature="e#21084#25417#0" expanded="false" />
-            <element signature="e#25563#26272#0" expanded="false" />
-            <element signature="e#26351#27503#0" expanded="false" />
-            <element signature="e#27602#28632#0" expanded="false" />
-            <element signature="e#28734#30871#0" expanded="false" />
-            <element signature="e#30926#31425#0" expanded="false" />
-            <element signature="e#31474#31821#0" expanded="false" />
-            <element signature="e#31875#32794#0" expanded="false" />
+            <element signature="e#21084#25872#0" expanded="false" />
+            <element signature="e#26018#26727#0" expanded="false" />
+            <element signature="e#26806#27958#0" expanded="false" />
+            <element signature="e#28057#29087#0" expanded="false" />
+            <element signature="e#29189#31326#0" expanded="false" />
+            <element signature="e#31381#31880#0" expanded="false" />
+            <element signature="e#31929#32276#0" expanded="false" />
+            <element signature="e#32330#33249#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -956,6 +882,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.017045455" vertical-offset="420" max-vertical-offset="4605">
           <caret line="27" column="44" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -967,14 +894,6 @@
       </provider>
       <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1035" max-vertical-offset="7200">
-          <caret line="83" column="17" selection-start-line="83" selection-start-column="17" selection-end-line="83" selection-end-column="17" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/render.js">
@@ -994,45 +913,20 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/connexion/connexion.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1095">
-          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/functionMoodMusic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1367" max-vertical-offset="3075">
-          <caret line="366" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="450" selection-end-column="1" />
-          <folding>
-            <element signature="n#!!block;n#moyenne#0" expanded="false" />
-            <element signature="n#!!block;n#afficherMeteo#0" expanded="false" />
-            <element signature="n#!!block;n#initMoodEval#0" expanded="false" />
-            <element signature="n#!!block;n#processTunetables#0" expanded="false" />
-            <element signature="n#!!block;n#afficherArtistesPrefs#0" expanded="false" />
-            <element signature="n#!!block;n#animateButtonPlaylist#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1095" max-vertical-offset="2955">
-          <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+        <state vertical-scroll-proportion="-61.73077" vertical-offset="300" max-vertical-offset="3000">
+          <caret line="127" column="50" selection-start-line="127" selection-start-column="50" selection-end-line="127" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1710">
-          <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
+        <state vertical-scroll-proportion="-21.923077" vertical-offset="0" max-vertical-offset="2460">
+          <caret line="38" column="16" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#2038#3688#0" expanded="false" />
-            <element signature="e#3733#4263#0" expanded="false" />
             <element signature="e#4311#10602#0" expanded="false" />
             <element signature="e#10661#10922#0" expanded="false" />
             <element signature="e#10975#11791#0" expanded="false" />
@@ -1041,27 +935,68 @@
             <element signature="e#14142#14339#0" expanded="false" />
             <element signature="e#14455#15427#0" expanded="false" />
             <element signature="e#15553#20946#0" expanded="false" />
-            <element signature="e#21084#25417#0" expanded="false" />
-            <element signature="e#25563#26272#0" expanded="false" />
-            <element signature="e#26351#27503#0" expanded="false" />
-            <element signature="e#27602#28632#0" expanded="false" />
-            <element signature="e#28734#30871#0" expanded="false" />
-            <element signature="e#30926#31425#0" expanded="false" />
-            <element signature="e#31474#31821#0" expanded="false" />
-            <element signature="e#31875#32794#0" expanded="false" />
+            <element signature="e#21084#25872#0" expanded="false" />
+            <element signature="e#26018#26727#0" expanded="false" />
+            <element signature="e#26806#27958#0" expanded="false" />
+            <element signature="e#28057#29087#0" expanded="false" />
+            <element signature="e#29189#31326#0" expanded="false" />
+            <element signature="e#31381#31880#0" expanded="false" />
+            <element signature="e#31929#32276#0" expanded="false" />
+            <element signature="e#32330#33249#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/connexion/connexion.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.8846154" vertical-offset="0" max-vertical-offset="1110">
+          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46614873" vertical-offset="375" max-vertical-offset="5325">
-          <caret line="53" column="19" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
+        <state vertical-scroll-proportion="-5.52" vertical-offset="1329" max-vertical-offset="4065">
+          <caret line="107" column="60" selection-start-line="107" selection-start-column="60" selection-end-line="107" selection-end-column="60" />
           <folding>
             <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="tag#script#2;tag#body#0;tag#html#0" expanded="false" />
+            <element signature="tag#script#3;tag#body#0;tag#html#0" expanded="false" />
+            <element signature="tag#script#4;tag#body#0;tag#html#0" expanded="false" />
+            <element signature="tag#script#6;tag#body#0;tag#html#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/functionMoodMusic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.954545" vertical-offset="0" max-vertical-offset="2955">
+          <caret line="121" column="88" selection-start-line="121" selection-start-column="88" selection-end-line="121" selection-end-column="88" />
+          <folding>
+            <element signature="n#!!block;n#moyenne#0" expanded="false" />
+            <element signature="n#!!block;n#afficherMeteo#0" expanded="false" />
+            <element signature="n#!!block;n#initMoodEval#0" expanded="false" />
+            <element signature="n#!!block;n#processTunetables#0" expanded="false" />
+            <element signature="n#!!block;n#animateButtonPlaylist#0" expanded="false" />
+            <element signature="n#!!block;n#afficherCalibrage#0" expanded="false" />
+            <element signature="n#!!block;n#afficherArtisteSuivant#0" expanded="false" />
+            <element signature="n#!!block;n#afficherAjoutArtiste#0" expanded="false" />
+            <element signature="n#!!block;n#eventListenerAddArtist#0" expanded="false" />
+            <element signature="n#!!block;n#eventListenerSupprArtist#0" expanded="false" />
+            <element signature="n#!!block;n#eventListenerValiderCalibrage#0" expanded="false" />
+            <element signature="n#!!block;n#eventListenerEmojiSelect#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4493882" vertical-offset="6136" max-vertical-offset="7800">
+          <caret line="436" column="33" selection-start-line="436" selection-start-column="33" selection-end-line="436" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>

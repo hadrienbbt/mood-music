@@ -8,13 +8,15 @@
       <meta name="author" content="Hadrien Barbat">
       <meta http-equiv="content-language" content="fr">
       <meta property="og:title" content="Moodmusic - Playlists personnalisées sur Spotify">
-      <meta name="description" content="Moodmusic est ta première application qui génère des playlists de musiques personnalisées sur Spotify. La playlist personnalisée Moodmusic est basée sur ton humeur et tes artistes préférés. Tu vas adorer découvrir de nouvelles musiques avec ce moyen original !">
+      <meta name="description" content="Moodmusic génère des playlists de musiques personnalisées sur Spotify. La playlist personnalisée Moodmusic est basée sur ton humeur et tes artistes préférés. Tu vas adorer découvrir de nouvelles musiques avec ce moyen original !">
       <meta property="og:type" content="website">
       <meta property="og:url" content="/http://www.moodmusic.fr/">
       <meta charset="utf-8">
+      <meta name="google-site-verification" content="thXi-jYjBapy56sbt8bOBU_ZUUGjieVuWXrSACa29pY" />
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+      <link href="https://plus.google.com/110547442856680778855" rel="publisher" />
       <link rel="icon" type="image/ico" href="img/icon_circle.ico"/>
       <link rel="apple-touch-icon" href="img/icon_square.ico" />
       <link rel="shortcut icon" href="img/icon_circle.ico" type="image/x-icon" />
@@ -61,26 +63,26 @@
                     </div>
                     -->
                     <a class="tab-item-two" href="/login" id="spotify-button">
-                            <img id="spotify-logo" src="img/connexion/logoSpotify.png">
+                            <img alt="logo spotify" id="spotify-logo" src="img/connexion/logoSpotify.png">
                             <h3 id="social" class="content-padded titre">Connexion avec Spotify</h3>
                     </a>
                 </nav>
                 <div class="content">
                     <div id="container_connexion" class="container-fluid">
-                        <img id="logo-accueil" src="img/connexion/logo_cercle.png">
+                        <img alt="logo moodmusic" id="logo-accueil" src="img/connexion/logo_cercle.png">
                         <h1 id="titre" class="content-padded titre">connexion</h1>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="loggedin">
-            <img id="logo-header" src="img/moodmusic_written.png">
+        <div hidden="hidden" id="loggedin">
+            <img alt="logo moodmusic header" id="logo-header" src="img/moodmusic_written.png">
             <div id="menu">
                 <button style="display: none" onclick="view_accueil()" class="btn" id="goAccueil">Accueil</button>
                 <button style="display: none" onclick="view_profile()" class="btn" id="goProfile">Voir mon profil</button>
                 <button style="margin-right: 4%;" onclick="view_artistsEvaluation();" class="btn" id="goTopArtists">Artistes favoris</button>
-                <button onclick="view_moodEvaluation();" class="btn" id="goMoodEval">Evaluer mon humeur</button>
+                <button onclick="view_moodEvaluation();" class="btn" id="goMoodEval">Créer une playlist</button>
 
             </div>
             <div id="calibrage"></div>
@@ -105,20 +107,15 @@
         <div id="debut-calibrage">
             <h3 class="titre1">Bienvenue {{username}} !</h3>
             <h4 class="titre2">Nous allons calibrer Moodmusic sur tes goûts musicaux, touche les emojis pour nous dire dans quels états te mettent ces artistes.</h4>
-            <div id="container-demo">
-                {{#each moods}}
-                <div class="container-emoji-demo">
-                    <div class="emoji-demo">{{emoji}}</div>
-                    <div class="label">{{stateFR}}</div>
-                </div>
-                {{/each}}
-            </div>
             <div class="container-artist" style="display: inline-block" id="{{artist.id}}">
                 <h4 class="name_artist">{{artist.name}}</h4>
-                <img class="img-artist" src="{{artist.images.1.url}}" width="200"/>
+                <img alt="{{artist.name}}" class="img-artist" src="{{artist.images.1.url}}" width="200"/>
                 <div class="emoji-bar">
                     {{#each moods}}
-                    <div id="{{../artist.id}}-{{state}}" class="emoji-select emoji-artist">{{emoji}}</div>
+                    <div class="container-emoji-demo">
+                        <div id="{{../artist.id}}-{{state}}" class="emoji-select emoji-artist">{{emoji}}</div>
+                        <div class="label">{{stateFR}}</div>
+                    </div>
                     {{/each}}
                 </div>
                 <button id="suite" class="btn">Valider</button>
@@ -147,16 +144,19 @@
           </div>
           <div id="calibrage-addArtistPref">
               <input id="calibrage-artistName" type="text" />
-              <img src="img/plus.ico" id="calibrage-button-addArtistPref" />
+              <img alt="ajouter l'artiste" src="img/plus.ico" id="calibrage-button-addArtistPref" />
           </div>
           <div class="etapes">{{numArtiste}}/{{nbArtistes}}</div>
 
           <div hidden="hidden" class="container-artist" id="{{artist.id}}">
               <h4 class="name_artist">{{artist.name}}</h4>
-              <img class="img-artist" src="{{artist.images.1.url}}" width="200"/>
+              <img alt="{{artist.name}}" class="img-artist" src="{{artist.images.1.url}}" width="200"/>
               <div class="emoji-bar">
                   {{#each moods}}
-                  <div id="{{../artist.id}}-{{state}}" class="emoji-select emoji-artist">{{emoji}}</div>
+                  <div class="container-emoji-demo">
+                      <div id="{{../artist.id}}-{{state}}" class="emoji-select emoji-artist">{{emoji}}</div>
+                      <div class="label">{{stateFR}}</div>
+                  </div>
                   {{/each}}
               </div>
               <button id="suite" class="btn">Valider</button>
@@ -219,12 +219,15 @@
     </script>
 
     <script id="select-mood-template" type="text/x-handlebars-template">
-        <h3 style="margin-top: 5%;">Bienvenue dans l'évaluation de votre humeur</h3>
-        <h4 >Jaugez votre humeur :</h4>
+        <h3 style="margin-top: 5%;">Comment te sens-tu ?</h3>
+        <h4 style="margin-bottom: 10px;">Tu peux toucher les émojis pour les désactiver</h4>
         <div class="emoji-bar" id="mood-select">
             {{#each moods}}
             <div class="mood-with-slider">
-                <div id="{{state}}" class="emoji-mood-select">{{emoji}}</div>
+                <div style="display: block" class="container-emoji-demo jauger-mood">
+                    <div style="margin: auto;" id="{{state}}" class="emoji-mood-select">{{emoji}}</div>
+                    <div class="label">{{stateFR}}</div>
+                </div>
                 <div class="slider-mood" id="div-{{state}}-slider">
                     <input class="input-slider-mood" id="{{state}}-slider" />
                 </div>
@@ -286,35 +289,30 @@
 
     <script id="topArtists-template" type="text/x-handlebars-template">
         <div id="artists">
-            <h3>Touche les emojis pour nous dire dans quels états te mettent ces artistes</h3>
-            <div id="container-demo">
-                {{#each moods}}
-                <div class="container-emoji-demo">
-                    <div class="emoji-demo">{{emoji}}</div>
-                    <div class="label">{{stateFR}}</div>
-                </div>
-                {{/each}}
-            </div>
             <div id="addArtistPref">
                 <h3>Tu peux ajouter tes artistes préférés</h3>
                 <input id="artistName" type="text" />
-                <img src="img/plus.ico" id="button-addArtistPref" />
+                <img alt="Ajouter l'artiste" src="img/plus.ico" id="button-addArtistPref" />
             </div>
             <hr>
+            <h3>Touche les emojis pour nous dire dans quels états te mettent ces artistes</h3>
             {{#each artists}}
             <div class="container-artist" style="display: inline-block" id="{{id}}">
                 <h4 class="name_artist">{{name}}</h4>
                 <div class="button-removeArtistPref" id="suppr-{{id}}">×</div>
-                <img class="img-artist" src="{{images.1.url}}" width="200"/>
+                <img alt="{{name}}" class="img-artist" src="{{images.1.url}}" width="200"/>
                 <div class="emoji-bar">
                     {{#each ../moods}}
-                    <div id="{{../id}}-{{state}}" class="emoji-select emoji-artist">{{emoji}}</div>
+                    <div class="container-emoji-demo">
+                        <div id="{{../id}}-{{state}}" class="emoji-select emoji-artist">{{emoji}}</div>
+                        <div class="label">{{stateFR}}</div>
+                    </div>
                     {{/each}}
                 </div>
             </div>
             {{/each}}
         </div>
-        <button onclick="view_moodEvaluation();" class="btn" id="goMoodEvalFinArtistes">Evaluer mon humeur</button>
+        <button onclick="view_moodEvaluation();" class="btn" id="goMoodEvalFinArtistes">Créer une playlist</button>
     </script>
 
     <script id="meteo-template" type="text/x-handlebars-template">

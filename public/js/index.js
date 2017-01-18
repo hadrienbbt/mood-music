@@ -48,6 +48,9 @@
     //view_connexion();
     if (error) {
         alert('There was an error during the authentication');
+        // render initial screen
+        $('#login').show();
+        $('#loggedin').hide();
     } else {
         if (access_token) {
             view_accueil();

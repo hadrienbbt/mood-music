@@ -53,7 +53,7 @@ function processTunetables() {
     $(".input-slider-mood").each(function() {
         var state = $(this).attr('id').substr(0,$(this).attr('id').indexOf('-'));
         if ($("#"+state).hasClass('on')) {
-            var x = 1 - $(this).slider('getValue');
+            var x = $(this).slider('getValue');
             switch (state) {
                 case 'dance' :
                     tunetables['danceability'] = x;
@@ -125,8 +125,9 @@ function afficherArtistesPrefs(current_user) {
                 if (artists) {
                     for (var i = 0; i< artists.length; i++) {
                         for (var j = 0; j < artists[i]['mood_related'].length; j++) {
-                            var stringIdMood = "#"+artists[i].id + "-" + artists[i]['mood_related'][j]
+                            var stringIdMood = "#"+artists[i].id + "-" + artists[i]['mood_related'][j];
                             $(stringIdMood).addClass("on");
+                            //console.log(stringIdMood + " : classe on ajoutée à " +artists[i].name+" - " +artists[i]['mood_related'][j]);
                         }
                     }
                 }
@@ -183,16 +184,17 @@ function afficherArtistesPrefs(current_user) {
                     sliders.push( $("#"+state+"-slider").slider({
                         orientation: 'vertical',
                         min: 0,
-                        max: 1,
+                        max: 1.07,
                         value: 0.5,
-                        step: 0.01
+                        step: 0.01,
+                        reversed : true
                     }) );
 
                     // Récupérer la valeur du slider quand on le lâche
                     $(".input-slider-mood").on("slideStop",function(){
                         // Call a method on the slider
                         console.log($(this).slider('getValue'));
-                        if($(this).slider('getValue') == "1") {
+                        if($(this).slider('getValue') == "0") {
                             var id_mood = $(this).attr('id').split('-')[0];
                             $("#"+id_mood).click();
                             var slider = $(this);
@@ -201,6 +203,7 @@ function afficherArtistesPrefs(current_user) {
                             },300);
                             restaurerslider();
                         }
+                        if (parseFloat($(this).slider('getValue')) > 1) $(this).slider('setValue',1);
                     });
                 }
 
@@ -382,6 +385,7 @@ function eventListenerAddArtist(user,artists,numArtiste,moods) {
                         numArtiste: numArtiste+1,
                         nbArtistes: minArtistes // ajouter 5 artistes
                     });
+                    $("#container-demo").hide();
                     $("#calibrage-addArtistPref").hide();
                     $("#"+artist.id).show();
                     eventListenerEmojiSelect(user.id);

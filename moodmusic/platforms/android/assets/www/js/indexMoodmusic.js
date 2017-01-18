@@ -114,6 +114,7 @@
             $('#login').show();
             $('#loggedin').hide();
             //window.location.href = "/login";
+            return;
         }
 
         document.getElementById('obtain-new-token').addEventListener('click', function() {

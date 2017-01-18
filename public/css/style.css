@@ -177,19 +177,19 @@
 
 @media screen and (min-width: 1200px) {
     .container-artist {
-        width: 24%;
+        width: 30%;
     }
 }
 
 @media screen and (max-width: 1200px) and (min-width: 990px) {
     .container-artist {
-        width: 30%;
+        width: 37%;
     }
 }
 
 @media screen and (max-width: 990px) and (min-width: 650px) {
     .container-artist {
-        width: 40%;
+        width: 49%;
     }
 }
 
@@ -198,7 +198,28 @@
 }
 
 .mood-with-slider {
-    display: inline-table;;
+    display: inline-table;
+}
+@media screen and (max-width: 500px) {
+
+    .mood-with-slider {
+        display: inline-table;
+        padding-right: 1px;
+        padding-left: 1px;
+        width: 10%;
+    }
+}
+
+.input-slider-mood .slider-selection {
+    background: green;
+}
+
+.slider-handle {
+    background-image : linear-gradient(to bottom,#8eca02 0,#648f00 100%) !important;
+}
+
+.slider-track-high {
+    background-color: #d3e2b0 !important;
 }
 
 .emoji-select, .emoji-mood-select {
@@ -209,7 +230,7 @@
     font-size: 20px;
     text-align: center;
     padding: 1px;
-    margin-bottom: 10px;
+    margin-bottom: -5px;
     transition-duration: .25s;
     transition-timing-function: ease-in-out;
 }
@@ -276,6 +297,7 @@
     width: 30px;
     position: relative;
     bottom: 7px;
+    -webkit-bottom: 32px;
     left: 20px;
 }
 
@@ -393,20 +415,34 @@ hr {
 }
 
 .label {
-    color: green;
+    color: #648f00;;
     letter-spacing: 1px;
     padding: 0;
     font-variant: small-caps;
     font-size: 65%;
 }
 
-.container-emoji-demo {
-    display: inline-block;width: 15%;
+@media screen and (max-width: 400px) {
+    .label {
+        letter-spacing: 0px;
+    }
 }
 
-@media screen and (min-width: 500px) {
+.container-emoji-demo {
+    display: inline-block;
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 360px) {
     .container-emoji-demo {
-        width: 60px;
+        width: 40px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .jauger-mood {
+        width: 43px;
     }
 }
 
@@ -437,11 +473,15 @@ h4 {
 
 .titre2 {
     margin: auto;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-size: 14px;
     line-height: 18px;
     text-align: justify;
     width: 260px;
+}
+
+.margin-bottom-less {
+    margin-bottom: 0px;
 }
 
 #etapes {
