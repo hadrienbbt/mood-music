@@ -2,41 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="812f24d3-dbcd-4dc2-b8bf-784903233c5b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/font/Futura.ttc" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/journal/WiredTigerLog.0000000011" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/WiredTiger.wt" afterPath="$PROJECT_DIR$/db/WiredTiger.wt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/android-release.apk" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/android-release.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/journal/WiredTigerLog.0000000012" afterPath="$PROJECT_DIR$/db/journal/WiredTigerLog.0000000012" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/collection-0--5777677700233186971.wt" afterPath="$PROJECT_DIR$/db/collection-0--5777677700233186971.wt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/collection-0--8189439538551372924.wt" afterPath="$PROJECT_DIR$/db/collection-0--8189439538551372924.wt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/collection-0-4724928895187386827.wt" afterPath="$PROJECT_DIR$/db/collection-0-4724928895187386827.wt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/collection-2--3444353987612515557.wt" afterPath="$PROJECT_DIR$/db/collection-2--3444353987612515557.wt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/index-1--5777677700233186971.wt" afterPath="$PROJECT_DIR$/db/index-1--5777677700233186971.wt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/index-1--8189439538551372924.wt" afterPath="$PROJECT_DIR$/db/index-1--8189439538551372924.wt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/index-3--3444353987612515557.wt" afterPath="$PROJECT_DIR$/db/index-3--3444353987612515557.wt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/tasks/_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/diagnostic.data/metrics.2017-01-18T15-17-44Z-00000" afterPath="$PROJECT_DIR$/db/diagnostic.data/metrics.2017-01-18T15-17-44Z-00000" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/diagnostic.data/metrics.interim" afterPath="$PROJECT_DIR$/db/diagnostic.data/metrics.interim" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/sizeStorer.wt" afterPath="$PROJECT_DIR$/db/sizeStorer.wt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/WiredTiger.turtle" afterPath="$PROJECT_DIR$/db/WiredTiger.turtle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/connexion/connexion.css" afterPath="$PROJECT_DIR$/public/css/connexion/connexion.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/functionMoodMusic.js" afterPath="$PROJECT_DIR$/public/js/functionMoodMusic.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/index.js" afterPath="$PROJECT_DIR$/public/js/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/assets/www/js/indexMoodmusic.js" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/assets/www/js/indexMoodmusic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/mongod.lock" afterPath="$PROJECT_DIR$/db/mongod.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moodmusic/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/moodmusic/platforms/android/.idea/workspace.xml" />
     </list>
     <ignored path="Test_moodMusic.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,29 +41,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.923077" vertical-offset="0" max-vertical-offset="2460">
-              <caret line="38" column="16" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.60730594" vertical-offset="5933" max-vertical-offset="9795">
+              <caret line="490" column="81" selection-start-line="490" selection-start-column="81" selection-end-line="490" selection-end-column="81" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#4311#10602#0" expanded="false" />
-                <element signature="e#10661#10922#0" expanded="false" />
-                <element signature="e#10975#11791#0" expanded="false" />
-                <element signature="e#11915#12607#0" expanded="false" />
-                <element signature="e#12883#14095#0" expanded="false" />
-                <element signature="e#14142#14339#0" expanded="false" />
-                <element signature="e#14455#15427#0" expanded="false" />
-                <element signature="e#15553#20946#0" expanded="false" />
-                <element signature="e#21084#25872#0" expanded="false" />
-                <element signature="e#26018#26727#0" expanded="false" />
-                <element signature="e#26806#27958#0" expanded="false" />
-                <element signature="e#28057#29087#0" expanded="false" />
-                <element signature="e#29189#31326#0" expanded="false" />
-                <element signature="e#31381#31880#0" expanded="false" />
-                <element signature="e#31929#32276#0" expanded="false" />
-                <element signature="e#32330#33249#0" expanded="false" />
+                <element signature="e#3733#4263#0" expanded="false" />
+                <element signature="e#11241#12057#0" expanded="false" />
+                <element signature="e#12181#12873#0" expanded="false" />
+                <element signature="e#14408#14605#0" expanded="false" />
+                <element signature="e#27334#27999#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -92,8 +61,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-61.73077" vertical-offset="300" max-vertical-offset="3000">
-              <caret line="127" column="50" selection-start-line="127" selection-start-column="50" selection-end-line="127" selection-end-column="50" />
+            <state vertical-scroll-proportion="-3.7307692" vertical-offset="638" max-vertical-offset="3000">
+              <caret line="49" column="23" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -102,13 +71,12 @@
       <file leaf-file-name="functionMoodMusic.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/functionMoodMusic.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.954545" vertical-offset="0" max-vertical-offset="2955">
-              <caret line="121" column="88" selection-start-line="121" selection-start-column="88" selection-end-line="121" selection-end-column="88" />
+            <state vertical-scroll-proportion="-8.863636" vertical-offset="105" max-vertical-offset="3690">
+              <caret line="67" column="49" selection-start-line="67" selection-start-column="49" selection-end-line="67" selection-end-column="49" />
               <folding>
                 <element signature="n#!!block;n#moyenne#0" expanded="false" />
                 <element signature="n#!!block;n#afficherMeteo#0" expanded="false" />
                 <element signature="n#!!block;n#initMoodEval#0" expanded="false" />
-                <element signature="n#!!block;n#processTunetables#0" expanded="false" />
                 <element signature="n#!!block;n#animateButtonPlaylist#0" expanded="false" />
                 <element signature="n#!!block;n#afficherCalibrage#0" expanded="false" />
                 <element signature="n#!!block;n#afficherArtisteSuivant#0" expanded="false" />
@@ -122,11 +90,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4493882" vertical-offset="6136" max-vertical-offset="7800">
+            <state vertical-scroll-proportion="-15.538462" vertical-offset="6136" max-vertical-offset="7800">
               <caret line="436" column="33" selection-start-line="436" selection-start-column="33" selection-end-line="436" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RecommendationRequest.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/class/RecommendationRequest.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="2130">
+              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -145,8 +123,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.52" vertical-offset="1329" max-vertical-offset="4065">
-              <caret line="107" column="60" selection-start-line="107" selection-start-column="60" selection-end-line="107" selection-end-column="60" />
+            <state vertical-scroll-proportion="-9.12" vertical-offset="624" max-vertical-offset="4050">
+              <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -199,12 +177,12 @@
         <option value="$PROJECT_DIR$/moodmusic/www/js/index.js" />
         <option value="$PROJECT_DIR$/moodmusic/www/js/functionMoodMusic.js" />
         <option value="$PROJECT_DIR$/public/js/render.js" />
-        <option value="$PROJECT_DIR$/public/js/index.js" />
         <option value="$PROJECT_DIR$/public/css/connexion/connexion.css" />
-        <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/public/js/functionMoodMusic.js" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
+        <option value="$PROJECT_DIR$/public/js/index.js" />
+        <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
   </component>
@@ -288,6 +266,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="moodmusic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="moodmusic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="class" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -416,7 +416,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="622" y="0" width="1058" height="1045" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20314136" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -424,7 +424,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24937344" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18110237" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18700787" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -478,7 +478,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="28" />
+      <option name="time" value="29" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -489,22 +489,11 @@
           <caret line="541" column="52" selection-start-line="541" selection-start-column="52" selection-end-line="541" selection-end-column="52" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#4311#10602#0" expanded="false" />
-            <element signature="e#10661#10922#0" expanded="false" />
-            <element signature="e#10975#11791#0" expanded="false" />
-            <element signature="e#11915#12607#0" expanded="false" />
-            <element signature="e#12883#14095#0" expanded="false" />
-            <element signature="e#14142#14339#0" expanded="false" />
-            <element signature="e#14455#15427#0" expanded="false" />
-            <element signature="e#15553#20946#0" expanded="false" />
-            <element signature="e#21084#25872#0" expanded="false" />
-            <element signature="e#26018#26727#0" expanded="false" />
-            <element signature="e#26806#27958#0" expanded="false" />
-            <element signature="e#28057#29087#0" expanded="false" />
-            <element signature="e#29189#31326#0" expanded="false" />
-            <element signature="e#31381#31880#0" expanded="false" />
-            <element signature="e#31929#32276#0" expanded="false" />
-            <element signature="e#32330#33249#0" expanded="false" />
+            <element signature="e#3733#4263#0" expanded="false" />
+            <element signature="e#11241#12057#0" expanded="false" />
+            <element signature="e#12181#12873#0" expanded="false" />
+            <element signature="e#14408#14605#0" expanded="false" />
+            <element signature="e#27334#27999#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -548,7 +537,6 @@
             <element signature="n#!!block;n#moyenne#0" expanded="false" />
             <element signature="n#!!block;n#afficherMeteo#0" expanded="false" />
             <element signature="n#!!block;n#initMoodEval#0" expanded="false" />
-            <element signature="n#!!block;n#processTunetables#0" expanded="false" />
             <element signature="n#!!block;n#animateButtonPlaylist#0" expanded="false" />
             <element signature="n#!!block;n#afficherCalibrage#0" expanded="false" />
             <element signature="n#!!block;n#afficherArtisteSuivant#0" expanded="false" />
@@ -611,22 +599,11 @@
           <caret line="299" column="0" selection-start-line="299" selection-start-column="0" selection-end-line="299" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#4311#10602#0" expanded="false" />
-            <element signature="e#10661#10922#0" expanded="false" />
-            <element signature="e#10975#11791#0" expanded="false" />
-            <element signature="e#11915#12607#0" expanded="false" />
-            <element signature="e#12883#14095#0" expanded="false" />
-            <element signature="e#14142#14339#0" expanded="false" />
-            <element signature="e#14455#15427#0" expanded="false" />
-            <element signature="e#15553#20946#0" expanded="false" />
-            <element signature="e#21084#25872#0" expanded="false" />
-            <element signature="e#26018#26727#0" expanded="false" />
-            <element signature="e#26806#27958#0" expanded="false" />
-            <element signature="e#28057#29087#0" expanded="false" />
-            <element signature="e#29189#31326#0" expanded="false" />
-            <element signature="e#31381#31880#0" expanded="false" />
-            <element signature="e#31929#32276#0" expanded="false" />
-            <element signature="e#32330#33249#0" expanded="false" />
+            <element signature="e#3733#4263#0" expanded="false" />
+            <element signature="e#11241#12057#0" expanded="false" />
+            <element signature="e#12181#12873#0" expanded="false" />
+            <element signature="e#14408#14605#0" expanded="false" />
+            <element signature="e#27334#27999#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -675,22 +652,11 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#4311#10602#0" expanded="false" />
-            <element signature="e#10661#10922#0" expanded="false" />
-            <element signature="e#10975#11791#0" expanded="false" />
-            <element signature="e#11915#12607#0" expanded="false" />
-            <element signature="e#12883#14095#0" expanded="false" />
-            <element signature="e#14142#14339#0" expanded="false" />
-            <element signature="e#14455#15427#0" expanded="false" />
-            <element signature="e#15553#20946#0" expanded="false" />
-            <element signature="e#21084#25872#0" expanded="false" />
-            <element signature="e#26018#26727#0" expanded="false" />
-            <element signature="e#26806#27958#0" expanded="false" />
-            <element signature="e#28057#29087#0" expanded="false" />
-            <element signature="e#29189#31326#0" expanded="false" />
-            <element signature="e#31381#31880#0" expanded="false" />
-            <element signature="e#31929#32276#0" expanded="false" />
-            <element signature="e#32330#33249#0" expanded="false" />
+            <element signature="e#3733#4263#0" expanded="false" />
+            <element signature="e#11241#12057#0" expanded="false" />
+            <element signature="e#12181#12873#0" expanded="false" />
+            <element signature="e#14408#14605#0" expanded="false" />
+            <element signature="e#27334#27999#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -717,22 +683,11 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#4311#10602#0" expanded="false" />
-            <element signature="e#10661#10922#0" expanded="false" />
-            <element signature="e#10975#11791#0" expanded="false" />
-            <element signature="e#11915#12607#0" expanded="false" />
-            <element signature="e#12883#14095#0" expanded="false" />
-            <element signature="e#14142#14339#0" expanded="false" />
-            <element signature="e#14455#15427#0" expanded="false" />
-            <element signature="e#15553#20946#0" expanded="false" />
-            <element signature="e#21084#25872#0" expanded="false" />
-            <element signature="e#26018#26727#0" expanded="false" />
-            <element signature="e#26806#27958#0" expanded="false" />
-            <element signature="e#28057#29087#0" expanded="false" />
-            <element signature="e#29189#31326#0" expanded="false" />
-            <element signature="e#31381#31880#0" expanded="false" />
-            <element signature="e#31929#32276#0" expanded="false" />
-            <element signature="e#32330#33249#0" expanded="false" />
+            <element signature="e#3733#4263#0" expanded="false" />
+            <element signature="e#11241#12057#0" expanded="false" />
+            <element signature="e#12181#12873#0" expanded="false" />
+            <element signature="e#14408#14605#0" expanded="false" />
+            <element signature="e#27334#27999#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -774,13 +729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="825" max-vertical-offset="3330">
           <caret line="89" column="52" selection-start-line="89" selection-start-column="52" selection-end-line="89" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/class/RecommendationRequest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.855814" vertical-offset="809" max-vertical-offset="2130">
-          <caret line="103" column="14" selection-start-line="103" selection-start-column="14" selection-end-line="103" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -913,40 +861,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-61.73077" vertical-offset="300" max-vertical-offset="3000">
-          <caret line="127" column="50" selection-start-line="127" selection-start-column="50" selection-end-line="127" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.923077" vertical-offset="0" max-vertical-offset="2460">
-          <caret line="38" column="16" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#4311#10602#0" expanded="false" />
-            <element signature="e#10661#10922#0" expanded="false" />
-            <element signature="e#10975#11791#0" expanded="false" />
-            <element signature="e#11915#12607#0" expanded="false" />
-            <element signature="e#12883#14095#0" expanded="false" />
-            <element signature="e#14142#14339#0" expanded="false" />
-            <element signature="e#14455#15427#0" expanded="false" />
-            <element signature="e#15553#20946#0" expanded="false" />
-            <element signature="e#21084#25872#0" expanded="false" />
-            <element signature="e#26018#26727#0" expanded="false" />
-            <element signature="e#26806#27958#0" expanded="false" />
-            <element signature="e#28057#29087#0" expanded="false" />
-            <element signature="e#29189#31326#0" expanded="false" />
-            <element signature="e#31381#31880#0" expanded="false" />
-            <element signature="e#31929#32276#0" expanded="false" />
-            <element signature="e#32330#33249#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/connexion/connexion.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.8846154" vertical-offset="0" max-vertical-offset="1110">
@@ -955,10 +869,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.538462" vertical-offset="6136" max-vertical-offset="7800">
+          <caret line="436" column="33" selection-start-line="436" selection-start-column="33" selection-end-line="436" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/class/RecommendationRequest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="2130">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.7307692" vertical-offset="638" max-vertical-offset="3000">
+          <caret line="49" column="23" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.52" vertical-offset="1329" max-vertical-offset="4065">
-          <caret line="107" column="60" selection-start-line="107" selection-start-column="60" selection-end-line="107" selection-end-column="60" />
+        <state vertical-scroll-proportion="-9.12" vertical-offset="624" max-vertical-offset="4050">
+          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -973,13 +911,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/functionMoodMusic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.954545" vertical-offset="0" max-vertical-offset="2955">
-          <caret line="121" column="88" selection-start-line="121" selection-start-column="88" selection-end-line="121" selection-end-column="88" />
+        <state vertical-scroll-proportion="-8.863636" vertical-offset="105" max-vertical-offset="3690">
+          <caret line="67" column="49" selection-start-line="67" selection-start-column="49" selection-end-line="67" selection-end-column="49" />
           <folding>
             <element signature="n#!!block;n#moyenne#0" expanded="false" />
             <element signature="n#!!block;n#afficherMeteo#0" expanded="false" />
             <element signature="n#!!block;n#initMoodEval#0" expanded="false" />
-            <element signature="n#!!block;n#processTunetables#0" expanded="false" />
             <element signature="n#!!block;n#animateButtonPlaylist#0" expanded="false" />
             <element signature="n#!!block;n#afficherCalibrage#0" expanded="false" />
             <element signature="n#!!block;n#afficherArtisteSuivant#0" expanded="false" />
@@ -992,11 +929,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/style.css">
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4493882" vertical-offset="6136" max-vertical-offset="7800">
-          <caret line="436" column="33" selection-start-line="436" selection-start-column="33" selection-end-line="436" selection-end-column="33" />
-          <folding />
+        <state vertical-scroll-proportion="0.60730594" vertical-offset="5933" max-vertical-offset="9795">
+          <caret line="490" column="81" selection-start-line="490" selection-start-column="81" selection-end-line="490" selection-end-column="81" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#3733#4263#0" expanded="false" />
+            <element signature="e#11241#12057#0" expanded="false" />
+            <element signature="e#12181#12873#0" expanded="false" />
+            <element signature="e#14408#14605#0" expanded="false" />
+            <element signature="e#27334#27999#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -14,8 +14,8 @@ var user = require('./public/js/class/User.js');
 
 var client_id = 'a3b5315e6cdd4583acfc54f639aeb020'; // Your client id
 var client_secret = '2e9b13f3f48f4cc5b8d637c699cc2bc7'; // Your secret
-//var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
-var redirect_uri = 'http://moodmusic.fr/callback'; // Your redirect uri
+var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+//var redirect_uri = 'http://moodmusic.fr/callback'; // Your redirect uri
 var key_weather = 'e6953ed25cc6095a';
 var limitTopArtistsPerUser = "15";
 
@@ -178,7 +178,8 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                                     options['url'] = "https://api.spotify.com/v1/me/top/artists?limit="+limitTopArtistsPerUser;
                                     request.get(options, function (error, response, body) {
                                         top_artists = body;
-                                        console.log(body);
+                                        console.log("******************************");
+                                        console.log("Récupération des artistes préférés de "+user.display_name+"...");
                                         var artist;
                                         for(var i = 0; i<body.items.length; i++){
                                             artist = body.items[i];
@@ -191,7 +192,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                                                     mood_related: []
                                                 }}}, null, function (error, results) {        // WHEN DONE
                                                     if (error) throw error;
-                                                    console.log("L'artiste préféré a bien été modifié\n" + results);
+                                                    console.log("L'artiste préféré de "+user.display_name+" a bien été modifié\n" + results);
                                                 }
                                             );
                                             // Add artists to moodmusics if they dont exist
@@ -205,10 +206,11 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                                                 { new: true, upsert: true },    // options - new to return the modified document
                                                 function(err,doc) {
                                                     if (error) throw error;
-                                                    console.log("Artiste ajouté ou modifié..." + doc);
+                                                    console.log(artist.name+" ajouté à la bdd moodmusic!");
                                                 }
                                             );
                                         }
+                                        console.log("******************************\n");
                                     });
                                 }
                                 // we can also pass the token to the browser to make requests from there
@@ -323,6 +325,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
 
     // Called when a mood is assigned to an artist by an user
     app.get('/addMoodToArtist', function(req, res){
+        console.log("******************************");
         var artist = req.query.artist;
         var mood = req.query.mood;
         var ajouterMood = req.query.ajouterMood;
@@ -334,6 +337,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                 {$push: {"tabArtistesPref.$.mood_related": mood}},
                 {upsert: true}, function(error,response) {
                     if (error) throw error;
+                    console.log(user+" a ajouté l'émotion "+mood+" à l'artiste "+artist)
                 }
             );
         } else {
@@ -342,6 +346,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                 {$pull: {"tabArtistesPref.$.mood_related": mood}},
                 {upsert: true}, function(error,response) {
                     if (error) throw error;
+                    console.log(user+" a retiré l'émotion "+mood+" de l'artiste "+artist)
                 }
             );
         }
@@ -354,7 +359,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         var artist = req.query.artist;
         var valence = 0;
         var activation = 0;
-        console.log(user+" - "+artist);
+        console.log("Calcul des nouvelles valences et activation de l'artiste "+artist+" pour l'utilisateur "+user+"...");
         // chercher l'artiste dans les artistes préférés de l'utilisateur
         db.collection("user").find({_id: user}).toArray(function(error,data_user) {
             var tabArtistesPref = data_user[0].tabArtistesPref;
@@ -363,7 +368,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                     var mood_related = tabArtistesPref[i].mood_related;
                     var nbMood = parseInt(tabArtistesPref[i].mood_related.length);
                     if (nbMood != 0) {
-                        console.log(nbMood + " moods au total");
+                        console.log("L'artiste possède "+nbMood + " moods");
                         var compteur_mood = 0; // Pour savoir quand on a fini d'additionner les tunetables
                         var dance = false;
                         // On regarde les emojis qui correspondent à l'artiste pour faire une moyenne des valences et activations
@@ -371,46 +376,49 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                             // Récupérer le mood j si ce n'est pas une exception
                             db.collection("mood").find({state: mood_related[j]}).toArray(function(error,response) {
                                 compteur_mood++;
-                                console.log(response[0]);
 
                                 if (response[0].state != 'dance') {
                                     valence += parseFloat(response[0].valence);
                                     activation += parseFloat(response[0].activation);
                                     console.log (response[0].state+ " a pour valence "+response[0].valence+" ,et pour activation "+response[0].activation);
-                                    // quand c'est le dernier aller retour vers la BDD on passe à la suite
-                                    if (compteur_mood == nbMood) {
+                                    console.log(compteur_mood+" - "+nbMood);
 
-                                        // Enlever la tunetable dance si elle n'est plus sélectionnée
-                                        if (!dance) {
-                                            db.collection("user").update({_id: user, "tabArtistesPref.id": artist},{
-                                                $unset: {"tabArtistesPref.$.danceability":1}},function(error,response){
-                                                if (error)  throw error;
-                                                console.log("danceability supprimée");
-                                            });
-                                        }
-                                        valence = dance ? valence/(nbMood-1) : valence/nbMood;
-                                        activation = dance ? activation/(nbMood-1) : activation/nbMood;
-
-                                        // Modifier l'artiste pref avec la valence et l'activation calculée
-                                        db.collection("user").update({_id: user, "tabArtistesPref.id": artist},{
-                                            $set: {"tabArtistesPref.$.valence":valence,"tabArtistesPref.$.activation":activation}},function(error,response){
-                                            if (error)  throw error;
-                                            console.log("tunetables modifiées : "+valence+ " - "+activation);
-                                        });
-                                    }
                                 } else {  // si il y a dance on ajoute la tunetable (on enlève les autres si il n'y a que ça)
                                     dance = true;
                                     if (nbMood == 1) {
                                         db.collection("user").update({_id: user, "tabArtistesPref.id": artist},{
                                             $unset: {"tabArtistesPref.$.activation":1,"tabArtistesPref.$.valence":1}},function(error,response){
                                             if (error)  throw error;
-                                            console.log("valence et activation supprimées");
+                                            console.log("valence et activation supprimées car aucun emoji sélectionné");
+                                            console.log("******************************\n");
                                         });
                                     }
                                     db.collection("user").update({_id: user, "tabArtistesPref.id": artist},{
                                         $set: {"tabArtistesPref.$.danceability":response[0].danceability}},function(error,response){
                                         if (error)  throw error;
-                                        console.log("danceability set");
+                                    });
+                                }
+                                // quand c'est le dernier aller retour vers la BDD on passe à la suite
+                                if (compteur_mood == nbMood) {
+
+                                    // Enlever la tunetable dance si elle n'est plus sélectionnée
+                                    if (!dance) {
+                                        db.collection("user").update({_id: user, "tabArtistesPref.id": artist},{
+                                            $unset: {"tabArtistesPref.$.danceability":1}},function(error,response){
+                                            if (error)  throw error;
+                                            // console.log("dansabilité supprimée");
+                                        });
+                                    }
+                                    valence = dance ? valence/(nbMood-1) : valence/nbMood;
+                                    activation = dance ? activation/(nbMood-1) : activation/nbMood;
+
+                                    // Modifier l'artiste pref avec la valence et l'activation calculée
+                                    db.collection("user").update({_id: user, "tabArtistesPref.id": artist},{
+                                        $set: {"tabArtistesPref.$.valence":valence,"tabArtistesPref.$.activation":activation}},function(error,response){
+                                        if (error)  throw error;
+                                        console.log("nouvelle valence de l'artiste : "+valence);
+                                        console.log("nouvelle activation de l'artiste : "+activation);
+                                        console.log("******************************\n");
                                     });
                                 }
                             });
@@ -420,8 +428,9 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                         db.collection("user").update({_id: user, "tabArtistesPref.id": artist},{
                             $unset: {"tabArtistesPref.$.danceability":1,"tabArtistesPref.$.activation":1,"tabArtistesPref.$.valence":1}},function(error,response){
                             if (error)  throw error;
-                            console.log("toutes les tunetables supprimées");
+                            console.log("Plus d'emoji pour cet artiste. Tunetables supprimées.");
                             res.send({state: "tunetables supprimées"});
+                            console.log("******************************\n");
                         });
                     }
                 }
@@ -431,6 +440,8 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
 
 // Return to the client an array of artists ID that match with the given mood(s)
     app.get('/getArtistsFromMood', function(req,res) {
+        console.log("******************************");
+        console.log("Création d'une nouvelle playlist pour l'utilisateur "+req.session.global_user_id+"...");
         req.session.nom_playlist = req.query.nom_playlist ? req.query.nom_playlist : req.query.mood;
         req.session.global_user_id = req.query.user;
         var user = req.query.user;
@@ -447,8 +458,13 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         db.collection("user").find({_id: user}).toArray(function(error, response) {
             var artistesPrefs = response['0'].tabArtistesPref;
 
-            if (artistesPrefs.length == 0) res.send({error: "Pas d'artiste représentant cette émotion. Ajoutez d'abord des artistes et choisissez des émotions."});
+            if (artistesPrefs.length == 0) {
+                res.send({error: "Pas d'artiste représentant cette émotion. Ajoutez d'abord des artistes et choisissez des émotions."});
+                console.log("ERREUR : Aucun artiste pour l'utilisateur.");
+                console.log("******************************\n");
+            }
             else {
+                console.log("Recherche des artistes proches")
                 var artiste_proche;
                 var ecartAbsolu;
                 do {
@@ -464,7 +480,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                         }
                     }
                     if (artiste_proche) {
-                        console.log("Artiste proche définitif : " + artiste_proche.name + " avec un écart de " + ecartAbsolu);
+                        console.log("Artiste proche "+tabIdArtists.length+" : " + artiste_proche.name + " avec un écart de " + ecartAbsolu);
                         // traitement sur les tableaux avant de recommencer
                         tabIdArtists.push(artiste_proche.id); // ajouter l'artiste au tableau
                         tabNameArtists.push(artiste_proche.name);
@@ -472,13 +488,14 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                     } else {
                         var error_throwed = true;
                         res.send({error: "Pas assez d'émotions sélectionnées. Ajoutez d'abord des émotions aux artistes."});
+                        console.log("ERREUR : Pas assez d'émotions sélectionnées.");
+                        console.log("******************************\n");
                     }
                 } while (ecartAbsolu < 0.5 && tabIdArtists.length < 5) // On ne met pas d'artiste inutilement ni trop
                 if(ecartAbsolu > 0.5 && tabIdArtists.length > 1) { // Supprimer l'artiste qui a un trop grand écart si on peut
                     console.log("écart de " + tabNameArtists[tabNameArtists.length-1] + " trop élevé");
                     tabIdArtists.pop();
                     tabNameArtists.pop();
-                    for (var i = 0; i < tabNameArtists.length; i++) console.log("artistes définitifs : "+tabNameArtists[i]);
                 }
                 if (!error_throwed) {
                     req.session.artistesProches = JSON.parse(JSON.stringify(tabNameArtists));
@@ -526,8 +543,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         var genre = [];
         req.session.tunetables = JSON.parse(req.query.tunetables);
 
-        console.log("Artistes = "+artists);
-        console.log("tunetables = "+JSON.stringify(tunetables));
+        console.log("Tunetables = "+JSON.stringify(tunetables));
 
         RecommendationGenerator.RecommendationRequest(artists,[],genre, tunetables,limitTrack,function(data){
             // Put the musics got in the session because there's too many musics to pass them by the url...
@@ -539,7 +555,6 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
     // Crée une playlist
     app.get('/create_playlist', function(req,res) {
         // parameters
-        console.log("user id : " +req.session.global_user_id);
         var playlistOptions = {
             url: 'https://api.spotify.com/v1/users/'+req.session.global_user_id+'/playlists',
             headers: {'Authorization': 'Bearer ' + req.session.global_access_token},
@@ -553,6 +568,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                 _id: body.id,
                 name: body.name,
                 id_user: req.session.global_user_id,
+                time: 0,
                 tunetables: req.session.tunetables,
                 artists: req.session.artistesProches
             }, function(error,response) {
@@ -574,7 +590,8 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         var uriMusics = new Array();
         for (var i=0; i< musics.tracks.length; i++) // Mettre une ',' sauf si c'est le dernier
             uriMusics.push(musics.tracks[i].uri);
-        console.log("Id de la playlist "+JSONplaylistObject.id);
+        console.log("Id de la playlist : "+JSONplaylistObject.id);
+        console.log("******************************\n");
         var addTracksOptions = {
             url: 'https://api.spotify.com/v1/users/'+req.session.global_user_id+'/playlists/'+JSONplaylistObject.id+'/tracks',
             body: JSON.stringify({"uris": uriMusics}),
@@ -582,8 +599,8 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         }
         request.post(addTracksOptions, function(error,response,body) {
             if (error)  throw error;
-            console.log(body);
-            //res.redirect(JSONplaylistObject.external_urls.spotify);
+            // console.log(body);
+            // res.redirect(JSONplaylistObject.external_urls.spotify);
             res.send({moodmusicRecommendation: JSONplaylistObject});
         });
     });
@@ -592,12 +609,13 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
     app.get('/addArtistPref', function(req,res) {
         var artist = req.query.name;
         var user = req.query.user;
-        console.log(user+ " " + artist);
+        console.log("******************************");
+        console.log("Ajout d'un nouvel artiste: "+artist+" pour l'utilisateur "+user);
 
         IdArtistsGenerator.IdRequest([artist],function(data){
             var json = JSON.parse(data);
             var artist = json.artists.items['0'];
-            console.log(json.artists.items['0']);
+            //console.log(json.artists.items['0']);
             if (!artist)  res.send({state: "L'artiste n'a pas été trouvé !"});
             else {
                 // Ajouter l'artiste préféré s'il n'existe pas
@@ -625,7 +643,8 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                                 }
                             }, function (error, response) {
                                 if (error) throw error;
-                                console.log("succes ajout");
+                                console.log("Succes ajout");
+                                console.log("******************************\n");
                                 res.redirect('/getCurrentUserInfos?user=' + user);
                             }
                         );
@@ -650,6 +669,9 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
             }
         }, function(error,response) {
             if (error) throw error;
+            console.log("******************************");
+            console.log(user+ " a supprimé l'artiste "+artist);
+            console.log("******************************\n");
             //res.send({state: "artiste supprimé !"});
             res.redirect('/getCurrentUserInfos?user='+user);
         });

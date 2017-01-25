@@ -47,7 +47,7 @@
     lyricsPlaceholder.innerHTML = lyricsTemplate();
     //view_connexion();
     if (error) {
-        alert('There was an error during the authentication');
+        alert('Désolé il y a eu une erreur... Recommencez, promis ça marchera :)');
         // render initial screen
         $('#login').show();
         $('#loggedin').hide();
