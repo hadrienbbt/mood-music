@@ -2,20 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="812f24d3-dbcd-4dc2-b8bf-784903233c5b" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/collection-0--3444353987612515557.wt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/collection-0--5777677700233186971.wt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/collection-0-4724928895187386827.wt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/collection-0-5991749061705603777.wt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/collection-2--3444353987612515557.wt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/collection-2--5777677700233186971.wt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/index-1--3444353987612515557.wt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/index-1--5777677700233186971.wt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/index-1-4724928895187386827.wt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/index-1-5991749061705603777.wt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/index-3--3444353987612515557.wt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/index-3--5777677700233186971.wt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dump/moodmusic/mood.bson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dump/moodmusic/mood.metadata.json" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/WiredTiger.wt" afterPath="$PROJECT_DIR$/db/WiredTiger.wt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/journal/WiredTigerLog.0000000012" afterPath="$PROJECT_DIR$/db/journal/WiredTigerLog.0000000012" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/collection-0--5777677700233186971.wt" afterPath="$PROJECT_DIR$/db/collection-0--5777677700233186971.wt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/collection-0-4724928895187386827.wt" afterPath="$PROJECT_DIR$/db/collection-0-4724928895187386827.wt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/collection-2--3444353987612515557.wt" afterPath="$PROJECT_DIR$/db/collection-2--3444353987612515557.wt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/index-1--5777677700233186971.wt" afterPath="$PROJECT_DIR$/db/index-1--5777677700233186971.wt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/index-3--3444353987612515557.wt" afterPath="$PROJECT_DIR$/db/index-3--3444353987612515557.wt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/_mdb_catalog.wt" afterPath="$PROJECT_DIR$/db/_mdb_catalog.wt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/diagnostic.data/metrics.2017-01-18T15-17-44Z-00000" afterPath="$PROJECT_DIR$/db/diagnostic.data/metrics.2017-01-18T15-17-44Z-00000" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/diagnostic.data/metrics.interim" afterPath="$PROJECT_DIR$/db/diagnostic.data/metrics.interim" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/sizeStorer.wt" afterPath="$PROJECT_DIR$/db/sizeStorer.wt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/WiredTiger.turtle" afterPath="$PROJECT_DIR$/db/WiredTiger.turtle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/index.js" afterPath="$PROJECT_DIR$/public/js/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/functionMoodMusic.js" afterPath="$PROJECT_DIR$/public/js/functionMoodMusic.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Test_moodMusic.iws" />
@@ -44,16 +54,55 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.60730594" vertical-offset="5933" max-vertical-offset="9795">
-              <caret line="490" column="81" selection-start-line="490" selection-start-column="81" selection-end-line="490" selection-end-column="81" />
+            <state vertical-scroll-proportion="0.50342464" vertical-offset="1419" max-vertical-offset="2295">
+              <caret line="779" column="55" selection-start-line="779" selection-start-column="55" selection-end-line="779" selection-end-column="55" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#3733#4263#0" expanded="false" />
-                <element signature="e#11241#12057#0" expanded="false" />
-                <element signature="e#12181#12873#0" expanded="false" />
-                <element signature="e#14408#14605#0" expanded="false" />
-                <element signature="e#27334#27999#0" expanded="false" />
+                <element signature="e#2044#3751#0" expanded="false" />
+                <element signature="e#3793#4323#0" expanded="false" />
+                <element signature="e#4370#11002#0" expanded="false" />
+                <element signature="e#11060#11321#0" expanded="false" />
+                <element signature="e#11373#12189#0" expanded="false" />
+                <element signature="e#12312#13004#0" expanded="false" />
+                <element signature="e#13279#14491#0" expanded="false" />
+                <element signature="e#14537#14734#0" expanded="false" />
+                <element signature="e#14849#16055#0" expanded="false" />
+                <element signature="e#16181#21948#0" expanded="false" />
+                <element signature="e#22086#27321#0" expanded="false" />
+                <element signature="e#27467#28132#0" expanded="false" />
+                <element signature="e#28211#29325#0" expanded="false" />
+                <element signature="e#29424#30517#0" expanded="false" />
+                <element signature="e#30619#33841#0" expanded="false" />
+                <element signature="e#33896#34579#0" expanded="false" />
+                <element signature="e#34627#34974#0" expanded="false" />
+                <element signature="e#35031#35950#0" expanded="false" />
+                <element signature="e#36320#37549#0" expanded="false" />
+                <element signature="e#37677#38609#0" expanded="false" />
+                <element signature="e#38686#38719#0" expanded="false" />
+                <element signature="e#38855#39625#0" expanded="false" />
+                <element signature="e#39847#41912#0" expanded="false" />
+                <element signature="e#42023#47141#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="330">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test-rest.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/test-rest.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-22.73077" vertical-offset="759" max-vertical-offset="1635">
+              <caret line="90" column="6" selection-start-line="90" selection-start-column="6" selection-end-line="90" selection-end-column="6" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -61,8 +110,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.7307692" vertical-offset="638" max-vertical-offset="3000">
-              <caret line="49" column="23" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
+            <state vertical-scroll-proportion="-18.153847" vertical-offset="638" max-vertical-offset="3000">
+              <caret line="74" column="42" selection-start-line="74" selection-start-column="42" selection-end-line="74" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -71,13 +120,11 @@
       <file leaf-file-name="functionMoodMusic.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/functionMoodMusic.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.863636" vertical-offset="105" max-vertical-offset="3690">
-              <caret line="67" column="49" selection-start-line="67" selection-start-column="49" selection-end-line="67" selection-end-column="49" />
+            <state vertical-scroll-proportion="-11.230769" vertical-offset="2993" max-vertical-offset="4350">
+              <caret line="230" column="26" selection-start-line="230" selection-start-column="24" selection-end-line="230" selection-end-column="26" />
               <folding>
                 <element signature="n#!!block;n#moyenne#0" expanded="false" />
-                <element signature="n#!!block;n#afficherMeteo#0" expanded="false" />
                 <element signature="n#!!block;n#initMoodEval#0" expanded="false" />
-                <element signature="n#!!block;n#animateButtonPlaylist#0" expanded="false" />
                 <element signature="n#!!block;n#afficherCalibrage#0" expanded="false" />
                 <element signature="n#!!block;n#afficherArtisteSuivant#0" expanded="false" />
                 <element signature="n#!!block;n#afficherAjoutArtiste#0" expanded="false" />
@@ -93,8 +140,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.538462" vertical-offset="6136" max-vertical-offset="7800">
-              <caret line="436" column="33" selection-start-line="436" selection-start-column="33" selection-end-line="436" selection-end-column="33" />
+            <state vertical-scroll-proportion="-8.923077" vertical-offset="2633" max-vertical-offset="7920">
+              <caret line="191" column="19" selection-start-line="191" selection-start-column="19" selection-end-line="191" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -103,7 +150,7 @@
       <file leaf-file-name="RecommendationRequest.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/class/RecommendationRequest.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="2130">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1155" max-vertical-offset="2130">
               <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
@@ -123,7 +170,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.12" vertical-offset="624" max-vertical-offset="4050">
+            <state vertical-scroll-proportion="-21.6" vertical-offset="0" max-vertical-offset="4050">
               <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -178,18 +225,21 @@
         <option value="$PROJECT_DIR$/moodmusic/www/js/functionMoodMusic.js" />
         <option value="$PROJECT_DIR$/public/js/render.js" />
         <option value="$PROJECT_DIR$/public/css/connexion/connexion.css" />
-        <option value="$PROJECT_DIR$/public/js/functionMoodMusic.js" />
-        <option value="$PROJECT_DIR$/public/css/style.css" />
         <option value="$PROJECT_DIR$/public/js/index.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/public/js/functionMoodMusic.js" />
+        <option value="$PROJECT_DIR$/public/css/style.css" />
+        <option value="$PROJECT_DIR$/monkey-patch/respond.js" />
+        <option value="$PROJECT_DIR$/test/test-rest.js" />
+        <option value="$PROJECT_DIR$/js/api.js" />
         <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="622" />
-    <option name="width" value="1058" />
+    <option name="x" value="619" />
+    <option name="width" value="1061" />
     <option name="height" value="1045" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -199,7 +249,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="1" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -247,105 +297,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moodmusic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moodmusic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moodmusic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moodmusic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="class" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moodmusic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moodmusic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moodmusic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moodmusic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moodmusic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moodmusic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="connexion" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -367,6 +319,7 @@
       <recent name="$PROJECT_DIR$/moodmusic/platforms/ios/moodmusic/Images.xcassets/AppIcon.appiconset" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/js" />
       <recent name="$PROJECT_DIR$/public/css" />
       <recent name="$PROJECT_DIR$/moodmusic/www/js" />
       <recent name="$PROJECT_DIR$" />
@@ -415,26 +368,26 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="622" y="0" width="1058" height="1045" extended-state="0" />
+    <frame x="619" y="0" width="1061" height="1045" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20314136" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32948583" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24937344" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18700787" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1373896" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32948583" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
@@ -478,77 +431,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="29" />
+      <option name="time" value="35" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="6945" max-vertical-offset="7725">
-          <caret line="541" column="52" selection-start-line="541" selection-start-column="52" selection-end-line="541" selection-end-column="52" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#3733#4263#0" expanded="false" />
-            <element signature="e#11241#12057#0" expanded="false" />
-            <element signature="e#12181#12873#0" expanded="false" />
-            <element signature="e#14408#14605#0" expanded="false" />
-            <element signature="e#27334#27999#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2370">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="tag#script#2;tag#body#0;tag#html#0" expanded="false" />
-            <element signature="tag#script#3;tag#body#0;tag#html#0" expanded="false" />
-            <element signature="tag#script#4;tag#body#0;tag#html#0" expanded="false" />
-            <element signature="tag#script#6;tag#body#0;tag#html#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/moodmusic/www/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="525">
-          <caret line="30" column="48" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2180" max-vertical-offset="4635">
-          <caret line="166" column="1" selection-start-line="166" selection-start-column="1" selection-end-line="166" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/functionMoodMusic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3320" max-vertical-offset="4290">
-          <caret line="223" column="35" selection-start-line="223" selection-start-column="35" selection-end-line="223" selection-end-column="35" />
-          <folding>
-            <element signature="n#!!block;n#moyenne#0" expanded="false" />
-            <element signature="n#!!block;n#afficherMeteo#0" expanded="false" />
-            <element signature="n#!!block;n#initMoodEval#0" expanded="false" />
-            <element signature="n#!!block;n#animateButtonPlaylist#0" expanded="false" />
-            <element signature="n#!!block;n#afficherCalibrage#0" expanded="false" />
-            <element signature="n#!!block;n#afficherArtisteSuivant#0" expanded="false" />
-            <element signature="n#!!block;n#afficherAjoutArtiste#0" expanded="false" />
-            <element signature="n#!!block;n#eventListenerAddArtist#0" expanded="false" />
-            <element signature="n#!!block;n#eventListenerSupprArtist#0" expanded="false" />
-            <element signature="n#!!block;n#eventListenerValiderCalibrage#0" expanded="false" />
-            <element signature="n#!!block;n#eventListenerEmojiSelect#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/moodmusic/www/js/functionMoodMusic.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2929" max-vertical-offset="3810">
@@ -599,11 +486,30 @@
           <caret line="299" column="0" selection-start-line="299" selection-start-column="0" selection-end-line="299" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#3733#4263#0" expanded="false" />
-            <element signature="e#11241#12057#0" expanded="false" />
-            <element signature="e#12181#12873#0" expanded="false" />
-            <element signature="e#14408#14605#0" expanded="false" />
-            <element signature="e#27334#27999#0" expanded="false" />
+            <element signature="e#2044#3751#0" expanded="false" />
+            <element signature="e#3793#4323#0" expanded="false" />
+            <element signature="e#4370#11002#0" expanded="false" />
+            <element signature="e#11060#11321#0" expanded="false" />
+            <element signature="e#11373#12189#0" expanded="false" />
+            <element signature="e#12312#13004#0" expanded="false" />
+            <element signature="e#13279#14491#0" expanded="false" />
+            <element signature="e#14537#14734#0" expanded="false" />
+            <element signature="e#14849#16055#0" expanded="false" />
+            <element signature="e#16181#21948#0" expanded="false" />
+            <element signature="e#22086#27321#0" expanded="false" />
+            <element signature="e#27467#28132#0" expanded="false" />
+            <element signature="e#28211#29325#0" expanded="false" />
+            <element signature="e#29424#30517#0" expanded="false" />
+            <element signature="e#30619#33841#0" expanded="false" />
+            <element signature="e#33896#34579#0" expanded="false" />
+            <element signature="e#34627#34974#0" expanded="false" />
+            <element signature="e#35031#35950#0" expanded="false" />
+            <element signature="e#36320#37549#0" expanded="false" />
+            <element signature="e#37677#38609#0" expanded="false" />
+            <element signature="e#38686#38719#0" expanded="false" />
+            <element signature="e#38855#39625#0" expanded="false" />
+            <element signature="e#39847#41912#0" expanded="false" />
+            <element signature="e#42023#47141#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -652,11 +558,30 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#3733#4263#0" expanded="false" />
-            <element signature="e#11241#12057#0" expanded="false" />
-            <element signature="e#12181#12873#0" expanded="false" />
-            <element signature="e#14408#14605#0" expanded="false" />
-            <element signature="e#27334#27999#0" expanded="false" />
+            <element signature="e#2044#3751#0" expanded="false" />
+            <element signature="e#3793#4323#0" expanded="false" />
+            <element signature="e#4370#11002#0" expanded="false" />
+            <element signature="e#11060#11321#0" expanded="false" />
+            <element signature="e#11373#12189#0" expanded="false" />
+            <element signature="e#12312#13004#0" expanded="false" />
+            <element signature="e#13279#14491#0" expanded="false" />
+            <element signature="e#14537#14734#0" expanded="false" />
+            <element signature="e#14849#16055#0" expanded="false" />
+            <element signature="e#16181#21948#0" expanded="false" />
+            <element signature="e#22086#27321#0" expanded="false" />
+            <element signature="e#27467#28132#0" expanded="false" />
+            <element signature="e#28211#29325#0" expanded="false" />
+            <element signature="e#29424#30517#0" expanded="false" />
+            <element signature="e#30619#33841#0" expanded="false" />
+            <element signature="e#33896#34579#0" expanded="false" />
+            <element signature="e#34627#34974#0" expanded="false" />
+            <element signature="e#35031#35950#0" expanded="false" />
+            <element signature="e#36320#37549#0" expanded="false" />
+            <element signature="e#37677#38609#0" expanded="false" />
+            <element signature="e#38686#38719#0" expanded="false" />
+            <element signature="e#38855#39625#0" expanded="false" />
+            <element signature="e#39847#41912#0" expanded="false" />
+            <element signature="e#42023#47141#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -683,11 +608,30 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#3733#4263#0" expanded="false" />
-            <element signature="e#11241#12057#0" expanded="false" />
-            <element signature="e#12181#12873#0" expanded="false" />
-            <element signature="e#14408#14605#0" expanded="false" />
-            <element signature="e#27334#27999#0" expanded="false" />
+            <element signature="e#2044#3751#0" expanded="false" />
+            <element signature="e#3793#4323#0" expanded="false" />
+            <element signature="e#4370#11002#0" expanded="false" />
+            <element signature="e#11060#11321#0" expanded="false" />
+            <element signature="e#11373#12189#0" expanded="false" />
+            <element signature="e#12312#13004#0" expanded="false" />
+            <element signature="e#13279#14491#0" expanded="false" />
+            <element signature="e#14537#14734#0" expanded="false" />
+            <element signature="e#14849#16055#0" expanded="false" />
+            <element signature="e#16181#21948#0" expanded="false" />
+            <element signature="e#22086#27321#0" expanded="false" />
+            <element signature="e#27467#28132#0" expanded="false" />
+            <element signature="e#28211#29325#0" expanded="false" />
+            <element signature="e#29424#30517#0" expanded="false" />
+            <element signature="e#30619#33841#0" expanded="false" />
+            <element signature="e#33896#34579#0" expanded="false" />
+            <element signature="e#34627#34974#0" expanded="false" />
+            <element signature="e#35031#35950#0" expanded="false" />
+            <element signature="e#36320#37549#0" expanded="false" />
+            <element signature="e#37677#38609#0" expanded="false" />
+            <element signature="e#38686#38719#0" expanded="false" />
+            <element signature="e#38855#39625#0" expanded="false" />
+            <element signature="e#39847#41912#0" expanded="false" />
+            <element signature="e#42023#47141#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -869,33 +813,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.538462" vertical-offset="6136" max-vertical-offset="7800">
-          <caret line="436" column="33" selection-start-line="436" selection-start-column="33" selection-end-line="436" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/class/RecommendationRequest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="2130">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.7307692" vertical-offset="638" max-vertical-offset="3000">
-          <caret line="49" column="23" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.12" vertical-offset="624" max-vertical-offset="4050">
+        <state vertical-scroll-proportion="-21.6" vertical-offset="0" max-vertical-offset="4050">
           <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -909,15 +829,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.153847" vertical-offset="638" max-vertical-offset="3000">
+          <caret line="74" column="42" selection-start-line="74" selection-start-column="42" selection-end-line="74" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.923077" vertical-offset="2633" max-vertical-offset="7920">
+          <caret line="191" column="19" selection-start-line="191" selection-start-column="19" selection-end-line="191" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/functionMoodMusic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.863636" vertical-offset="105" max-vertical-offset="3690">
-          <caret line="67" column="49" selection-start-line="67" selection-start-column="49" selection-end-line="67" selection-end-column="49" />
+        <state vertical-scroll-proportion="-11.230769" vertical-offset="2993" max-vertical-offset="4350">
+          <caret line="230" column="26" selection-start-line="230" selection-start-column="24" selection-end-line="230" selection-end-column="26" />
           <folding>
             <element signature="n#!!block;n#moyenne#0" expanded="false" />
-            <element signature="n#!!block;n#afficherMeteo#0" expanded="false" />
             <element signature="n#!!block;n#initMoodEval#0" expanded="false" />
-            <element signature="n#!!block;n#animateButtonPlaylist#0" expanded="false" />
             <element signature="n#!!block;n#afficherCalibrage#0" expanded="false" />
             <element signature="n#!!block;n#afficherArtisteSuivant#0" expanded="false" />
             <element signature="n#!!block;n#afficherAjoutArtiste#0" expanded="false" />
@@ -929,17 +863,78 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/PC.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2145">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/response.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41574278" vertical-offset="0" max-vertical-offset="902">
+          <caret line="27" column="2" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#43#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test-rest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.73077" vertical-offset="759" max-vertical-offset="1635">
+          <caret line="90" column="6" selection-start-line="90" selection-start-column="6" selection-end-line="90" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/class/RecommendationRequest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1155" max-vertical-offset="2130">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="902">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60730594" vertical-offset="5933" max-vertical-offset="9795">
-          <caret line="490" column="81" selection-start-line="490" selection-start-column="81" selection-end-line="490" selection-end-column="81" />
+        <state vertical-scroll-proportion="0.50342464" vertical-offset="1419" max-vertical-offset="2295">
+          <caret line="779" column="55" selection-start-line="779" selection-start-column="55" selection-end-line="779" selection-end-column="55" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#3733#4263#0" expanded="false" />
-            <element signature="e#11241#12057#0" expanded="false" />
-            <element signature="e#12181#12873#0" expanded="false" />
-            <element signature="e#14408#14605#0" expanded="false" />
-            <element signature="e#27334#27999#0" expanded="false" />
+            <element signature="e#2044#3751#0" expanded="false" />
+            <element signature="e#3793#4323#0" expanded="false" />
+            <element signature="e#4370#11002#0" expanded="false" />
+            <element signature="e#11060#11321#0" expanded="false" />
+            <element signature="e#11373#12189#0" expanded="false" />
+            <element signature="e#12312#13004#0" expanded="false" />
+            <element signature="e#13279#14491#0" expanded="false" />
+            <element signature="e#14537#14734#0" expanded="false" />
+            <element signature="e#14849#16055#0" expanded="false" />
+            <element signature="e#16181#21948#0" expanded="false" />
+            <element signature="e#22086#27321#0" expanded="false" />
+            <element signature="e#27467#28132#0" expanded="false" />
+            <element signature="e#28211#29325#0" expanded="false" />
+            <element signature="e#29424#30517#0" expanded="false" />
+            <element signature="e#30619#33841#0" expanded="false" />
+            <element signature="e#33896#34579#0" expanded="false" />
+            <element signature="e#34627#34974#0" expanded="false" />
+            <element signature="e#35031#35950#0" expanded="false" />
+            <element signature="e#36320#37549#0" expanded="false" />
+            <element signature="e#37677#38609#0" expanded="false" />
+            <element signature="e#38686#38719#0" expanded="false" />
+            <element signature="e#38855#39625#0" expanded="false" />
+            <element signature="e#39847#41912#0" expanded="false" />
+            <element signature="e#42023#47141#0" expanded="false" />
           </folding>
         </state>
       </provider>

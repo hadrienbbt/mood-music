@@ -69,18 +69,28 @@ function processTunetables() {
                     nbSliders++;
                     break;
                 case 'tired' :
-                    tunetables['energy'][nbSliders] = (0.625 * (1-x));
-                    tunetables['valence'][nbSliders] = (0.75 - x * 0.625);
+                    tunetables['energy'][nbSliders] = (0.375 * (1-x));
+                    tunetables['valence'][nbSliders] = (0.75 - x * 0.5);
                     nbSliders++;
                     break;
                 case 'serene' :
-                    tunetables['energy'][nbSliders] = (0.125 + x * 0.375);
-                    tunetables['valence'][nbSliders] = (0.625 + x * 0.375);
+                    tunetables['energy'][nbSliders] = (0.375 - x * 0.25);
+                    tunetables['valence'][nbSliders] = (0.625 - x * 0.375);
                     nbSliders++;
                     break;
                 case 'upset' :
                     tunetables['energy'][nbSliders] = (0.75 + x * 0.25);
                     tunetables['valence'][nbSliders] = (0.5 * (1-x));
+                    nbSliders++;
+                    break;
+                case 'happy' :
+                    tunetables['energy'][nbSliders] = (0.375 + x * 0.25);
+                    tunetables['valence'][nbSliders] = (0.5 + x * 0.5);
+                    nbSliders++;
+                    break;
+                case 'nostalgic' :
+                    tunetables['energy'][nbSliders] = (0.375 * (1+x));
+                    tunetables['valence'][nbSliders] = (0.5 - x * 0.25);
                     nbSliders++;
                     break;
             }
@@ -184,8 +194,8 @@ function afficherArtistesPrefs(current_user) {
                     sliders.push( $("#"+state+"-slider").slider({
                         orientation: 'vertical',
                         min: 0,
-                        max: 1.07,
-                        value: 0.5,
+                        max: 1.1,
+                        value: 0.55,
                         step: 0.01,
                         reversed : true
                     }) );

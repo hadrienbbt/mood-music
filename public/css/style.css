@@ -177,24 +177,25 @@
 
 @media screen and (min-width: 1200px) {
     .container-artist {
-        width: 30%;
+        width: 24%;
     }
 }
 
 @media screen and (max-width: 1200px) and (min-width: 990px) {
     .container-artist {
-        width: 37%;
+        width: 28%;
     }
 }
 
 @media screen and (max-width: 990px) and (min-width: 650px) {
     .container-artist {
-        width: 49%;
+        width: 42%;
     }
 }
 
 .on {
     background: lightgray;
+    /*box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);*/
 }
 
 .mood-with-slider {
@@ -225,12 +226,11 @@
 .emoji-select, .emoji-mood-select {
     cursor: pointer;
     border-radius: 10px;
-    margin: 3px;
-    width: 30px;
-    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
     text-align: center;
-    padding: 1px;
-    margin-bottom: -5px;
+    padding-top: 3px;
     transition-duration: .25s;
     transition-timing-function: ease-in-out;
 }
@@ -249,7 +249,7 @@
 
 .slider {
     background-color: #ffffff;
-    height: 150px !important;
+    height: 100px !important;
 }
 
 .slider-mood {
@@ -344,7 +344,15 @@ hr {
 }
 
 .emoji-bar {
+    margin: auto;
     margin-top: 20px;
+    width: 230px;
+}
+
+@media screen and (min-width: 420px) {
+    #mood-select {
+        width: inherit;
+    }
 }
 
 .button-removeArtistPref {
@@ -422,7 +430,7 @@ hr {
     font-size: 65%;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 510px) {
     .label {
         letter-spacing: 0px;
     }
@@ -436,13 +444,13 @@ hr {
 
 @media screen and (max-width: 360px) {
     .container-emoji-demo {
-        width: 40px;
+        width: 45px;
     }
 }
 
 @media screen and (max-width: 500px) {
     .jauger-mood {
-        width: 43px;
+        width: 50px;
     }
 }
 

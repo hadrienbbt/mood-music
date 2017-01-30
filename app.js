@@ -12,12 +12,16 @@ var RecommendationGenerator = require('./public/js/class/RecommendationRequest')
 var IdArtistsGenerator = require('./public/js/class/IdRequest');
 var user = require('./public/js/class/User.js');
 
+// Module dependencies
+require('./js/response.js');
+
 var client_id = 'a3b5315e6cdd4583acfc54f639aeb020'; // Your client id
 var client_secret = '2e9b13f3f48f4cc5b8d637c699cc2bc7'; // Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 //var redirect_uri = 'http://moodmusic.fr/callback'; // Your redirect uri
 var key_weather = 'e6953ed25cc6095a';
 var limitTopArtistsPerUser = "15";
+var port = 8888;
 
 /**
  * Generates a random string containing numbers and letters
@@ -38,7 +42,6 @@ var stateKey = 'spotify_auth_state';
 
 var app = express();
 var db;
-var idUser;
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -56,7 +59,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         .use(cookieParser())
         .use(session({secret: 'ssshhhhh'}));
 
-    app.get('/checkSpotifySession', function(req, res) {
+   /* app.get('/checkSpotifySession', function(req,res) {
         idUser = req.query.id;
         var name = req.query.name;
         console.log(idUser + " " + name);
@@ -92,9 +95,9 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                 });
             }
         });
-    });
+    });*/
 
-    app.get('/login', function(req, res) {
+    app.get('/login', function(req,res) {
         var state = generateRandomString(16);
         res.cookie(stateKey, state);
 
@@ -110,7 +113,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         }));
     });
 
-    app.get('/callback', function(req, res) {
+    app.get('/callback', function(req,res) {
 
         // your application requests refresh and access tokens
         // after checking the state parameter
@@ -201,7 +204,8 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                                                 [],               // represents a sort order if multiple matches
                                                 { $set: {
                                                     name: artist.name,
-                                                    popularity: artist.popularity
+                                                    popularity: artist.popularity,
+                                                    genres: artist.genres
                                                 } },   // update statement
                                                 { new: true, upsert: true },    // options - new to return the modified document
                                                 function(err,doc) {
@@ -233,7 +237,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         }
     });
 
-    app.get('/getCurrentUserInfos', function(req, res) {
+    app.get('/getCurrentUserInfos', function(req,res) {
         var user = req.query.user;
         db.collection("user").find({_id: user}, {_id: 0, tabArtistesPref: 1}).toArray(function(error, response) {
             var result = JSON.parse(JSON.stringify(response));
@@ -241,7 +245,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         });
     });
 
-    app.get('/refresh_token', function(req, res) {
+    app.get('/refresh_token', function(req,res) {
         // requesting access token from refresh token
         var refresh_token = req.query.refresh_token;
         var authOptions = {
@@ -266,7 +270,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
     });
 
 // Exemple de récupération des ids Spotify d'un tableau d'artistes (string)
-    app.get('/IdArtist', function(req, res) {
+    app.get('/IdArtist', function(req,res) {
         var tabId = [];
         var i = 0;
         var length = 4;
@@ -289,7 +293,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
 // Recommandation moodmusic
 // Fonctionnalité qui permet d'obtenir n chansons en fonction d'artistes, de styles, de musiques mais aussi d'émotions
 // Voir la classe RecommendationGenerator pour plus d'informations
-    app.get('/moodmusicRecommendation', function(req, res){
+    app.get('/moodmusicRecommendation', function(req,res){
         var tabId = []; // Tableau des id à passer au constructeur de RecommendationRequest
         var i = 0;
         var artists = req.query.artists;
@@ -316,7 +320,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         }).sendRequest(req.session.global_access_token);
     });
 
-    app.get('/getMoods', function(req, res){
+    app.get('/getMoods', function(req,res){
         db.collection("mood").find().sort({ordre:1}).toArray(function(error, moods){
             var moodsJSON = JSON.stringify({moods: moods});
             res.send(moodsJSON);
@@ -324,7 +328,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
     });
 
     // Called when a mood is assigned to an artist by an user
-    app.get('/addMoodToArtist', function(req, res){
+    app.get('/addMoodToArtist', function(req,res){
         console.log("******************************");
         var artist = req.query.artist;
         var mood = req.query.mood;
@@ -380,8 +384,8 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                                 if (response[0].state != 'dance') {
                                     valence += parseFloat(response[0].valence);
                                     activation += parseFloat(response[0].activation);
-                                    console.log (response[0].state+ " a pour valence "+response[0].valence+" ,et pour activation "+response[0].activation);
-                                    console.log(compteur_mood+" - "+nbMood);
+                                    //console.log (response[0].state+ " a pour valence "+response[0].valence+" ,et pour activation "+response[0].activation);
+                                    //console.log(compteur_mood+" - "+nbMood);
 
                                 } else {  // si il y a dance on ajoute la tunetable (on enlève les autres si il n'y a que ça)
                                     dance = true;
@@ -440,14 +444,15 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
 
 // Return to the client an array of artists ID that match with the given mood(s)
     app.get('/getArtistsFromMood', function(req,res) {
-        console.log("******************************");
-        console.log("Création d'une nouvelle playlist pour l'utilisateur "+req.session.global_user_id+"...");
         req.session.nom_playlist = req.query.nom_playlist ? req.query.nom_playlist : req.query.mood;
         req.session.global_user_id = req.query.user;
         var user = req.query.user;
         var tunetables = JSON.stringify(req.query.tunetables);
         var tabIdArtists = new Array();
         var tabNameArtists = [];
+
+        console.log("******************************");
+        console.log("Création d'une nouvelle playlist pour l'utilisateur "+req.session.global_user_id+"...");
 
         // Tunetables
         var valence_base = req.query.tunetables.valence;
@@ -625,9 +630,24 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
                         var present = false;
                         for (var i = 0; i < artistesPrefs.length; i++)
                             if (artistesPrefs[i].id == artist.id) present = true;
-
                     }
                     if (!present) {
+
+                        // Add artists to moodmusics if they dont exist
+                        db.collection("artist").findAndModify(
+                            { _id: artist.id },     // query
+                            [],               // represents a sort order if multiple matches
+                            { $set: {
+                                name: artist.name,
+                                popularity: artist.popularity,
+                                genres: artist.genres
+                            } },   // update statement
+                            { new: true, upsert: true },    // options - new to return the modified document
+                            function(err,doc) {
+                                if (error) throw error;
+                                console.log(artist.name+" ajouté à moodmusic!");
+                            }
+                        );
                         db.collection("user").update(
                             {_id: user}, {
                                 $push: {
@@ -677,7 +697,7 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         });
     });
 
-    app.get('/getLyrics', function(req, res) {
+    app.get('/getLyrics', function(req,res) {
         var artist = req.query.artist;
         var track = req.query.track;
         console.log(artist + " " + track);
@@ -691,8 +711,8 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         });
     });
 
-// Meteo
-    app.get('/user', function (req, res) {
+    // Meteo
+    app.get('/user', function (req,res) {
         var latitude = req.query.latitude;
         var longitude = req.query.longitude;
         var speed = req.query.speed;
@@ -716,6 +736,224 @@ MongoClient.connect("mongodb://localhost/moodmusic", function(error, bdd) {
         });
     });
 
-    console.log('Listening on 8888');
-    app.listen(8888);
+    /********* API REST *********/
+
+    var apiRoutes = express.Router();
+
+    // ------- Authorize -------
+    apiRoutes.get('/authorize', function(req,res) {
+        res.redirect('/login?fromSSD33=true');
+    });
+
+    // ------- Playlists -------
+
+    // Get all the playlists with a possible filter by user_id
+    apiRoutes.get('/playlist/all', function(req,res) {
+        console.log("********** API REST **********");
+        var filter;
+        req.param('id_user') ? filter = {id_user: req.param('id_user')} : filter = {};
+
+        db.collection("playlist").find(filter).toArray(function(error,response) {
+            if(error) {
+                res.respond(new Error('Database issue : playlists unavailables'), 500);
+                console.log("Erreur demande d'accès aux playlists");
+                console.log("******************************\n");
+            } else {
+                if (response.length == 0) {
+                    res.respond({state: 'Pas de playlist correspondant à cet identifiant.'}, 200);
+                    console.log("pas de playlist pour l'utilisateur moodmusic");
+                    console.log("******************************\n");
+
+                } else {
+                    var playlists = JSON.parse(JSON.stringify(response));
+                    console.log("Demande d'accès aux playlists ");
+                    filter.id_user ? console.log(filter.id_user) : null;
+                    console.log("******************************\n");
+
+                    res.respond(playlists, error ? 500 : 200);
+                }
+            }
+        });
+    });
+
+    // Get the number of playlists with a possible filter by user_id
+    apiRoutes.get('/playlist/count', function(req,res) {
+        console.log("********** API REST **********");
+        var filter;
+        req.param('id_user') ? filter = {id_user: req.param('id_user')} : filter = {};
+        db.collection("playlist").find(filter).toArray(function(error,response) {
+            if (response.length == 0) {
+                res.respond({state: 'Pas de playlist correspondant à cet identifiant.'}, 200);
+                console.log("pas de playlist pour l'utilisateur moodmusic");
+                console.log("******************************\n");
+            } else {
+                var playlists = JSON.parse(JSON.stringify(response));
+                console.log("Demande d'accès au nombre de playlists");
+                filter.id_user ? console.log(filter.id_user) : null;
+                console.log("******************************\n");
+
+                res.respond({nb_playlist: playlists.length}, error ? 500 : 200);
+            }
+        });
+    });
+
+    // Bad request
+    apiRoutes.all('/playlist/?*', function (req, res) {
+        res.respond(405);
+    });
+
+    // ------- User -------
+
+    // Get all user's favorite artists
+    apiRoutes.get('/api/user/:id/top-artists', function(req,res){
+        console.log("********** API REST **********");
+        var id_user = req.param('id');
+        if(!id_user) {
+            res.respond(new Error('You must provide an id for the user'), 400);
+            console.log("Erreur demande d'accès aux artistes préférés");
+            console.log("******************************\n");
+        } else {
+            db.collection("user").find({_id: id_user},{"tabArtistesPref.images": 0}).toArray(function(error,response) {
+                var user = response[0];
+                console.log("Demande d'accès au tableau d'artistes préférés de "+user.name);
+                res.respond(user.tabArtistesPref, error ? 500 : 200);
+                console.log("******************************\n");
+
+            });
+        }
+    });
+
+    // ------- Artist -------
+
+    // Get a mood tendance for an artist (with name)
+    // We have to look for the artist's id and then redirect to the next endpoint
+    apiRoutes.get('/artist/mood', function(req,res) {
+        console.log("********** API REST **********");
+        if (!req.param('name')) {
+            res.respond(new Error('You must provide at least a name for the artist'), 400);
+            console.log("Erreur demande d'accès à la tendance d'émotionde l'artiste");
+            console.log("******************************\n");
+        }
+        else {
+            console.log("recherche de l'artiste "+req.param('name')+" dans moodmusic ...");
+            var name = new RegExp(["^", req.param('name'), "$"].join(""), "i");
+            db.collection("artist").find({name: {$regex: name}}).toArray(function(error,response) {
+                if(error) {
+                    res.respond(new Error('Database issue : artists unavailables'), 500);
+                    console.log("Erreur demande d'accès à la tendance d'émotionde l'artiste");
+                    console.log("******************************\n");
+                }
+                else {
+                    // console.log(response);
+                    // Cas d'invalidité : Pas d'artiste trouvé
+                    if (response.length > 1) {
+                        res.respond({state: 'Plusieurs artistes trouvés, précisez votre recherche ou utilisez son id.'}, 200);
+                        console.log("Plusieurs artistes dans moodmusic");
+                        console.log("******************************\n");
+
+                    } else {
+                        if (response.length == 0) {
+                            res.respond({state: 'Pas d\'artiste correspondant au nom fourni dans moodmusic. il n\'existe pas ou il n\'est pas référencé'}, 200);
+                            console.log("l'artiste n'exite pas dans moodmusic");
+                            console.log("******************************\n");
+                        } else {
+                            // redirect to the endpoint
+                            res.redirect('/api/artist/'+response[0]._id+'/mood?from_name=true');
+                        }
+                    }
+                }
+            });
+        }
+    });
+
+    // Get a mood tendance for an artist (with id)
+    apiRoutes.get('/artist/:id/mood', function(req,res) {
+        var id_artist = req.param('id');
+        !req.param('from_name') ? console.log("********** API REST **********") : console.log("redirection avec l'id "+id_artist);;
+        if(!id_artist) {
+            res.respond(new Error('You must provide an id for the artist'), 400);
+            console.log("Erreur demande d'accès à la tendance d'émotionde l'artiste");
+            console.log("******************************\n");
+        } else {
+            // Get all users that have the artist as favorite to process the statistics
+            db.collection("user").find({"tabArtistesPref.id": id_artist}).toArray(function(error,response) {
+                if(error) {
+                    res.respond(new Error('Database issue : users unavailables'), 500);
+                    console.log("Erreur demande d'accès à la tendance d'émotionde l'artiste");
+                    console.log("******************************\n");
+                }
+                else {
+                    // Cas d'invalidité : Pas d'artiste trouvé
+                    if (response.length == 0) {
+                        res.respond({state: 'L\'artiste n\'est pas référencé, il n\'y a aucune information sur sa tendance'}, 200);
+                        console.log("l'artiste n'exite pas dans moodmusic");
+                        console.log("******************************\n");
+                    } else {
+                        var users = JSON.parse(JSON.stringify(response));
+                        //console.log(users);
+                        // Get all the moods
+                        db.collection("mood").find().toArray(function (error, response) {
+                            if (error) {
+                                res.respond(new Error('Database issue : moods unavailables'), 500);
+                                console.log("Erreur demande d'accès à la tendance d'émotionde l'artiste");
+                                console.log("******************************\n");
+                            }
+                            else {
+                                var moods = JSON.parse(JSON.stringify(response));
+                                var tabMoods = new Array();
+                                var mood_related;
+                                //console.log("humeurs récupérées");
+
+                                // create a counter array that contains all moods possible
+                                for (var i = 0; i < moods.length; i++) {
+                                    //console.log(moods[i].state);
+                                    tabMoods[moods[i].state] = 0;
+                                }
+                                //console.log("Tableau des moods créé : "+tabMoods);
+                                var total_moods = 0;
+                                // get the global tendance
+                                for (var i = 0; i < users.length; i++) {
+                                    var tabArtistesPref = users[i].tabArtistesPref;
+                                    // Get the targeted artist in the array
+                                    for (var j = 0; j < tabArtistesPref.length; j++)
+                                        if (tabArtistesPref[j].id == id_artist) {
+                                            mood_related = tabArtistesPref[j].mood_related;
+                                            var artist_name = tabArtistesPref[j].name;
+                                        }
+
+                                    total_moods += mood_related.length;
+                                    for (var j = 0; j < mood_related.length; j++) {
+                                        tabMoods[mood_related[j]]++;
+                                    }
+                                }
+
+                                // Write a JSON response for the client - contains real statistics
+                                var tendance = {};
+                                tendance['artist'] = {};
+                                tendance['artist']['id'] = id_artist;
+                                tendance['artist']['name'] = artist_name;
+                                tendance['moods'] = {};
+                                for (var mood_state in tabMoods) {
+                                    tendance['moods'][mood_state] = (tabMoods[mood_state] / total_moods).toFixed(2);
+                                }
+                                tendance['moods']['total_moods'] = total_moods;
+                                tendance['moods']['total_users'] = users.length;
+                                tendance['tunetables'] = {};
+                                tendance['tunetables']['valence'] = 0;
+                                tendance['tunetables']['activation'] = 0;
+                                console.log("Demande d'accès aux tendances de " + artist_name);
+                                res.respond(tendance, error ? 500 : 200);
+                                console.log("******************************\n");
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
+
+    app.use('/api', apiRoutes);
+
+    app.listen(port);
+    console.log("Listening on " + port);
 });
