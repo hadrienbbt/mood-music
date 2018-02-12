@@ -45,65 +45,42 @@ function initMoodEval() {
     });
 }
 
-function processTunetables() {
-    var tunetables = {energy: [], valence: []};
+function processTunetables(moods) {
+    var tunetables = {danceability: [], energy: [], valence: []};
     var nbSliders = 0;
+
+    // Création d'un tableau associatif (mood -> functions)
+    var functionsTunetables = new Array();
+    for (var i = 0; i<moods.length; i++) {
+        functionsTunetables[moods[i].state] = moods[i].functions;
+    }
+    // console.log(functionsTunetables);
 
     // on regarde tous les sliders visibles
     $(".input-slider-mood").each(function() {
         var state = $(this).attr('id').substr(0,$(this).attr('id').indexOf('-'));
         if ($("#"+state).hasClass('on')) {
             var x = $(this).slider('getValue');
-            switch (state) {
-                case 'dance' :
-                    tunetables['danceability'] = x;
-                    break;
-                case 'sad' :
-                    tunetables['energy'][nbSliders] = (0.25 + x * 0.5);
-                    tunetables['valence'][nbSliders] = (0.25 * (1-x));
-                    nbSliders++;
-                    break;
-                case 'excited' :
-                    tunetables['energy'][nbSliders] = (0.625 + x * 0.375);
-                    tunetables['valence'][nbSliders] = (0.625 + x * 0.375);
-                    nbSliders++;
-                    break;
-                case 'tired' :
-                    tunetables['energy'][nbSliders] = (0.375 * (1-x));
-                    tunetables['valence'][nbSliders] = (0.75 - x * 0.5);
-                    nbSliders++;
-                    break;
-                case 'serene' :
-                    tunetables['energy'][nbSliders] = (0.375 - x * 0.25);
-                    tunetables['valence'][nbSliders] = (0.625 - x * 0.375);
-                    nbSliders++;
-                    break;
-                case 'upset' :
-                    tunetables['energy'][nbSliders] = (0.75 + x * 0.25);
-                    tunetables['valence'][nbSliders] = (0.5 * (1-x));
-                    nbSliders++;
-                    break;
-                case 'happy' :
-                    tunetables['energy'][nbSliders] = (0.375 + x * 0.25);
-                    tunetables['valence'][nbSliders] = (0.5 + x * 0.5);
-                    nbSliders++;
-                    break;
-                case 'nostalgic' :
-                    tunetables['energy'][nbSliders] = (0.375 * (1+x));
-                    tunetables['valence'][nbSliders] = (0.5 - x * 0.25);
-                    nbSliders++;
-                    break;
-            }
+
+            // Evaluer les fonctions associées à l'humeur courante
+            // Ajouter dans une nouvelle case l'image de chaque fonction
+            for (var tunetable in functionsTunetables[state])
+                tunetables[tunetable][nbSliders] = eval(functionsTunetables[state][tunetable]);
+
+            if (state != 'dance')   nbSliders++;
         }
     });
 
-    tunetables['energy'] = parseFloat(moyenne(tunetables['energy']));
-    tunetables['valence'] = parseFloat(moyenne(tunetables['valence']));
-    if (isNaN(tunetables['energy'])) tunetables['energy'] = 0.5;
-    if (isNaN(tunetables['valence'])) tunetables['valence'] = 0.5;
-    console.log(tunetables);
+    // On fait la moyenne et si ça marche pas on enlève l'attribut;
+    for(var tunetable in tunetables) {
+        //if (!tunetables[tunetable])          delete tunetables[tunetable];
+        tunetables[tunetable] = parseFloat(moyenne(tunetables[tunetable]));
+        if (isNaN(tunetables[tunetable]))    delete tunetables[tunetable];
 
-    return tunetables
+    }
+    // console.log(tunetables);
+
+    return tunetables;
 }
 
 function afficherArtistesPrefs(current_user) {
@@ -154,7 +131,7 @@ function afficherArtistesPrefs(current_user) {
                                 user: current_user
                             }
                         }).done(function(data) {
-                            if(data.state)  alert("L'artiste n'existe pas");
+                            if(data.state)  alert(data.state);
                             console.log(data);
                             afficherArtistesPrefs(current_user);
                             // Arreter la rotation du bouton +
@@ -186,36 +163,28 @@ function afficherArtistesPrefs(current_user) {
 
                 eventListenerEmojiSelect(current_user);
 
-                // Créer tous les sliders
-                var sliders = new Array();
-                for (var i = 0; i<moods['moods'].length; i++) {
-                    var state = moods['moods'][i].state;
-                    // With JQuery
-                    sliders.push( $("#"+state+"-slider").slider({
-                        orientation: 'vertical',
-                        min: 0,
-                        max: 1.1,
-                        value: 0.55,
-                        step: 0.01,
-                        reversed : true
-                    }) );
 
-                    // Récupérer la valeur du slider quand on le lâche
-                    $(".input-slider-mood").on("slideStop",function(){
-                        // Call a method on the slider
-                        console.log($(this).slider('getValue'));
-                        if($(this).slider('getValue') == "0") {
-                            var id_mood = $(this).attr('id').split('-')[0];
-                            $("#"+id_mood).click();
-                            var slider = $(this);
-                            var restaurerslider = setTimeout(function(){
-                                slider.slider('setValue',0.5);
-                            },300);
-                            restaurerslider();
-                        }
-                        if (parseFloat($(this).slider('getValue')) > 1) $(this).slider('setValue',1);
-                    });
-                }
+                var sliders = creerSliders(moods);
+
+                window.addEventListener('resize', function(){
+
+                    // Détruire tous les sliders
+                    for (var i=0; i<sliders.length; i++)
+                        sliders[i].slider('destroy');
+
+                    // Les recréer avec les bonnes propriétés
+                    sliders = creerSliders(moods);
+                }, false);
+
+                window.addEventListener('orientationchange', function() {
+
+                    // Détruire tous les sliders
+                    for (var i=0; i<sliders.length; i++)
+                        sliders[i].slider('destroy');
+
+                    // Les recréer avec les bonnes propriétés
+                    sliders = creerSliders(moods);
+                });
 
                 $(".emoji-mood-select").click(function() {
                     $(this).toggleClass("on");
@@ -242,7 +211,7 @@ function afficherArtistesPrefs(current_user) {
                         animateButtonPlaylist();
                         stringEmoji = stringEmoji.substr(0,stringEmoji.length-1);
                         console.log('moods = '+stringEmoji);
-                        var tunetables = processTunetables();
+                        var tunetables = processTunetables(moods['moods']);
 
                         $.ajax({
                             url: '/getArtistsFromMood',
@@ -266,6 +235,53 @@ function afficherArtistesPrefs(current_user) {
             });
         }
     });
+}
+
+function creerSliders(moods) {
+    // Si l'écran est plus petit que 480px on met les sliders horizontal pour l'ux
+    if (screen.width < 480 || screen.height <= 570) {
+        //console.log("petit ecran");
+        var orientation = 'horizontal';
+        var reversed = false;
+        var max = 1.05;
+        if (screen.width < 420) max = 1.08;
+    } else {
+        var orientation = 'vertical';
+        var reversed = true;
+        var max = 1.1;
+        //console.log("grand ecran");
+    }
+    var sliders = new Array();
+    // Créer tous les sliders
+    for (var i = 0; i<moods['moods'].length; i++) {
+        var state = moods['moods'][i].state;
+        // With JQuery
+        sliders.push( $("#"+state+"-slider").slider({
+            orientation: orientation,
+            min: 0,
+            max: max,
+            value: 0.55,
+            step: 0.01,
+            reversed : reversed
+        }) );
+
+        // Récupérer la valeur du slider quand on le lâche
+        $(".input-slider-mood").on("slideStop",function(){
+            // Call a method on the slider
+            console.log($(this).slider('getValue'));
+            if($(this).slider('getValue') == "0") {
+                var id_mood = $(this).attr('id').split('-')[0];
+                $("#"+id_mood).click();
+                var slider = $(this);
+                var restaurerslider = setTimeout(function(){
+                    slider.slider('setValue',0.5);
+                },300);
+                restaurerslider();
+            }
+            if (parseFloat($(this).slider('getValue')) > 1) $(this).slider('setValue',1);
+        });
+    }
+    return sliders;
 }
 
 function animateButtonPlaylist() {
@@ -378,7 +394,7 @@ function eventListenerAddArtist(user,artists,numArtiste,moods) {
                 // Arreter la rotation du bouton +
                 $("#calibrage-button-addArtistPref").toggleClass('processRotate');
 
-                if(data.state)  alert("L'artiste n'existe pas");
+                if(data.state)  alert(data.state);
                 else {
                     console.log(data);
 

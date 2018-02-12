@@ -201,13 +201,13 @@
 .mood-with-slider {
     display: inline-table;
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 480px), screen and (max-height: 570px) {
 
     .mood-with-slider {
         display: inline-table;
         padding-right: 1px;
         padding-left: 1px;
-        width: 10%;
+        width: 100%;
     }
 }
 
@@ -215,12 +215,21 @@
     background: green;
 }
 
-.slider-handle {
-    background-image : linear-gradient(to bottom,#8eca02 0,#648f00 100%) !important;
+@media screen and (min-width: 480px) and (min-height: 571px) {
+    .slider-track-high {
+        background-color: #d3e2b0 !important;
+    }
 }
 
-.slider-track-high {
-    background-color: #d3e2b0 !important;
+@media screen and (max-width: 480px), screen and (max-height: 570px) {
+    .slider-selection {
+        background-color: #d3e2b0 !important;
+        background-image: none;
+    }
+}
+
+.slider-handle {
+    background-image : linear-gradient(to bottom,#8eca02 0,#648f00 100%) !important;
 }
 
 .emoji-select, .emoji-mood-select {
@@ -250,6 +259,25 @@
 .slider {
     background-color: #ffffff;
     height: 100px !important;
+}
+
+@media screen and (max-width: 480px), screen and (max-height: 570px) {
+
+    .slider {
+        height: 20px !important;
+    }
+
+    .slider-mood {
+        margin-left: 30px;
+        position: relative;
+        top: 3px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .slider {
+        width: 140px !important;
+    }
 }
 
 .slider-mood {
@@ -349,6 +377,12 @@ hr {
     width: 230px;
 }
 
+@media screen and (max-width: 480px) {
+    .emoji-bar {
+        width: 230px;
+    }
+}
+
 @media screen and (min-width: 420px) {
     #mood-select {
         width: inherit;
@@ -442,13 +476,13 @@ hr {
     margin-bottom: 10px;
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 480px), screen and (max-height: 570px) {
     .container-emoji-demo {
-        width: 45px;
+        display: inline-table !important;
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 500px), screen and (max-height: 570px) {
     .jauger-mood {
         width: 50px;
     }

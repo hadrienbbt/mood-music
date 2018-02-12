@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "382131230485",
+    "firebase_url": "https://moodmusic-5f773.firebaseio.com",
+    "project_id": "moodmusic-5f773",
+    "storage_bucket": "moodmusic-5f773.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:382131230485:android:117d29aaa414e6a2",
+        "android_client_info": {
+          "package_name": "com.moodmusic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "382131230485-3s0hcmth5qu98akn8bckg9b8qjm2h0g6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXgAAZnLS63xHjEwOiZ4eSehevFXD9DqM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
