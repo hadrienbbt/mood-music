@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react'
 import {
     Platform,
@@ -13,86 +7,51 @@ import {
     Button,
 } from 'react-native'
 
-import Spotify from 'react-native-spotify'
-import { clientID,redirectURL } from '../private/conf'
+import { connect } from 'react-redux'
+import { bindActionCreators,compose } from 'redux'
+import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
+
+import { ActionCreators } from '../actions'
 
 Text.defaultProps.allowFontScaling = false
+console.ignoredYellowBox = ['Remote debugger']
 
 type Props = {}
 
-export default class App extends Component<Props> {
+class App extends Component<Props> {
 
     constructor(props) {
         super(props)
-
-        this.state = {
-            spotifyIsInitialized: false,
-            user: null,
-        }
-        if (Spotify) this.initializeSpotify()
+        props.initializeSpotify()
+        console.log(props.firebase)
     }
 
-    initializeSpotify = () => Spotify.initialize({
-        clientID: clientID,
-        redirectURL: redirectURL,
-        scopes: [],
-    }, (loggedIn, error) => {
-        if(!error) {
-            this.setState({spotifyIsInitialized: true})
-            if(loggedIn) this.getUserInfos()
-        }
-    })
-    
-    getUserInfos = () => Spotify.getMe((me,error) => {
-        console.log(me)
-        if(!error) this.setState({user: me})
-        else alert(JSON.stringify(error))
-    })
-
-    getMoodmusicInfos = () => {
-        fetch(`http://www.moodmusic.fr/api/user/${this.state.user.id}/top-artists`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-        })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.setState({user: {
-                    ...this.state.user,
-                    top_artists: responseJson
-                }})
-                alert(JSON.stringify(this.state.user.top_artists))
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    }
-
-    spotify = () => {
-        Spotify.login((loggedIn,error) => {
-            if(!error) {
-                if (loggedIn) this.getUserInfos()
-            }
-            else alert(JSON.stringify(error))
-        })
+    async spotifyLoginWorkflow() {
+        try {
+            await this.props.spotifyLogin()
+            if (this.props.api_spotify.loggedIn) this.props.spotifyUserInfos()
+        } catch(e) {console.log(e)}
     }
 
     render = () => (
         <View style={styles.container}>
-            {this.state.spotifyIsInitialized ?
-                this.state.user ? (
-                    <View>
-                        <Text>{`Bienvenue ${this.state.user.display_name} !`}</Text>
-                        <Button title={"Obtenir les informations de Moodmusic"}
-                                onPress={() => this.getMoodmusicInfos()}
+            {this.props.api_spotify.initialized ?
+                this.props.user ? (
+                    <View style={styles.container}>
+                        <Text>{`Bienvenue ${this.props.user.name} !`}</Text>
+                        <Button title={"Obtenir les artistes préférés sur Moodmusic"}
+                                onPress={() => this.props.getMoodmusicTopArtists(this.props.user._id)}
                                 style={styles.button}
+                        />
+                        <Button
+                            title={"Déconnecter"}
+                            onPress={() => this.props.logout()}
+                            style={styles.button}
                         />
                     </View>
                 ) : (
                     <Button title={"Connexion avec Spotify"}
-                            onPress={() => this.spotify()}
+                            onPress={() => this.spotifyLoginWorkflow()}
                             style={styles.button}
                     />
             ) : (
@@ -113,5 +72,17 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
         margin: 10,
+        marginTop: 20,
     },
 })
+
+var mapStateToProps = state => ({
+        user: state.user,
+        api_spotify: state.api_spotify,
+    }),
+    mapDispatchToProps = dispatch => bindActionCreators(ActionCreators, dispatch)
+
+export default compose(
+    firebaseConnect(),
+    connect(mapStateToProps,mapDispatchToProps)
+)(App)

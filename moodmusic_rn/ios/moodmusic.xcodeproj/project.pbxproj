@@ -23,6 +23,7 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		842B2D39CEEF2A7BB2890DB2 /* libPods-moodmusic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49420856C9147C0D0C2A5ED1 /* libPods-moodmusic.a */; };
+		9017C9682034C9C20038E9C7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB61A68108700A75B9A /* Info.plist */; };
 		903373C42031164D00E60A0E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 903373C32031164D00E60A0E /* Images.xcassets */; };
 		903373C62031173500E60A0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 903373C52031173500E60A0E /* GoogleService-Info.plist */; };
 		90FED2892032022300B6AB5C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FED2882032022300B6AB5C /* WebKit.framework */; };
@@ -966,6 +967,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9017C9682034C9C20038E9C7 /* Info.plist in Resources */,
 				903373C42031164D00E60A0E /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				903373C62031173500E60A0E /* GoogleService-Info.plist in Resources */,
