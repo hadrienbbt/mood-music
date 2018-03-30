@@ -11,12 +11,6 @@ export const user = createReducer(null, {
             email, country
         }
     },
-    [types.MOODMUSIC_TOP_ARTISTS](state, { payload }) {
-        return {
-            ...state,
-            topArtists: payload.topArtists
-        }
-    },
     [types.LOGOUT](state,_) {
         return null
     }

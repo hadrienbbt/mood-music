@@ -4,6 +4,8 @@ import thunkMiddleware from 'redux-thunk'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import { reactReduxFirebase } from 'react-redux-firebase'
+import { composeWithDevTools } from 'redux-devtools-extension'
+
 import firebase from 'firebase'
 
 import reducers from '../reducers'
@@ -22,11 +24,12 @@ const loggerMiddleware = createLogger({predicate: () => __DEV__}),
     persistConfig = {
         key: 'root',
         storage,
+        whitelist: [],
     },
 
     persistedReducer = persistReducer(persistConfig, reducers),
 
-    enhancer = compose(
+    enhancer = composeWithDevTools(
         applyMiddleware(thunkMiddleware, loggerMiddleware),
         reactReduxFirebase(firebase, rrfConfig)
     )

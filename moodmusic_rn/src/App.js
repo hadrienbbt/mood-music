@@ -22,8 +22,11 @@ class App extends Component<Props> {
 
     constructor(props) {
         super(props)
-        props.initializeSpotify()
         console.log(props.firebase)
+    }
+
+    componentWillMount() {
+        if (!this.props.api_spotify.initialized) this.props.initializeSpotify()
     }
 
     async spotifyLoginWorkflow() {
@@ -67,12 +70,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
-    },
-    button: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-        marginTop: 20,
     },
 })
 

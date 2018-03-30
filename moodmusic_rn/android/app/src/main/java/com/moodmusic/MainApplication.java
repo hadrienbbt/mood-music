@@ -3,6 +3,7 @@ package com.moodmusic;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.lufinkey.react.spotify.RCTSpotifyPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
