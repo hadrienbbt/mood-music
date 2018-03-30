@@ -1,13 +1,15 @@
-# mood-music 
-
+# Moodmusic 
+## How to execute
+### Step 1 :
 Install node.js
 
-then
+### Step 2 :
+Go to moodmusic directory and type on terminal :
+`npm install`
+`node app.js`
 
-Write on command line tool :
+### Step 3 :
+Open http://localhost:8888 on browser
 
-npm install
-
-node app.js
-
-Open localhost:8888 on browser
+## Author
+Hadrien Barbat
