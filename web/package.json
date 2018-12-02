@@ -1,0 +1,19 @@
+{
+  "author": "Hadrien Barbat",
+  "name": "Test_moodMusic",
+  "description": "Basic examples of the Spotify authorization flows through OAuth 2",
+  "version": "1.0.0",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "cookie-parser": "1.3.2",
+    "express": "~4.0.0",
+    "nodemailer": "^3.0.2",
+    "querystring": "~0.2.0",
+    "request": "~2.34.0",
+    "socket.io": "^1.7.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hadribg/mood-music.git"
+  }
+}

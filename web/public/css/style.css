@@ -1,0 +1,557 @@
+@font-face {
+    font-family: roboto-light;
+    src: url(font/Roboto-Light.ttf);
+}
+
+/*body {
+    background-color: #19BCFF !important;
+    color: #ffffff !important;
+}*/
+
+* {
+    overflow-y: scroll;
+    font-family: roboto-light;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+/*
+#login, #loggedin {
+    display: none;
+}
+*/
+.text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 500px;
+}
+
+.content {
+    background :url(../img/connexion/fond.jpg) no-repeat center fixed;
+    -webkit-background-size: cover; /* pour Chrome et Safari */
+    -moz-background-size: cover; /* pour Firefox */
+    -o-background-size: cover; /* pour Opera */
+    background-size: cover; /* version standardisée */
+}
+
+.bar{
+    height: 11%;
+}
+
+.bar-tab .tab-item-one{
+    display: table-cell;
+    width: 1%;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    background: #212121;
+    font-weight: bold;
+}
+
+.bar-tab .tab-item-two{
+    display: table-cell;
+    width: 1%;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    background: #f1c431;
+    font-weight: bold;
+}
+
+#bar-tab {
+    height: 70px;
+    display: inline-flex;
+}
+
+#container_connexion {
+    margin-top: 160px;
+}
+
+#social{
+    color: white;
+    font-size: 25px;
+    display: inline-block;
+    margin: auto;
+    margin-top: 14px;
+    margin-left: 20px;
+    position: relative;
+    top: 9px;
+}
+
+#logo-accueil {
+    width: 220px;
+    margin: auto;
+    display: block;
+    margin-bottom: 60px;
+}
+
+@media screen and (min-width: 700px) {
+    #bar-tab {
+        height: 130px;
+    }
+
+    #social {
+        margin-top: 44px;
+    }
+}
+
+@media screen and (min-height: 800px) and (max-height: 500px) {
+
+    #container_connexion {
+        margin-top: 240px;
+    }
+}
+
+@media screen and (max-height: 500px) {
+
+    #container_connexion    {  margin-top: 50px;  }
+    #spotify-logo           {   width: 30px;  }
+    #bar-tab                {  height: 50px;  }
+    #social {
+        font-size: 19px;
+        margin-top: 9px;
+        top: 7px;
+    }
+    #logo-accueil {
+        width: 120px;
+        margin: auto;
+        display: block;
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (min-height: 800px) {
+
+    #container_connexion {
+        margin-top: 240px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #container_connexion {
+        margin-top: 120px;
+    }
+
+    #logo-accueil {
+        width: 180px;
+        margin-bottom: 50px;
+    }
+
+    #social {
+        font-size: 17px;
+        margin-top: 22px;
+        top: 5px;
+    }
+}
+
+#logo-header {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+@media screen and (min-width: 450px) {
+    #logo-header {
+        display: block;
+        width: 400px;
+        margin: auto;
+    }
+}
+
+#menu {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+
+#artists {
+    text-align: center;
+}
+
+.container-artist {
+    margin: auto;
+    width: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+    .container-artist {
+        width: 24%;
+    }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 990px) {
+    .container-artist {
+        width: 28%;
+    }
+}
+
+@media screen and (max-width: 990px) and (min-width: 650px) {
+    .container-artist {
+        width: 42%;
+    }
+}
+
+.on {
+    background: lightgray;
+    /*box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);*/
+}
+
+.mood-with-slider {
+    display: inline-table;
+}
+@media screen and (max-width: 480px), screen and (max-height: 570px) {
+
+    .mood-with-slider {
+        display: inline-table;
+        padding-right: 1px;
+        padding-left: 1px;
+        width: 100%;
+    }
+}
+
+.input-slider-mood .slider-selection {
+    background: green;
+}
+
+@media screen and (min-width: 480px) and (min-height: 571px) {
+    .slider-track-high {
+        background-color: #d3e2b0 !important;
+    }
+}
+
+@media screen and (max-width: 480px), screen and (max-height: 570px) {
+    .slider-selection {
+        background-color: #d3e2b0 !important;
+        background-image: none;
+    }
+}
+
+.slider-handle {
+    background-image : linear-gradient(to bottom,#8eca02 0,#648f00 100%) !important;
+}
+
+.emoji-select, .emoji-mood-select {
+    cursor: pointer;
+    border-radius: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    text-align: center;
+    padding-top: 3px;
+    transition-duration: .25s;
+    transition-timing-function: ease-in-out;
+}
+
+.emoji-artist {
+    display: inline-block;
+}
+
+#selectMood {
+    text-align: center;
+}
+
+#slider .slider-selection {
+    background: #BABABA;
+}
+
+.slider {
+    background-color: #ffffff;
+    height: 100px !important;
+}
+
+@media screen and (max-width: 480px), screen and (max-height: 570px) {
+
+    .slider {
+        height: 20px !important;
+    }
+
+    .slider-mood {
+        margin-left: 30px;
+        position: relative;
+        top: 3px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .slider {
+        width: 140px !important;
+    }
+}
+
+.slider-mood {
+    display: inline-block;
+    opacity: 0;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+}
+
+.visible {
+    opacity: 1;
+}
+
+.processRotate {
+    -webkit-animation: rotate 1s linear infinite;
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        -ms-transform: rotate(0deg); /* IE 9 */
+        -webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+        transform: rotate(0deg);
+    } to {
+          -ms-transform: rotate(360deg); /* IE 9 */
+          -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+          transform: rotate(360deg);
+      }
+}
+
+@-webkit-keyframes rotate {
+    from {
+        -ms-transform: rotate(0deg); /* IE 9 */
+        -webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+        transform: rotate(0deg);
+    } to {
+          -ms-transform: rotate(360deg); /* IE 9 */
+          -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+          transform: rotate(360deg);
+      }
+}
+
+#button-addArtistPref {
+    width: 30px;
+    position: relative;
+    bottom: 7px;
+    -webkit-bottom: 32px;
+    left: 20px;
+}
+
+#button-addArtistPref:hover {
+    cursor: pointer;
+    -ms-transform: rotate(360deg); /* IE 9 */
+    -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+    transform: rotate(360deg);
+}
+
+#artistName, #calibrage-artistName {
+    width: 210px;
+    margin-top: 15px;
+    padding-bottom: 0px !important;
+}
+
+#calibrage-button-addArtistPref {
+    width: 30px;
+    position: relative;
+    bottom: 6px;
+    left: 13px;
+}
+
+#calibrage-button-addArtistPref:hover {
+    cursor: pointer;
+    -ms-transform: rotate(360deg); /* IE 9 */
+    -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+    transform: rotate(360deg);
+}
+
+hr {
+    margin-top: 0px !important;
+}
+
+.name_artist {
+    display: inline-block;
+}
+
+.img-artist {
+    display: block;
+    margin: auto;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    margin-top: 10px;
+}
+
+.emoji-bar {
+    margin: auto;
+    margin-top: 20px;
+    width: 230px;
+}
+
+@media screen and (max-width: 480px) {
+    .emoji-bar {
+        width: 230px;
+    }
+}
+
+@media screen and (min-width: 420px) {
+    #mood-select {
+        width: inherit;
+    }
+}
+
+.button-removeArtistPref {
+    width: 20px;
+    margin: auto;
+    font-size: 27px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: -10px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.dot {
+    display: inline-block;
+    background: #648f00;
+    width: 5px;
+    height: 5px;
+    border-radius: 50px;
+    margin: auto;
+    margin-top: 20px;
+    border: 1px solid white;
+}
+
+.dot-full {
+    background: #ffffff;
+}
+
+#bouton-creer-playlist {
+    background-image: url('../img/create_playlist_button.png');
+    background-size: 100%;
+    width: 250px;
+    height: 44px;
+    border-radius: 50px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.processReduce {
+    -webkit-animation: reduce 1s ease forwards;
+    animation: reduce 1s ease forwards;
+    background-image: none !important;
+    background: #648f00 ;
+}
+
+@keyframes reduce {
+    from {
+        width: 250px;
+    } to {
+          width: 45px;
+      }
+}
+
+#mood-select {
+    margin-top: 3%;
+}
+
+#goMoodEvalFinArtistes {
+    margin-bottom: 40px;
+}
+
+.emoji-demo {
+    width: 100%;
+    margin: auto;
+    font-size: 20px;
+}
+
+.label {
+    color: #648f00;;
+    letter-spacing: 1px;
+    padding: 0;
+    font-variant: small-caps;
+    font-size: 65%;
+}
+
+@media screen and (max-width: 510px) {
+    .label {
+        letter-spacing: 0px;
+    }
+}
+
+.container-emoji-demo {
+    display: inline-block;
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 480px), screen and (max-height: 570px) {
+    .container-emoji-demo {
+        display: inline-table !important;
+    }
+}
+
+@media screen and (max-width: 500px), screen and (max-height: 570px) {
+    .jauger-mood {
+        width: 50px;
+    }
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h4 {
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+#nom-playlist {
+    width: 170px;
+    display: block;
+    margin: auto;
+    height: 30px;
+}
+
+#calibrage, #calibrage-manuel, #topArtists {
+    text-align: center;
+}
+
+.titre1 {
+    margin-top: 0px;
+    font-size: 18px;
+}
+
+.titre2 {
+    margin: auto;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: justify;
+    width: 260px;
+}
+
+.margin-bottom-less {
+    margin-bottom: 0px;
+}
+
+#etapes {
+    margin-top: 15px;
+}
+
+#suite {
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.fin-calibrage {
+    display: inline-block;
+    margin-top: 100px;
+    width: 270px;
+}
+
+.messageEcran {
+    margin-bottom: 20px;
+    line-height: 28px;
+    font-size: 17px;
+}
+
+#debut-calibrage-manuel {
+    text-align: center;
+}
+
+.bas-de-page {
+    margin-bottom: 30px;
+}
