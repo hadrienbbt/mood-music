@@ -10,8 +10,8 @@ var lyrics = require('lyric-get');
 var session = require('express-session');
 var MongoClient = require("mongodb").MongoClient;
 var nodemailer = require("nodemailer");
-var RecommendationGenerator = require('./public/js/class/RecommendationRequest');
-var IdArtistsGenerator = require('./public/js/class/IdRequest');
+var RecommendationGenerator = require('./public/js/class/RecommendationRequest.js');
+var IdArtistsGenerator = require('./public/js/class/IdRequest.js');
 var user = require('./public/js/class/User.js');
 
 // Module dependencies
