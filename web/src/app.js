@@ -29,6 +29,7 @@ var port = process.env.PORT || 8888;
 
 var mongo_uri = process.env.MONGO_URI || 'MONGO_URI'
 
+var public_dir = process.env.PUBLIC_DIR || __dirname + '/public'
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
@@ -64,7 +65,7 @@ var transporter = nodemailer.createTransport({
 MongoClient.connect(mongo_uri).then(function (client) {
     const db = client.db()
     console.log("Connecté à la base de données 'moodmusic'");
-    app.use(express.static(__dirname + '/public'))
+    app.use(express.static(public_dir))
         .use(cookieParser())
         .use(session({ secret: 'ssshhhhh' }))
         .use(bodyParser.json()) // support json encoded bodies
