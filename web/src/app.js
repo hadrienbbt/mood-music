@@ -2,6 +2,7 @@
 // Hadrien Barbat
 require('dotenv').config()
 
+var fs = require('fs');
 var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
 var querystring = require('querystring');
@@ -46,7 +47,6 @@ var generateRandomString = function (length) {
 var stateKey = 'spotify_auth_state';
 
 var app = express();
-var server = require('http').createServer(app);
 
 // create reusable transporter object using the default SMTP transport
 var transporter = nodemailer.createTransport({
@@ -1280,16 +1280,21 @@ MongoClient.connect(mongo_uri).then(function (client) {
 
     app.use('/api', apiRoutes);
 
-    // Chargement de socket.io
-    var io = require('socket.io').listen(server);
-
-    // Quand un client se connecte, on le note dans la console
-    io.sockets.on('connection', function (socket) {
-        console.log('Un client est connecté !');
-    });
-
-    server.listen(port);
-    console.log("Listening on " + port);
+    if (!process.env.NODE_ENV || process.env.NODE_ENV == 'development') {
+        require('http')
+            .createServer(app)
+            .listen(port, _ => console.log('Listening http on port ' + port))
+    } else {
+        const cert = process.env.SSL_CERT
+        const key = process.env.SSL_KEY
+        const options = {
+            cert: fs.readFileSync(cert),
+            key: fs.readFileSync(key)
+        }
+        require('https')
+            .createServer(options, app)
+            .listen(port, _ => console.log('Listening https on port ' + port))
+    }
 })
     .catch(err => {
         console.log(err)
