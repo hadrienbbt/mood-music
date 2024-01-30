@@ -1,5 +1,6 @@
 // app.js
 // Hadrien Barbat
+require('dotenv').config()
 
 var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
@@ -17,14 +18,15 @@ var user = require('./public/js/class/User.js');
 // Module dependencies
 require('./js/response.js');
 
-var client_id = 'YOUR_CLIENT_ID'; // Your client id
-var client_secret = 'YOUR_CLIENT_SECRET'; // Your secret
+var client_id = process.env.SPOTIFY_CLIENT_ID || 'CLIENT_ID';
+var client_secret = process.env.SPOTIFY_CLIENT_SECRET || 'CLIENT_SECRET';
 var key_weather = 'YOUR_KEY_WEATHER';
 var limitTopArtistsPerUser = "15";
 
-var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
-//var redirect_uri = 'http://moodmusic.fr/callback'; // Your redirect uri
-var port = 8888;
+var redirect_uri = process.env.SPOTIFY_REDIRECT_URI || 'http://localhost:8888/callback'; // Your redirect uri
+var port = process.env.PORT || 8888;
+
+var mongo_uri = process.env.MONGO_URI || 'MONGO_URI'
 
 /**
  * Generates a random string containing numbers and letters
@@ -59,7 +61,7 @@ var transporter = nodemailer.createTransport({
 });
 
 // Script BDD
-MongoClient.connect("mongodb://localhost:27017/moodmusic").then(function (client) {
+MongoClient.connect(mongo_uri).then(function (client) {
     const db = client.db()
     console.log("Connecté à la base de données 'moodmusic'");
     app.use(express.static(__dirname + '/public'))

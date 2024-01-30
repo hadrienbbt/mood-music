@@ -66,3 +66,6 @@ package-lock.json
 
 /coverage
 /third-party
+
+.env
+lib/
