@@ -594,7 +594,7 @@ MongoClient.connect(mongo_uri).then(function (client) {
         var playlistOptions = {
             url: 'https://api.spotify.com/v1/users/' + req.session.global_user_id + '/playlists',
             headers: { 'Authorization': 'Bearer ' + req.session.global_access_token },
-            body: JSON.stringify({ name: req.session.nom_playlist }),
+            body: JSON.stringify({ name: `[Moodmusic] ${req.session.nom_playlist}` }),
             json: true
         }
         request.post(playlistOptions, function (error, response, body) {
